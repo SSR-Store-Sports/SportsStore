@@ -6,8 +6,9 @@
 # Entidades (tabelas):
 - Usuários: lista de usuários;
 - Perfils: cliente, funcionário, administrador;
+- Fornecedores: 
 - Produtos: lista de itens;
-- Vendas: usuário e produto;
+- Vendas: lista de itens vendidos;
 
 ## RFs (requisitos funcionais):
 Funcionalidade que o usuário interage de alguma forma.
@@ -15,12 +16,13 @@ Funcionalidade que o usuário interage de alguma forma.
 - [ ] O usuário deve poder se cadastrar;
 - [ ] O usuário deve poder se autenticar;
 - [ ] O usuário deve poder alterar sua senha;
+- [ ] O funcionário/administrador deve poder cadastrar um fornecedor; 
 - [ ] O administrador deve poder cadastrar um usuário como funcionário/administrador;
 - [ ] O usuáro deve poder visualizar todos os produtos;
 - [ ] O usuário deve poder buscar por produto(s);
 
 ## RNFs (requisitos não-funcionais):
-Não funcionalidades, mas tratativas.
+Não funcionalidades, mais tratativas.
 
 - [ ] A senha do usuário deve estar criptografada;
 - [ ] Deve ser possível diferenciar usuários por cargos;
@@ -40,6 +42,7 @@ authenticator (aplicativo de validação);
   - complemento;
   - telefone;
   - data de nascimento.
-  Obs.: o usuário deve aceitar os termos para se cadastrar.
-- [ ] Todos os usuários cadastrados recebem por padrão o cargo de cliente
-- [ ] O usuário deve ter mais quem um método de autenticação
+- [ ] O usuário deve aceitar os termos para se cadastrar.
+- [ ] Todos os usuários cadastrados recebem por padrão o cargo de cliente;
+- [ ] O usuário deve ter mais quem um método de autenticação;
+- [ ] Um produto pode estar atrelado a um fornecedor;
