@@ -8,7 +8,9 @@
 - Perfils: cliente, funcionário, administrador;
 - Fornecedores: lista de fornecedores;
 - Produtos: lista de itens;
+- Categorias: lista de itens, ex.: camisetas, tênis;
 - Vendas: lista de itens vendidos;
+- Carrinho: lista de itens que serão comprados.
 
 ## RFs (requisitos funcionais):
 Funcionalidade que o usuário interage de alguma forma.
@@ -17,28 +19,34 @@ Funcionalidade que o usuário interage de alguma forma.
 - [ ] O usuário deve poder se autenticar;
 - [ ] O usuário deve poder alterar sua senha;
 - [ ] O usuário deve poder obter o seu perfil de um usuário logado;
-- [ ] O usuário deve ter um carrinho de compras;
-- [ ] O usuário 
-- [ ] O funcionário/administrador deve poder cadastrar um fornecedor; 
+- [ ] O usuário deve poder visualizar todos os produtos;
+- [ ] O usuário deve poder buscar por produto(s);
+- [ ] O usuário deve poder selecionar um produto gerando o carrinho de compras;
+- [ ] O usuário deve poder finalizar a compra (gerar venda);
+- [ ] O usuário deve ter uma lista de items favoritos;
+- [ ] O usuário deve poder visualizar o histórico de compras;
+- [ ] O funcionário/administrador deve poder cadastrar um fornecedor;
+- [ ] O funcionário/administrador deve poder cadastrar um produto;
+- [ ] O funcionário/administrador deve poder gerenciar o estoque de produtos (atualizar stock).
 - [ ] O administrador pode desativar um usuário;
 - [ ] O administrador deve poder cadastrar um usuário como funcionário/administrador;
-- [ ] O usuáro deve poder visualizar todos os produtos;
-- [ ] O usuário deve poder buscar por produto(s);
+- [ ] O administrador deve poder alterar a senha de um usuário;
 
 ## RNFs (requisitos não-funcionais):
 Não funcionalidades, mais tratativas.
 
 - [ ] A senha do usuário deve estar criptografada;
-- [ ] O usuário deve ser identificado por um JWT (JSON Web Token)
+- [ ] O usuário deve ser identificado por um JWT (JSON Web Token);
 - [ ] Deve ser possível diferenciar usuários por cargos;
 - [ ] O usuário não autenticado deve ter um id associado para utilizar o carrinho de compras;
 - [ ] O usuário cadastrado como funcionário/administrador terá que usar o
 authenticator (aplicativo de validação - opcional);
+- [ ] O estoque deve ser atualizado ao finalizar a compra;
 - [ ] O usuário só pode alterar três vezes no mês sua senha (opcional);
 - [ ] O usuário recebe uma senha temporária no endereço de email para renovação;
 - [ ] Todas as datas devem estar convertidas conforme locale configurado (ex: DD/MM/YYYY)
 - [ ] O usuário não deve poder usar o sistema se estiver desativado;
-- [ ] Todas as funcionalidades devem retornar status HTTP apropriado (200, 201, 400, etc)
+- [ ] Todas as funcionalidades devem retornar status HTTP apropriado (200, 201, 400, etc);
 
 ## RNs (Regras de negócios):
 A instituição decide, o proprietário do software dita.
@@ -57,8 +65,10 @@ A instituição decide, o proprietário do software dita.
 - [ ] O usuário não deve poder se cadastrar com um usuário duplicado;
 - [ ] Todos os usuários cadastrados recebem por padrão o cargo de cliente;
 - [ ] O usuário deve ter mais quem um método de autenticação;
+- [ ] O limite de itens no carrinho é 20 por usuário;
 - [ ] Um produto pode estar atrelado a um fornecedor;
-- [ ] Todas as consultas devem ter paginação: 10 itens p/página
-- [ ] Todos os filtros são opcionais
-- [ ] Usuários que não estão logados, devem conseguir adquirir produtos para ficar no carrinho (direcionar p/ login)
-- [ ] O usuário que quer algo específico, poderá acessar o canal alternativo (WhatsApp)
+- [ ] O preço do produto deve incluir impostos (ex.: ICMS);
+- [ ] Todas as consultas devem ter paginação: 10 itens p/página;
+- [ ] Todos os filtros são opcionais;
+- [ ] Usuários que não estão logados, devem conseguir adquirir produtos para ficar no carrinho (direcionar p/ login);
+- [ ] O usuário que quer algo específico, poderá acessar o canal alternativo (WhatsApp);
