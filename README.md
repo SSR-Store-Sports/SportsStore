@@ -23,7 +23,7 @@ Funcionalidade que o usuário interage de alguma forma.
 - [ ] O usuário deve poder buscar por produto(s);
 - [ ] O usuário deve poder selecionar um produto gerando o carrinho de compras;
 - [ ] O usuário deve poder finalizar a compra (gerar venda);
-- [ ] O usuário deve ter uma lista de items favoritos;
+- [ ] x - O usuário deve ter uma lista de items favoritos;
 - [ ] O usuário deve poder visualizar o histórico de compras;
 - [ ] O funcionário/administrador deve poder cadastrar um fornecedor;
 - [ ] O funcionário/administrador deve poder cadastrar um produto;
