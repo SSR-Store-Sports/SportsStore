@@ -1,4 +1,17 @@
 RewriteEngine On
+
+# Redirecionar para index.php se o arquivo não existir
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewiteRule ^ index.php [QSA,L]
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Configurações de segurança
+<Files "*.sql">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "config/*">
+    Order allow,deny
+    Deny from all
+</Files>

@@ -1,0 +1,64 @@
+header {
+  background-color: var(--bg-color);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-actions button {
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.nav-actions button:hover {
+  background-color: var(--border-color);
+}
+
+.nav-actions i {
+  font-size: 1.5rem;
+  color: var(--text-color);
+}
+
+.menu-toggle {
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem;
+}
+
+.menu-toggle i {
+  font-size: 1.5rem;
+  color: var(--text-color);
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+  
+  .nav-actions {
+    gap: 0.5rem;
+  }
+}
