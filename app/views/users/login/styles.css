@@ -1,0 +1,164 @@
+/* Estilos gerais (sem alterações) */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #555;
+}
+
+.login-main {
+    display: flex;
+    align-items: stretch;
+    height: 100%;
+}
+
+/* --- 1. LARGURA DA IMAGEM FIXA EM 50% --- */
+.carrosel {
+    width: 50%; /* Voltamos para 50% para manter a divisão igual */
+    background-color: black;
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.carrosel img {
+    width: 50%;
+    object-fit: cover;
+}
+
+/* --- 2. ALARGANDO OS ITENS DENTRO DO FORMULÁRIO --- */
+.login-container {
+    flex: 1; /* Ocupa os 50% restantes */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 8%; /* Usamos padding percentual para controlar o espaçamento das bordas */
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+/* O .login-form agora ocupa 100% do seu contêiner (que já tem padding) */
+.login-form {
+    width: 100%;
+    max-width: none; /* Removemos a largura máxima fixa */
+}
+
+/* Título e Logo (sem alterações) */
+.login-form h1 {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.logo img {
+    width: 120px;
+    height: auto;
+}
+
+/* --- 3. LINHAS ROSAS E ALTURA MANTIDA --- */
+.form-group {
+    position: relative;
+    margin-bottom: 45px;
+}
+
+.form-group input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #d17eb0; /* Linha rosa e um pouco mais grossa */
+    background-color: transparent;
+    padding: 15px 5px;
+    font-size: 20px;
+    outline: none;
+    transition: all 0.3s; /* Transição suave para tudo */
+}
+
+/* Efeito de foco sutil, já que a linha já é rosa */
+.form-group input:focus {
+    /* Podemos adicionar um leve brilho ou manter como está */
+    border-bottom-color: #c875a5; /* Escurece um pouco no foco */
+}
+
+.form-group input::placeholder {
+    color: #aaa;
+    font-size: 20px;
+}
+
+.form-group a {
+    position: absolute;
+    right: 5px;
+    bottom: 18px;
+    font-size: 14px;
+    color: #888;
+    text-decoration: none;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 18px;
+    background-color: #d17eb0;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #c875a5;
+}
+
+/* O .social-login também ocupa 100% da largura disponível */
+.social-login {
+    margin-top: 40px;
+    width: 100%;
+}
+
+/* Demais estilos (sem alterações) */
+.login-form > p {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+.login-form > p a {
+    color: #d17eb0;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.social-login button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #555;
+    transition: background-color 0.3s;
+}
+
+.social-login button:hover {
+    background-color: #f9f9f9;
+}
+
+.social-login img {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
