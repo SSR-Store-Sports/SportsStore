@@ -19,14 +19,22 @@
                     <img src="/public/images/logo.png" alt="TatiFit Wear">
                 </div>
                 <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Email">
+                    <input type="name" id="name" name="name" placeholder="Nome">
                 </div>
                 <div class="form-group">
-                    <input type="password" id="password" name="password" placeholder="Senha">
-                    <a href="#">Esqueci a senha</a>
+                    <input type="email" id="email" name="email" placeholder="Email">
+                </div> 
+                <div class="form-group">
+                    <input type="telefone" id="telefone" name="telefone" placeholder="Telefone">
                 </div>
-                <button type="submit" class="btn-login">Entrar</button>
-                <p>Não tem conta? <a href="#">Criar conta</a></p>
+                <div class="form-group">
+                    <input type="text" id="cpf" name="cpf" placeholder="CPF">
+                </div>  
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Senha">
+                </div>
+                <button type="submit" class="btn-login">Continuar</button>
+                <p>já possui uma conta? <a href="#">Fazer login</a></p>
         </form>
 
         <div class="social-login">
