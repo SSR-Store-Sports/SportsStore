@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 // require_once 'config/database.php';
 require_once 'routes/web.php';
@@ -28,6 +27,4 @@ require_once 'routes/web.php';
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
   />
 </head>
-<body>
-</body>
 </html>
