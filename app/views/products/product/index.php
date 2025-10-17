@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tatifitwear</title>
-
   <!-- CSS externo -->
-  <link rel="stylesheet" href="app\views\products\styles.css">
-</head>
+<link rel="stylesheet" href="app\views\products\product\styles.css">
 
 <body class="bg-black text-white">
 
@@ -37,7 +29,7 @@
 
       <!-- Card 2 -->
       <div class="product-card">
-        <img src="public/images/shorts-fit.jpg" class="product-image" alt="Shorts Fitness">
+        <img src="public\images\shorts-fit.jpg" class="product-image" alt="Shorts Fitness">
         <div class="product-info">
           <h3 class="product-title">SHORTS FITNESS</h3>
           <p class="product-price">R$ 45,00</p>
@@ -48,7 +40,7 @@
 
       <!-- Card 3 -->
       <div class="product-card">
-        <img src="public/images/conjunto-fit.jpg" class="product-image" alt="Conjunto Fitness">
+        <img src="public\images\conjunto-fit.jpg" class="product-image" alt="Conjunto Fitness">
         <div class="product-info">
           <h3 class="product-title">CONJUNTO FITNESS</h3>
           <p class="product-price">R$ 120,00</p>

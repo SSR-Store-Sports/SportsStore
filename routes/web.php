@@ -14,7 +14,7 @@ switch ($_ROUTER) {
     require 'app/views/users/register/index.php';
     break;
   case "/products":
-    require 'app/views/products/products-page.php';
+    require 'app/views/products/product/index.php';
     break;
   case "/cart":
     require 'app/views/products/cart-page.php';

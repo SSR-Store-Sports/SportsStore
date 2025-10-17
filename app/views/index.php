@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/app/views/styles.css">
+<link rel="stylesheet" href="app\views\styles.css">
 
 <main class="home-main">
   <section>
