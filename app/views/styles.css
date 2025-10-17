@@ -1,6 +1,99 @@
-/* Home Page Styles */
-.home-main {
-  min-height: calc(100vh - 200px);
+main {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+}
+
+.carrossel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.carrossel button {
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  padding: 0.50rem;
+  border-radius: 9999px;
+  color: var(--secondary-color);
+  transition: background-color 0.5s ease-in-out;
+}
+
+.carrossel .icon {
+  font-size: 38px;
+}
+
+.carrossel button:hover {
+  color: var(--primary-color);
+  background-color: var(--border-color);
+}
+
+.imgs-carrossel {
+  display: flex;
+}
+
+.imgs-carrossel img {
+  display: flex;
+  height: 732px;
+  width: 28vw;
+  flex: 1;
+}
+
+.message-payment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0px;
+
+  font-size: 2rem;
+
+  color: var(--bg-color);
+  background-color: var(--secondary-color);
+}
+
+.message-payment span {
+  color: var(--primary-color);
+}
+
+.products {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.message-buy {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+
+  padding: 1rem 0px;
+  gap: 2rem;
+
+  color: var(--bg-color);
+  background-color: var(--primary-color);
+}
+
+.message-buy .icon {
+  display: flex;
+  align-items: center;
+  font-size: 38px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  border-radius: 1.2rem;
+  border: 2px solid var(--bg-color);
+}
+
+.message-buy h3 {
+  font-size: 24px;
+}
+
+.message-buy span {
+  font-size: 18px;
 }
 
 .hero-section {

@@ -5,7 +5,7 @@ include 'app/views/components/header/index.php';
 
 switch ($_ROUTER) {
   case "/":
-    require 'app/views/home.php';
+    require 'app/views/index.php';
     break;
   case "/login":
     require 'app/views/users/login/index.php';
@@ -17,13 +17,11 @@ switch ($_ROUTER) {
     require 'app/views/products/product/index.php';
     break;
   case "/cart":
-    require 'app/views/products/cart-page.php';
+    require 'app/views/products/cart/index.php';
     break;
   default:
-    require 'app/views/not-found.php';
+    require 'app/views/not-found/index.php';
     break;
 };
 
 include 'app/views/components/footer/index.php';
-
-?>
