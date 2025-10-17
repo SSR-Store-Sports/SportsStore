@@ -1,0 +1,128 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5; /* Cor de fundo levemente cinza */
+    color: #333;
+    margin: 0;
+}
+
+.register-main {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    border: 1px solid #000; /* Borda preta ao redor de toda a seção main */
+    box-sizing: border-box;
+}
+
+.carrosel {
+    width: 50%; /* Voltamos para 50% para manter a divisão igual */
+    background-color: black;
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.carrosel img {
+    width: 50%; /* Cada imagem ocupa metade do carrossel */
+    height: 100%;
+    object-fit: cover;
+}
+
+.carrosel img:first-child {
+    border-right: 1px solid #000; /* Borda preta entre as duas imagens */
+}
+
+.login-container {
+    flex: 1; /* Ocupa 1/3 do espaço */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.brand-logo {
+    margin-bottom: 20px;
+    /* Removendo a borda e o padding do logo */
+    /* border: 1px solid #e91e63; */
+    /* border-radius: 50%; */
+    /* padding: 10px; */
+}
+
+.brand-logo img {
+    width: 250px; /* Aumentando o tamanho da logo */
+    display: block;
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.register-header h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.register-header p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.login-container form {
+    width: 100%;
+    max-width: 450px; /* Aumentando o tamanho máximo do formulário */
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group input {
+    width: calc(100% - 20px); /* Ajustar para padding */
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid #c875a5; /* Linha rosa nos inputs com a nova cor */
+    outline: none;
+    font-size: 1em;
+    color: #333;
+    background-color: transparent;
+}
+
+.form-group input::placeholder {
+    color: #aaa;
+}
+
+.btn-register {
+    width: 100%;
+    padding: 15px;
+    background-color: #d17eb0; /* Cor rosa do botão com a nova cor */
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-register:hover {
+    background-color: #c875a5; /* Um tom mais escuro para o hover, usando a segunda cor fornecida */
+}
+
+.eye-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-image: url("/public/images/eye-icon.png"); /* Placeholder para ícone de olho */
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
