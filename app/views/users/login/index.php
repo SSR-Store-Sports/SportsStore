@@ -6,8 +6,8 @@
 <main class="login-main">
     <!-- Imagens das modelos -->
     <div class="carrosel">
-        <img class="modelo1" src="/public\images/modelo1.jpg" alt="Modelo 1">
-        <img class="modelo2" src="/public\images/modelo2.jpg" alt="Modelo 2">
+        <img class="modelo1" src="/public\images/modelo1.webp" alt="Modelo 1">
+        <img class="modelo2" src="/public\images/modelo2.webp" alt="Modelo 2">
         
     </div>
 

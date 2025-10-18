@@ -66,4 +66,8 @@ footer {
     grid-template-columns: 1fr;
     text-align: center;
   }
+  .social-buttons {
+    display: flex;
+    justify-content: center;
+}
 }

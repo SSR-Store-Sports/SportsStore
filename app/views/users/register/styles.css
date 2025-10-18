@@ -1,17 +1,18 @@
-html, body {
-    height: 100%;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5; /* Cor de fundo levemente cinza */
+    color: #333;
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #555;
 }
 
-.login-main {
+.register-main {
     display: flex;
-    align-items: stretch;
-    height: 100%;
+    min-height: 100vh;
+    width: 100%;
+    border: 1px solid #000; /* Borda preta ao redor de toda a seção main */
+    box-sizing: border-box;
 }
 
-/* --- 1. LARGURA DA IMAGEM FIXA EM 50% --- */
 .carrosel {
     width: 50%; /* Voltamos para 50% para manter a divisão igual */
     background-color: black;
@@ -20,148 +21,166 @@ html, body {
     padding: 20px;
     box-sizing: border-box;
 }
-
 .carrosel img {
-    width: 50%;
+    width: 50%; /* Cada imagem ocupa metade do carrossel */
+    height: 100%;
     object-fit: cover;
 }
 
-/* --- 2. ALARGANDO OS ITENS DENTRO DO FORMULÁRIO --- */
+.carrosel img:first-child {
+    border-right: 1px solid #000; /* Borda preta entre as duas imagens */
+}
+
 .login-container {
-    flex: 1; /* Ocupa os 50% restantes */
+    flex: 1; /* Ocupa 1/3 do espaço */
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 0 8%; /* Usamos padding percentual para controlar o espaçamento das bordas */
-    background-color: #fff;
+    padding: 20px;
     box-sizing: border-box;
+    background-color: #fff;
 }
 
-/* O .login-form agora ocupa 100% do seu contêiner (que já tem padding) */
-.login-form {
-    width: 100%;
-    max-width: none; /* Removemos a largura máxima fixa */
+.brand-logo {
+    margin-bottom: 20px;
+    /* Removendo a borda e o padding do logo */
+    /* border: 1px solid #e91e63; */
+    /* border-radius: 50%; */
+    /* padding: 10px; */
 }
 
-/* Título e Logo (sem alterações) */
-.login-form h1 {
-    font-size: 24px;
-    font-weight: 500;
-    margin-bottom: 40px;
+.brand-logo img {
+    width: 250px; /* Aumentando o tamanho da logo */
+    display: block;
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.register-header h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
     color: #333;
 }
 
-.logo {
-    text-align: center;
-    margin-bottom: 50px;
+.register-header p {
+    font-size: 0.9em;
+    color: #666;
 }
 
-.logo img {
-    width: 120px;
-    height: auto;
+.login-container form {
+    width: 100%;
+    max-width: 450px; /* Aumentando o tamanho máximo do formulário */
 }
 
-/* --- 3. LINHAS ROSAS E ALTURA MANTIDA --- */
 .form-group {
     position: relative;
-    margin-bottom: 45px;
+    margin-bottom: 20px;
+    text-align: left;
 }
 
 .form-group input {
-    width: 100%;
+    width: calc(100% - 20px); /* Ajustar para padding */
+    padding: 10px 0;
     border: none;
-    border-bottom: 2px solid #d17eb0; /* Linha rosa e um pouco mais grossa */
-    background-color: transparent;
-    padding: 15px 5px;
-    font-size: 20px;
+    border-bottom: 1px solid #c875a5; /* Linha rosa nos inputs com a nova cor */
     outline: none;
-    transition: all 0.3s; /* Transição suave para tudo */
-}
-
-/* Efeito de foco sutil, já que a linha já é rosa */
-.form-group input:focus {
-    /* Podemos adicionar um leve brilho ou manter como está */
-    border-bottom-color: #c875a5; /* Escurece um pouco no foco */
+    font-size: 1em;
+    color: #333;
+    background-color: transparent;
 }
 
 .form-group input::placeholder {
     color: #aaa;
-    font-size: 20px;
 }
 
-.form-group a {
-    position: absolute;
-    right: 5px;
-    bottom: 18px;
-    font-size: 14px;
-    color: #888;
-    text-decoration: none;
-}
-
-.btn-login {
+.btn-register {
     width: 100%;
-    padding: 18px;
-    background-color: #d17eb0;
+    padding: 15px;
+    background-color: #d17eb0; /* Cor rosa do botão com a nova cor */
     color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 25px;
+    font-size: 1.1em;
     cursor: pointer;
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 20px;
-    transition: background-color 0.3s;
-}
-
-.btn-login:hover {
-    background-color: #c875a5;
-}
-
-/* O .social-login também ocupa 100% da largura disponível */
-.social-login {
-    margin-top: 40px;
-    width: 100%;
-}
-
-/* Demais estilos (sem alterações) */
-.login-form > p {
-    text-align: center;
     margin-top: 30px;
-    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-.login-form > p a {
-    color: #d17eb0;
-    font-weight: bold;
-    text-decoration: none;
+.btn-register:hover {
+    background-color: #c875a5; /* Um tom mais escuro para o hover, usando a segunda cor fornecida */
 }
 
-.social-login button {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: #fff;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 15px;
-    font-size: 16px;
-    color: #555;
-    transition: background-color 0.3s;
-}
-
-.social-login button:hover {
-    background-color: #f9f9f9;
-}
-
-.social-login img {
-    margin-right: 10px;
+.eye-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     width: 20px;
     height: 20px;
+    background-image: url("/public/images/eye-icon.png"); /* Placeholder para ícone de olho */
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
 }
 
-.modelo1, .modelo2 {
-    width: 700px;
-    height: 885px;
+
+
+@media (max-width: 768px) {
+    .register-main {
+        flex-direction: column;
+    }
+
+    .carrosel {
+        width: 100%;
+        height: 200px; /* Altura fixa para o carrossel em mobile */
+        overflow: hidden;
+        display: none;
+        
+    }
+
+    .carrosel img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: none;
+    }
+
+    .carrosel img:first-child {
+        border-right: none;
+        display: none;
+    }
+
+    .login-container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .brand-logo img {
+        width: 150px;
+    }
+
+    .register-header h1 {
+        font-size: 1.5em;
+    }
+
+    .register-header p {
+        font-size: 0.8em;
+    }
+
+    .login-container form {
+        max-width: 90%;
+    }
+
+    .form-group input {
+        width: calc(100% - 20px);
+    }
+
+    .btn-register {
+        font-size: 1em;
+        padding: 12px;
+    }
 }
