@@ -13,6 +13,9 @@ switch ($_ROUTER) {
   case "/register":
     require 'app/views/users/register/index.php';
     break;
+  case "/check":
+    require 'app/views/users/check/index.php';
+    break;
   case "/admin":
     require 'app/views/users/admin/index.php';
     break;  
