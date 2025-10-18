@@ -1,0 +1,76 @@
+.admin-main {
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px;
+    color: var(--primary-color);
+}
+
+.border.product, .border.supplier, .border.order {  
+    text-align: center;
+    margin: 20px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.border.product {
+    background-color: var(--primary-color);
+    color: white;
+}
+.border.supplier {
+    background-color: #D953CC;
+    color: white;
+}
+.border.order {
+    background-color: #651868;
+    color: white;
+}
+
+.admin-container {
+    justify-content: center;
+    gap: 30px; 
+}
+
+.admin-container p {
+    text-align: center;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+
+.Produtos, .Fornecedores, .Pedidos {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s;
+    background: var(--bg-color);
+    text-align: center;
+    
+}
+
+
+.btn-admin {
+    display: block;
+    
+    padding: 10px 20px;
+    margin: 10px auto;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+    text-align: center;
+}
+
+.btn-admin:hover {
+    transform: scale(1.05);
+    background: var(--secondary-color);
+}
