@@ -1,22 +1,53 @@
-<link rel="stylesheet" href="app\views\styles.css">
+<link rel="stylesheet" href="/app/views/styles.css">
 
-<main class="home-main">
-  <section>
-    <img src="" alt="" />
-    <div></div>
-    <img src="" alt="" />
+<main>
+  <section class="carrossel">
+    <!-- <aside>
+      <div>
+        <img src="" alt="">
+        <h1>Minha conta.</h1>
+      </div>
+
+      <section>
+        <button>Configurações</button>
+        <button>Histórico de Pedidos</button>
+        <button>Carrinho</button>
+        <button>Termos e Serviços</button>
+      </section>
+
+      <section>
+        <button>Home</button>
+        <button>Produtos</button>
+        <button>Conjuntos</button>
+      </section>
+
+    </aside> -->
+
+    <button>
+      <i class="ph ph-arrow-left icon"></i>
+    </button>
+
+    <div class="imgs-carrossel">
+      <img src="/public/images/modelo01.png" alt="" />
+      <img src="/public/images/modelo02.png" alt="" />
+      <img src="/public/images/modelo03.png" alt="" />  
+    </div>
+
+    <button>
+      <i class="ph ph-arrow-right icon"></i>
+    </button>
   </section>
 
-  <div>
+  <div class="message-payment">
     <p>Frete <span>Grátis</span> OFF NO <strong>PIX</strong></p>
   </div>
 
-  <section>
+  <section class="products">
     <h2>Ofertas Especiais</h2>
     <p>Os Melhores Preços Disponíveis!</p>
 
-    <div>
-      <div>
+    <div  >
+      <div class="product">
         <h3>Top Fitness</h3>
 
         <img src="" alt="" />
@@ -29,7 +60,7 @@
         </div>
       </div>
 
-      <div>
+      <div class="product">
         <h3>Top Fitness</h3>
 
         <img src="" alt="" />
@@ -44,8 +75,8 @@
     </div>
   </section>
 
-  <div>
-    <img src="" alt="" />
+  <div class="message-buy">
+    <i class="ph ph-truck icon"></i>
 
     <div>
       <h3>Retire Diretamente na Loja</h3>
