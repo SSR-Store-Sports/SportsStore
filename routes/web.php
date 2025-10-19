@@ -2,6 +2,7 @@
 
 $_ROUTER = $_SERVER["REQUEST_URI"];
 include 'app/views/components/header/index.php';
+include 'app/views/components/sidebar/index.php';
 
 switch ($_ROUTER) {
   case "/":

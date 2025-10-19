@@ -2,27 +2,6 @@
 
 <main>
   <section class="carrossel">
-    <!-- <aside>
-      <div>
-        <img src="" alt="">
-        <h1>Minha conta.</h1>
-      </div>
-
-      <section>
-        <button>Configurações</button>
-        <button>Histórico de Pedidos</button>
-        <button>Carrinho</button>
-        <button>Termos e Serviços</button>
-      </section>
-
-      <section>
-        <button>Home</button>
-        <button>Produtos</button>
-        <button>Conjuntos</button>
-      </section>
-
-    </aside> -->
-
     <button>
       <i class="ph ph-arrow-left icon"></i>
     </button>
@@ -43,31 +22,82 @@
   </div>
 
   <section class="products">
-    <h2>Ofertas Especiais</h2>
-    <p>Os Melhores Preços Disponíveis!</p>
+    <div class="root-header">
+      <h1>Ofertas Especiais</h1>
+      <p>Os Melhores Preços Disponíveis!</p>
+    </div>
 
-    <div  >
+    <div class="root-products">
       <div class="product">
-        <h3>Top Fitness</h3>
+        <h2>Top Fitness</h2>
 
-        <img src="" alt="" />
+        <img src="/public/images/product.jpg" alt="" />
 
-        <div>
-          <h3>R$ 50,00</h3>
-          <p>ou 2X de 25,00</p>
+        <div class="deitals-product">
+          <div class="price-product">
+            <h3>R$ 50,00</h3>
+            <p>ou 2X de 25,00</p>
+          </div>
 
           <button>Adiconar ao carrinho</button>
         </div>
       </div>
 
       <div class="product">
-        <h3>Top Fitness</h3>
+        <h2>Top Fitness</h2>
 
-        <img src="" alt="" />
+        <img src="/public/images/product.jpg" alt="" />
 
-        <div>
-          <h3>R$ 50,00</h3>
-          <p>ou 2X de 25,00</p>
+        <div class="deitals-product">
+          <div class="price-product">
+            <h3>R$ 50,00</h3>
+            <p>ou 2X de 25,00</p>
+          </div>
+
+          <button>Adiconar ao carrinho</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <h2>Top Fitness</h2>
+
+        <img src="/public/images/product.jpg" alt="" />
+
+        <div class="deitals-product">
+          <div class="price-product">
+            <h3>R$ 50,00</h3>
+            <p>ou 2X de 25,00</p>
+          </div>
+
+          <button>Adiconar ao carrinho</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <h2>Top Fitness</h2>
+
+        <img src="/public/images/product.jpg" alt="" />
+
+        <div class="deitals-product">
+          <div class="price-product">
+            <h3>R$ 50,00</h3>
+            <p>ou 2X de 25,00</p>
+          </div>
+
+          <button>Adiconar ao carrinho</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <h2>Top Fitness</h2>
+
+        <img src="/public/images/product.jpg" alt="" />
+
+        <div class="deitals-product">
+          <div class="price-product">
+            <h3>R$ 50,00</h3>
+            <p>ou 2X de 25,00</p>
+          </div>
 
           <button>Adiconar ao carrinho</button>
         </div>
