@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="app\views\products\product\styles.css">
 
 <body class="bg-black text-white">
-  <div class="product">
+  <form class="product">
     <h2>Top Fitness</h2>
     <img src="/public/images/product.jpg" alt="" />
 
@@ -22,9 +22,28 @@
 
     <div>
       <h3>Cor</h3>
+
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Tamanhos</h3>
+
+      <ul>
+        <li>P</li>
+        <li>M</li>
+        <li>G</li>
+      </ul>
+
+      <p>Quantidade: <input type="number"></p>
     </div>
 
     <button>Adiconar ao carrinho</button>
-  </div>
+  </form>
 </body>
 </html>
