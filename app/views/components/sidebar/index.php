@@ -2,21 +2,6 @@
 
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <aside class="sidebar" id="sidebar">
-  <div class="sidebar-header">
-    <div class="user-info">
-      <div class="user-avatar">
-        <i class="ph ph-user"></i>
-      </div>
-      <div class="user-details">
-        <h3>Minha Conta</h3>
-        <p>Bem-vindo!</p>
-      </div>
-    </div>
-    <button class="sidebar-close" id="sidebarClose">
-      <i class="ph ph-x"></i>
-    </button>
-  </div>
-
   <nav class="sidebar-nav">
     <div class="nav-section">
       <h4>Navegação</h4>
@@ -43,6 +28,21 @@
       </ul>
     </div>
   </nav>
+
+  <div class="sidebar-header">
+    <div class="user-info">
+      <div class="user-avatar">
+        <i class="ph ph-user"></i>
+      </div>
+      <div class="user-details">
+        <h3>Minha Conta</h3>
+        <p>Bem-vindo!</p>
+      </div>
+    </div>
+    <button class="sidebar-close" id="sidebarClose">
+      <i class="ph ph-x"></i>
+    </button>
+  </div>
 </aside>
 
 <script>
