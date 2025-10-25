@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/app/views/components/footer/styles.css">
+
 <footer>
     <div class="footer-content">
         <section class="about-section">

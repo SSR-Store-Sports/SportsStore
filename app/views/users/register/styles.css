@@ -1,24 +1,17 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #555;
-}
-
 .login-main {
     display: flex;
     align-items: stretch;
+
     height: 100%;
 }
 
-/* --- 1. LARGURA DA IMAGEM FIXA EM 50% --- */
 .carrosel {
-    width: 50%; /* Voltamos para 50% para manter a divisão igual */
-    background-color: black;
     display: flex;
     gap: 10px;
     padding: 20px;
+
     box-sizing: border-box;
+    background-color: black;
 }
 
 .carrosel img {
@@ -26,13 +19,12 @@ html, body {
     object-fit: cover;
 }
 
-/* --- 2. ALARGANDO OS ITENS DENTRO DO FORMULÁRIO --- */
 .login-container {
-    flex: 1; /* Ocupa os 50% restantes */
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 8%; /* Usamos padding percentual para controlar o espaçamento das bordas */
+    padding: 0 8%;
     background-color: #fff;
     box-sizing: border-box;
 }
@@ -49,16 +41,6 @@ html, body {
     font-weight: 500;
     margin-bottom: 40px;
     color: #333;
-}
-
-.logo {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.logo img {
-    width: 120px;
-    height: auto;
 }
 
 /* --- 3. LINHAS ROSAS E ALTURA MANTIDA --- */

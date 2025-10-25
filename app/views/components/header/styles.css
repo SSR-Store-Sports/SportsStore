@@ -1,15 +1,19 @@
 header {
-  background-color: var(--bg-color);
-  box-shadow: var(--shadow);
   position: sticky;
   top: 0;
+
   z-index: 100;
+
+  background-color: var(--bg-secondary-white);
+  box-shadow: var(--shadow);
 }
 
 .navbar {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
+
   padding: 1rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -26,20 +30,22 @@ header {
 }
 
 .nav-actions button {
-  background-color: transparent;
-  border: none;
   padding: 0.5rem;
+
+  border: none;
   border-radius: 50%;
+
+  background-color: transparent;
   transition: background-color 0.3s ease;
 }
 
 .nav-actions button:hover {
-  background-color: var(--border-color);
+  background-color: var(--bg-quaternary);
 }
 
 .nav-actions i {
   font-size: 1.5rem;
-  color: var(--text-color);
+  color: var(--icon-primary);
 }
 
 .menu-toggle {
@@ -50,11 +56,11 @@ header {
 
 .menu-toggle i {
   font-size: 1.5rem;
-  color: var(--text-color);
+  color: var(--icon-primary);
 }
 
 .menu-toggle:hover {
-  background-color: var(--border-color);
+  background-color: var(--bg-quaternary);
   border-radius: 100%;
 }
 

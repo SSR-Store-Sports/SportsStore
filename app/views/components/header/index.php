@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/app/views/components/header/styles.css">
+
 <header>
     <nav class="navbar">
         <button class="menu-toggle" aria-label="Menu">
