@@ -1,11 +1,27 @@
 :root {
+  --bg-primary-gray: #f2f3f4; /* cor de fundo cinza */
+  --bg-secondary-white: #ffff; /* cor de fundo branca */
+  --bg-tertiary: #D67EBF;
+  --bg-quaternary: #e0e0e0;
+  --bg-quinary: #232321;
+
+  --bg-bagde-red: #ff6b6b;
+
+  --text-color-gray: #333; /* cor do texto cinza */
+  --text-color-pink: #D67EBF; /* cor do texto rosa */
+  --text-color-white: #ffff; /* cor do texto branca */
+  --text-color-gray-100: #ccc;
+
+  --icon-primary: #232321;
+  --icon-secondary: #D67EBF;
+
   --primary-color: #D67EBF;
-  --secondary-color: #232321;
-  --accent-color: #ff6b6b;
-  --text-color: #333;
-  --bg-color: #ffffff;
-  --border-color: #e0e0e0;
-  --shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+
+  
+  
+  --border-color-white: #ffffff;
+  --border-color-pink: #D67EBF;
+  --shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* sombra dos elementos */
 }
 
 * {
@@ -15,9 +31,10 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary-gray);
+  color: var(--text-color-white);
+
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
