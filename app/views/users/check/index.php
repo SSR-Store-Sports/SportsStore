@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-
-<body>
-
 <link rel="stylesheet" href="/app/views/users/check/style.css">
 
+<body>
 <main class="checking">
 
 <div class="image_check">
@@ -21,3 +18,5 @@
     Agora você pode fazer login e começar suas compras.
     </p>
 </div>
+</main>
+</body>

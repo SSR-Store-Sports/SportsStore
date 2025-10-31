@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/app/views/users/register/styles.css">
 
-<main class="login-main">
+<body>
+    <main class="login-main">
     <div class="carrosel">
         <img class="modelo1" src="/public\images/modelo1.jpg" alt="Modelo 1">
         <img class="modelo2" src="/public\images/modelo2.jpg" alt="Modelo 2">
@@ -44,3 +45,5 @@
         </div>
     </div>
 </main>
+</body>
+

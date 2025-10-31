@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<body class="bg-black text-white">
-
 <link rel="stylesheet" href="/app/views/users/admin/styles.css">
+
+<body class="bg-black text-white">
 <main class="admin-main">
-
     <h1>ADMINISTRADOR</h1>
-
     <div class="admin-container">
 
         <div class="Produtos">
@@ -32,5 +29,5 @@
             <p>processar devoluções e reembolsos.</p>
         </div>
     </div>
-
 </main>
+</body>

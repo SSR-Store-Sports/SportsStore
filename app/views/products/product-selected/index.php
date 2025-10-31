@@ -46,4 +46,3 @@
     <button>Adiconar ao carrinho</button>
   </form>
 </body>
-</html>
