@@ -37,6 +37,10 @@ $router->get('/admin', function() {
   require 'app/views/users/admin/index.php';
 });
 
+$router->get('/address', function() {
+  require 'app\views\users\address\index.php';
+});
+
 $router->set404(function() {
   require 'app/views/not-found/index.php';
 });

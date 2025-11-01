@@ -1,0 +1,23 @@
+body{
+    color: black;
+}
+.address-header h1{
+    color: var(--icon-primary);
+    font-size: 28px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+.address-content h1{
+    color: var(--icon-primary);
+    font-size: 28px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--bg-quaternary);
+
+
+}
