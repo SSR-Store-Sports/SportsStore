@@ -79,9 +79,11 @@ $dataOfferProducts = [
     </button>
   </section>
 
-  <div class="message-payment">
+<div class="message-payment">
+  <div class="scrolling-text">
     <p>Frete <span>Grátis</span> OFF NO <strong>PIX</strong></p>
   </div>
+</div>
 
   <section class="products">
     <section class="section-botoes">

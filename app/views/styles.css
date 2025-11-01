@@ -50,21 +50,48 @@ main {
 
 .message-payment {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 1rem 0px;
-
+  overflow: hidden; /* esconde o texto que passa do container */
+  padding: 1rem 0;
   font-size: 2rem;
-
   color: var(--text-color-white);
   background-color: var(--bg-quinary);
-
   box-shadow: var(--shadow);
+  position: relative;
+}
+
+.message-payment {
+  display: flex;
+  align-items: center;
+  overflow: hidden; /* esconde o texto que sai do container */
+  padding: 1rem 0;
+  font-size: 2rem;
+  color: var(--text-color-white);
+  background-color: var(--bg-quinary);
+  box-shadow: var(--shadow);
+  position: relative;
+  width: 100%;
 }
 
 .message-payment span {
   color: var(--text-color-pink);
 }
+
+.scrolling-text {
+  display: inline-block;
+  white-space: nowrap; /* impede quebra de linha */
+  animation: scroll 10s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%); /* começa fora da tela à direita */
+  }
+  100% {
+    transform: translateX(-100%); /* sai fora da tela à esquerda */
+  }
+}
+
 
 .section-botoes {
   display: flex;

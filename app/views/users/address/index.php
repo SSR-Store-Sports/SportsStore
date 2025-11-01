@@ -3,7 +3,7 @@
 <body>
   <main class="address-main">
     <div class="address-header">
-      <h1 class=""></i>Endereço de Entrega</h1>
+      <h1 class="">Endereço de Entrega</h1>
     </div>
     <div class="address-content">
       <div class="address-items">
