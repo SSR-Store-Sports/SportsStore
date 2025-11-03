@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/app/views/users/check/style.css">
+<link rel="stylesheet" href="/app/views/users/check/styles.css">
 
 <body>
 <main class="checking">
