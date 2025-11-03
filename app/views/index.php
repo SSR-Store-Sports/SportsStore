@@ -71,7 +71,7 @@ $dataOfferProducts = [
     <div class="imgs-carrossel">
       <img src="/public/images/modelo01.png" alt="" />
       <img src="/public/images/modelo02.png" alt="" />
-      <img src="/public/images/modelo03.png" alt="" />  
+      <img src="/public/images/modelo03.png" alt="" />
     </div>
 
     <button>
@@ -80,7 +80,27 @@ $dataOfferProducts = [
   </section>
 
   <div class="message-payment">
-    <p>Frete <span>Grátis</span> OFF NO <strong>PIX</strong></p>
+    <div class="group-payment">
+      <p><i class="ph ph-truck"></i> Frete <span>grátis</span> para todo Brasil</p>
+      <p><i class="ph ph-credit-card"></i> <span>10% OFF</span> no PIX</p>
+      <p><i class="ph ph-shield-check"></i> Compra <span>100% segura</span></p>
+      <p><i class="ph ph-clock"></i> Entrega em até <span>48h</span></p>
+      <p><i class="ph ph-arrow-clockwise"></i> <span>30 dias</span> para troca</p>
+      <p><i class="ph ph-medal"></i> Produtos <span>premium</span></p>
+      <p><i class="ph ph-heart"></i> Mais de <span>10mil</span> clientes satisfeitos</p>
+      <p><i class="ph ph-lightning"></i> Envio <span>expresso</span> disponível</p>
+    </div>
+
+    <div aria-hidden class="group-payment">
+      <p><i class="ph ph-truck"></i> Frete <span>grátis</span> para todo Brasil</p>
+      <p><i class="ph ph-credit-card"></i> <span>10% OFF</span> no PIX</p>
+      <p><i class="ph ph-shield-check"></i> Compra <span>100% segura</span></p>
+      <p><i class="ph ph-clock"></i> Entrega em até <span>48h</span></p>
+      <p><i class="ph ph-arrow-clockwise"></i> <span>30 dias</span> para troca</p>
+      <p><i class="ph ph-medal"></i> Produtos <span>premium</span></p>
+      <p><i class="ph ph-heart"></i> Mais de <span>10mil</span> clientes satisfeitos</p>
+      <p><i class="ph ph-lightning"></i> Envio <span>expresso</span> disponível</p>
+    </div>
   </div>
 
   <section class="products">
@@ -100,22 +120,22 @@ $dataOfferProducts = [
 
     <div class="root-products">
       <?php foreach ($dataOfferProducts as $product): ?>
-        <div class="product" data-id="<?=$product['id'] ?>">
-          <div class="discount-badge"><?=$product['discount'] ?>% OFF</div>
-          
-          <img src="<?=$product['image'] ?>" alt="<?=$product['name'] ?>" />
-          
+        <div class="product" data-id="<?= $product['id'] ?>">
+          <div class="discount-badge"><?= $product['discount'] ?>% OFF</div>
+
+          <img src="<?= $product['image'] ?>" alt="<?= $product['name'] ?>" />
+
           <div class="deitals-product">
-            <h2><?=$product['name'] ?></h2>
-            
+            <h2><?= $product['name'] ?></h2>
+
             <div class="price-product">
-              <span class="original-price">R$ <?=$product['originalPrice'] ?>
+              <span class="original-price">R$ <?= $product['originalPrice'] ?>
               </span>
-              <h3>R$ <?=$product['price'] ?></h3>
-              <p>ou <?=$product['installments'] ?></p>
+              <h3>R$ <?= $product['price'] ?></h3>
+              <p>ou <?= $product['installments'] ?></p>
             </div>
 
-            <button class="add-to-cart" data-product-id="<?=$product['id'] ?>">
+            <button class="add-to-cart" data-product-id="<?= $product['id'] ?>">
               Adicionar ao carrinho
             </button>
           </div>
