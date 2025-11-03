@@ -5,7 +5,6 @@ use Bramus\Router\Router;
 
 $router = new Router();
 
-$_ROUTER = $_SERVER["REQUEST_URI"];
 include 'app/views/components/header/index.php';
 include 'app/views/components/sidebar/index.php';
 
@@ -35,6 +34,26 @@ $router->get('/cart', function() {
 
 $router->get('/admin', function() {
   require 'app/views/users/admin/index.php';
+});
+
+$router->get('/configuracoes', function() {
+  require 'app/views/users/configuration/index.php';
+});
+
+$router->get('/address', function() {
+  require 'app/views/users/address/index.php';
+});
+
+$router->get('/follow-up', function() {
+  require 'app/views/products/follow-up/index.php';
+});
+
+$router->get('/history', function() {
+  require 'app/views/products/history/index.php';
+});
+
+$router->get('/history', function() {
+  require 'app/views/products/product-selected/index.php';
 });
 
 $router->set404(function() {
