@@ -10,13 +10,57 @@ header {
 
 .navbar {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
-
   padding: 1rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  position: absolute;
+  right: 50px;
+  width: 200px;
+  padding: 8px 12px;
+  border: 1px solid var(--bg-quaternary);
+  border-radius: 20px;
+  background-color: var(--bg-secondary-white);
+  font-size: 14px;
+  color: var(--text-color-gray);
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.search-input:focus {
+  border-color: var(--primary-color);
+}
+
+.search-input::placeholder {
+  color: var(--text-color-gray-100);
+}
+
+.search-btn {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: var(--bg-quaternary);
+}
+
+.search-btn i {
+  font-size: 1.5rem;
+  color: var(--icon-primary);
 }
 
 .logo img {
@@ -67,6 +111,11 @@ header {
 @media screen and (max-width: 768px) {
   .navbar {
     padding: 1rem;
+  }
+  
+  .search-input {
+    width: 150px;
+    right: 40px;
   }
   
   .nav-actions {
