@@ -3,8 +3,8 @@
 <body>
     <main class="register-main">
         <div class="carrosel">
-            <img class="modelo1" src="/public\images/modelo1.jpg" alt="Modelo 1">
-            <img class="modelo2" src="/public\images/modelo2.jpg" alt="Modelo 2">
+            <img class="modelo1" src="/public/images/modelo1.jpg" alt="Modelo 1">
+            <img class="modelo2" src="/public/images/modelo2.jpg" alt="Modelo 2">
         </div>
 
         <div class="register-container">
@@ -32,7 +32,7 @@
                         <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmar senha">
                     </div>
                     <button type="submit" class="btn-register">Criar conta</button>
-                    <p>Já possui uma conta? <a href="/login">Fazer login</a></p>
+                    <p>Já possui uma conta? <a href="/auth/login">Fazer login</a></p>
                 </div>
             </form>
         </div>

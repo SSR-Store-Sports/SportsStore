@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="app\views\products\product\styles.css">
+<link rel="stylesheet" href="app/views/products/product/styles.css">
 
 <body>
   <section class="section-botoes">

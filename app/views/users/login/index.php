@@ -3,8 +3,8 @@
 <body>
     <main class="login-main">
         <div class="carrosel">
-            <img class="modelo1" src="/public\images/modelo1.jpg" alt="Modelo 1">
-            <img class="modelo2" src="/public\images/modelo2.jpg" alt="Modelo 2">
+            <img class="modelo1" src="/public/images/modelo1.jpg" alt="Modelo 1">
+            <img class="modelo2" src="/public/images/modelo2.jpg" alt="Modelo 2">
         </div>
 
         <div class="login-container">
@@ -21,7 +21,7 @@
                         <a href="#">Esqueci a senha</a>
                     </div>
                     <button type="submit" class="btn-login">Entrar</button>
-                    <p>Não tem conta? <a href="#">Criar conta</a></p>
+                    <p>Não tem conta? <a href="/auth/register">Criar conta</a></p>
                 </div>
             </form>
 

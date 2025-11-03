@@ -1,7 +1,6 @@
-  <!-- CSS externo -->
-<link rel="stylesheet" href="app\views\products\product\styles.css">
+<link rel="stylesheet" href="app/views/products/product/styles.css">
 
-<body class="bg-black text-white">
+<body>
   <form class="product">
     <h2>Top Fitness</h2>
     <img src="/public/images/product.jpg" alt="" />
