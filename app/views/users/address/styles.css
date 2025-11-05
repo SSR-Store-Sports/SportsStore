@@ -1,49 +1,321 @@
-body{
-    color: black;
+/* ==============================
+   ESTILOS GERAIS
+============================== */
+body {
+  color: black;
 }
-.address-header h1{
-    color: var(--icon-primary);
-    font-size: 28px;
-    font-weight: 600;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding: 2rem 0rem 2rem 0rem;
-    justify-content: center;
-    align-items: center;
+
+.address-main {
+  display: flex;
+  justify-content: center; /* centraliza as sections */
+  align-items: flex-start;
+  gap: 150px; /* espaço entre elas */
+  width: 100%; /* ocupa toda a largura da tela */
+  margin: 0 auto;
+  padding: 40px 60;
 }
-.address-content h1{
-    color: var(--icon-primary);
-    font-size: 28px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-bottom: 1px solid var(--bg-quaternary);
-}
-.btn-add-address{
-    background: var(--bg-tertiary);
-    color: var(--text-color-white);
-    display: flex;
-    font-size: 60px;
-    width: 60px;
-    height: 60px;
-    border-radius: 60px;
+
+/* ==============================
+   CABEÇALHO
+============================== */
+.address-header {
+  color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0;
 
 }
-.address-items h2{
-    color: var(--icon-primary);
-    display: flex;
-    font-weight: 600;
-    align-items: center;
-    margin-bottom: 24px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--bg-quaternary);
 
+.address-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
 }
+
+/* ==============================
+   CONTEÚDO PRINCIPAL
+============================== */
+.address-main{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 100px;
+  max-width: 1200px;
+  margin-bottom: 120px;
+}
+
+/* ==============================
+   BLOCO: RESUMO DO PEDIDO
+============================== */
 .address-content{
-    background: var(--text-color-white);
-    margin: 65px;
-    padding: 15px;
+  background-color: var(--border-color-white);
+  border: 1px solid var(--border-color-pink);
+  padding: 24px;
+  border-radius: 16px;
+  flex: 1;
+  box-shadow: 0 1px 4px rgba(255, 192, 203, 0.3);
+}
 
+.address-items h2 {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--bg-quaternary);
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: normal;
+  border: 1px solid var(--border-color-pink);
+  border-radius: 12px;
+  padding: 18px;
+  gap: 20px;
+  background-color: var(--border-color-white);
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 1px 3px rgba(255, 192, 203, 0.4); /* sombra suave rosada */
+}
+
+.item:hover {
+  transform: translateY(-3px); /* sobe menos */
+  box-shadow: 0 3px 6px rgba(255, 192, 203, 0.6); /* sombra sutil e leve */
+  border-color: var(--border-color-pink);
+}
+
+
+.item-image{
+  display: flex;
+  justify-content: flex-start;
+  width: 170px;
+  height: 170px;
+  border: 16px;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column; /* coloca um abaixo do outro */
+  align-items: flex-start; /* alinha tudo à esquerda por padrão */
+  gap: 10px; /* espaçamento entre as linhas */
+  width: 100%; /* garante que ocupe toda a largura */
+  position: relative; /* permite posicionar o preço */
+}
+
+.item-details h3 {
+  font-size: 1.1rem;
+  color: var(--text-color-dark);
+  font-weight: 600;
+}
+
+.item-details p {
+  color: var(--text-color-gray);
+  font-size: 0.95rem;
+}
+
+.price-current {
+  position: absolute;  /* posiciona dentro do bloco */
+  right: 0;            /* encosta à direita */
+  bottom: 0;           /* opcional: encosta embaixo */
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--border-color-pink);
+}
+
+/* ==============================
+   ADICIONAR ENDEREÇO
+============================== */
+
+.add-address {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.add-address p {
+  font-size: 1rem;
+  color: var(--text-color-gray);
+}
+
+.btn-add-address {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--border-color-pink);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 2px 6px rgba(255, 105, 180, 0.3);
+}
+
+/* Efeito hover */
+.btn-add-address:hover {
+  background-color: #ff79b0;
+  box-shadow: 0 6px 14px rgba(255, 105, 180, 0.4);
+  transform: translateY(-3px);
+}
+
+/* Ícone dentro do botão */
+.btn-add-address i {
+  font-size: 34px;
+  color: var(--border-color-white);
+  transition: transform 0.25s ease;
+}
+
+.btn-add-address:hover i {
+  transform: rotate(90deg);
+}
+
+/* ==============================
+   DETALHES DO ENDEREÇO
+============================== */
+.address-details {
+  background: var(--border-color-white);
+  border: 1px solid var(--border-color-pink);
+  padding: 30px;
+  border-radius: 16px;
+  flex: 1;
+}
+
+.address-details h2 {
+  color: var(--text-color-gray);
+  font-size: 1.6rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--bg-quaternary);
+}
+
+.delivery-address p {
+  font-size: 1rem;
+  color: var(--text-color-dark);
+  margin-bottom: 6px;
+}
+
+/* ==============================
+   BOTÃO CONFIRMAR ENDEREÇO
+============================== */
+.btn-confirm-address {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 70px;
+  background-color: var(--border-color-pink);
+  color: var(--border-color-white);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin: 40px auto 0 auto;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 12px rgba(255, 192, 203, 0.3);
+}
+
+.btn-confirm-address:hover {
+  background-color: #ff79b0;
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 14px rgba(255, 192, 203, 0.4);
+}
+
+/* ==============================
+   FORMULÁRIO DE CADASTRO
+   ============================== */
+/* Formulário oculto inicialmente */
+.address-form {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.5s ease;
+}
+
+/* Campos de input do formulário */
+.address-form input {
+  padding: 10px;
+  border: 1px solid var(--border-color-pink);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* Exibe formulário com transição suave */
+.address-form.show {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animação escalonada de entrada dos campos */
+.address-form.show input {
+  animation: fadeInStairs 0.5s ease forwards;
+}
+
+/* Keyframes da animação */
+@keyframes fadeInStairs {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Delays de animação para cada campo (efeito escadinha) */
+.address-form.show input:nth-child(1) { animation-delay: 0.1s; }
+.address-form.show input:nth-child(2) { animation-delay: 0.2s; }
+.address-form.show input:nth-child(3) { animation-delay: 0.3s; }
+.address-form.show input:nth-child(4) { animation-delay: 0.4s; }
+.address-form.show input:nth-child(5) { animation-delay: 0.5s; }
+.address-form.show input:nth-child(6) { animation-delay: 0.6s; }
+.address-form.show input:nth-child(7) { animation-delay: 0.7s; }
+.address-form.show input:nth-child(8) { animation-delay: 0.8s; }
+.address-form.show input:nth-child(9) { animation-delay: 0.9s; }
+.address-form.show input:nth-child(10) { animation-delay: 1s; }
+
+/* Botão "Salvar Endereço" */
+.btn-save-address {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  background-color: var(--border-color-pink);
+  color: var(--border-color-white);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(255, 105, 180, 0.3);
+}
+
+/* Hover no botão de salvar */
+.btn-save-address:hover {
+  background-color: #ff79b0;
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 14px rgba(255, 105, 180, 0.4);
+}
+
+/* Ícone do botão salvar */
+.btn-save-address i {
+  margin-right: 8px;
+  font-size: 20px;
 }

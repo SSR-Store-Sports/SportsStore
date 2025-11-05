@@ -77,20 +77,6 @@ main {
   color: var(--text-color-pink);
 }
 
-.scrolling-text {
-  display: inline-block;
-  white-space: nowrap; /* impede quebra de linha */
-  animation: scroll 10s linear infinite;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(100%); /* começa fora da tela à direita */
-  }
-  100% {
-    transform: translateX(-100%); /* sai fora da tela à esquerda */
-  }
-}
 
 
 .section-botoes {
