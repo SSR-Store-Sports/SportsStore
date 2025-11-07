@@ -1,3 +1,17 @@
+/* =====================================================
+   SUMÁRIO
+   -----------------------------------------------------
+   1. Estilos Gerais e Layout Base
+   2. Cabeçalho e Barra de Progresso
+   3. Conteúdo Principal (Itens do Pedido)
+   4. Cupom de Desconto
+   5. Endereço e Mapa
+   6. Botões e Selos de Segurança
+   7. Formulário de Cadastro
+   8. Responsividade
+   ===================================================== */
+
+
 /* ==============================
    ESTILOS GERAIS
 ============================== */
@@ -6,13 +20,136 @@ body {
 }
 
 .address-main {
-  padding: 60px 60px; /* mais espaço interno */
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 150px;
   width: 100%;
-  margin: 0 auto;
+  max-width: 1800px;
+  margin: 0 auto 120px auto;
+  gap: 50px;
+  padding: 0 20px;
+}
+
+.address-content {
+  background-color: var(--border-color-white);
+  box-shadow: rgba(255, 192, 203, 0.3) 0px 1px 4px;
+  border: 1px solid var(--border-color-pink);
+  padding: 32px;
+  border-radius: 16px;
+  flex: 1.2;
+}
+
+.address-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 6px;
+  background: var(--border-color-white);
+  border: 1px solid var(--border-color-pink);
+  padding: 32px;
+  border-radius: 16px;
+  flex: 1.3;
+  gap: 20px;
+}
+
+/* ============================
+   📱 RESPONSIVIDADE MOBILE
+   ============================ */
+@media (max-width: 1024px) {
+  .address-main {
+    flex-direction: column; /* empilha as sections */
+    gap: 30px; /* reduz o espaço entre elas */
+    padding: 0 16px;
+    margin-bottom: 60px;
+  }
+
+  .address-content,
+  .address-details {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .address-content,
+  .address-details {
+    padding: 24px; /* um pouco menos pra caber melhor */
+  }
+}
+
+@media (max-width: 600px) {
+  .address-main {
+    padding: 0 12px;
+    gap: 20px;
+  }
+
+  .address-content,
+  .address-details {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .address-content h2,
+  .address-details h2 {
+    font-size: 1.1rem;
+  }
+}
+
+.discount-code {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+.discount-code input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color-pink);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.btn-apply-coupon {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  background: rgba(255, 0, 150, 0.15);
+  border: 2px solid rgba(255, 0, 150, 0.5);
+  border-radius: 8px;
+  transition: 0.3s;
+  white-space: nowrap;
+  flex-shrink: 0; /* evita encolher demais */
+}
+
+/* =============================
+   📱 MOBILE (375px)
+   ============================= */
+@media (max-width: 480px) {
+  .discount-code {
+    flex-direction: column; /* empilha input e botão */
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .discount-code input,
+  .btn-apply-coupon {
+    width: 100%; /* ocupam toda a largura */
+  }
+
+  .btn-apply-coupon {
+    padding: 14px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    text-align: center;
+  }
 }
 
 
@@ -121,6 +258,7 @@ body {
   }
 }
 
+
 /* ==============================
    CONTEÚDO PRINCIPAL
 ============================== */
@@ -128,21 +266,22 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 100px;
+  gap: auto;
   max-width: 1200px;
   margin-bottom: 120px;
 }
 
+
 /* ==============================
    BLOCO: RESUMO DO PEDIDO
 ============================== */
-.address-content{
+.address-content {
   background-color: var(--border-color-white);
+  box-shadow: rgba(255, 192, 203, 0.3) 0px 1px 4px;
   border: 1px solid var(--border-color-pink);
-  padding: 24px;
+  padding: 32px;
   border-radius: 16px;
-  flex: 1;
-  box-shadow: 0 1px 4px rgba(255, 192, 203, 0.3);
+  flex: 1.2; /* cresce mais */
 }
 
 .address-items h2 {
@@ -186,11 +325,11 @@ body {
 
 .item-details {
   display: flex;
-  flex-direction: column; /* coloca um abaixo do outro */
-  align-items: flex-start; /* alinha tudo à esquerda por padrão */
-  gap: 10px; /* espaçamento entre as linhas */
-  width: 100%; /* garante que ocupe toda a largura */
-  position: relative; /* permite posicionar o preço */
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+  gap: 10px;
 }
 
 .item-details h3 {
@@ -205,13 +344,14 @@ body {
 }
 
 .price-current {
-  position: absolute;  /* posiciona dentro do bloco */
-  right: 0;            /* encosta à direita */
-  bottom: 0;           /* opcional: encosta embaixo */
+  position: static;
+  align-self: flex-end;
   font-weight: 600;
   font-size: 1.1rem;
   color: var(--border-color-pink);
+  margin-top: 4px;
 }
+
 
 /* ================================
    Seção: Resumo do Pedido
@@ -257,6 +397,7 @@ body {
   margin: 10px 0; /* Espaçamento vertical */
   opacity: 0.6; /* Reduz a opacidade para visual mais suave */
 }
+
 
 /* ======================================
    Seção: Cupom de Desconto
@@ -307,22 +448,26 @@ body {
   transition: border-color 0.3s ease;
 }
 
+/* Botão padrão */
 .btn-apply-coupon {
   position: relative;
-  padding: 10px 14px; /* mesmo padding do input */
-  font-size: 0.95rem; /* mesma altura do input */
+  font-size: 0.95rem;
   font-weight: 600;
   color: #fff;
-  background: rgba(255, 0, 150, 0.1);
-  border: 2px solid rgba(255, 0, 150, 0.5);
-  border-radius: 8px; /* mesmo border-radius do input */
   cursor: pointer;
-  overflow: hidden;
-  transition: all 0.3s ease;
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px 14px;
+  background: rgba(255, 0, 150, 0.1);
+  border: 2px solid rgba(255, 0, 150, 0.5);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: 0.3s;
+  width: fit-content;
+  max-width: 100%;
+  text-align: center;
 }
 
 .btn-apply-coupon span {
@@ -379,6 +524,7 @@ body {
   100% { top: 110%; }
 }
 
+
 /* ==============================
    ADICIONAR ENDEREÇO
 ============================== */
@@ -429,21 +575,22 @@ body {
   transform: rotate(90deg);
 }
 
+
 /* ==============================
    DETALHES DO ENDEREÇO
 ============================== */
 
 .address-details {
-  background: var(--border-color-white); /* Fundo branco */
-  border: 1px solid var(--border-color-pink); /* Borda suave rosada */
-  padding: 30px; /* Espaçamento interno confortável */
-  border-radius: 16px; /* Cantos arredondados */
-  flex: 1; /* Permite ajuste flexível dentro do layout principal */
   display: flex;
-  flex-direction: column; /* Elementos empilhados verticalmente */
-  justify-content: space-between; /* Espaça os conteúdos */
-  gap: 20px; /* Espaçamento entre blocos internos */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Sombra leve */
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 6px;
+  background: var(--border-color-white);
+  border: 1px solid var(--border-color-pink);
+  padding: 32px;
+  border-radius: 16px;
+  flex: 1.3; /* cresce ainda mais */
+  gap: 20px;
 }
 
 
@@ -518,7 +665,6 @@ body {
   color: var(--icon-primary);
 }
 
-
 /* Bloco do mapa ilustrativo */
 /* Spinner simples para o mapa */
 .address-map {
@@ -559,6 +705,7 @@ body {
 .btn-confirm-address:active {
   transform: scale(0.97);
 }
+
 
 /* ==============================
    BOTÃO CONFIRMAR ENDEREÇO
@@ -623,7 +770,6 @@ body {
     transform: translateY(0);
   }
 }
-
 
 
 /* ==============================
@@ -715,8 +861,3 @@ body {
   margin-right: 8px;
   font-size: 20px;
 }
-
-
-
-
-
