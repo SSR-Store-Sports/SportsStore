@@ -23,7 +23,8 @@
 
 <body>
   <?php
-    // require_once 'config/database.php';
+    phpinfo();
+    require_once 'config/database.php';
     require_once 'routes/web.php';
   ?>
 </body>

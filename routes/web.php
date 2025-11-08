@@ -13,7 +13,7 @@ $router->mount("/auth", function () use ($router) {
     require 'app/views/users/login/index.php';
   });
 
-  $router->get('/register', function () {
+  $router->get('/registro', function () {
     require 'app/views/users/register/index.php';
   });
 });
@@ -26,11 +26,11 @@ $router->get('/check', function () {
   require 'app/views/users/check/index.php';
 });
 
-$router->get('/products', function () {
+$router->get('/produtos', function () {
   require 'app/views/products/product/index.php';
 });
 
-$router->get('/cart', function () {
+$router->get('/carrinho', function () {
   require 'app/views/products/cart/index.php';
 });
 
@@ -42,19 +42,19 @@ $router->get('/configuracoes', function () {
   require 'app/views/users/configuration/index.php';
 });
 
-$router->get('/address', function () {
+$router->get('/endereco', function () {
   require 'app/views/users/address/index.php';
 });
 
-$router->get('/follow-up', function () {
+$router->get('/acompanhamento', function () {
   require 'app/views/products/follow-up/index.php';
 });
 
-$router->get('/history', function () {
+$router->get('/historico', function () {
   require 'app/views/products/history/index.php';
 });
 
-$router->get('/product-selected', function () {
+$router->get('/produto-selecionado', function () {
   require 'app/views/products/product-selected/index.php';
 });
 

@@ -1,4 +1,5 @@
 <?php
+// require "app/config/database.php";
 
 $dataOfferProducts = [
   [
@@ -57,6 +58,13 @@ $dataOfferProducts = [
     "stock" => 18
   ]
 ];
+
+// $stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id");
+// $stmt->bindParam(':id', $userId); // Assuming $userId is defined
+// $stmt->execute();
+// $user = $stmt->fetch(); // Fetches a single row
+// print_r($user);
+
 
 ?>
 
