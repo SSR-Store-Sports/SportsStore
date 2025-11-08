@@ -52,23 +52,23 @@ html, body {
     color: #333;
 }
 
-.logo {
+.logo-login {
     text-align: center;
     margin-bottom: 50px;
 }
 
-.logo img {
+.logo-login img {
     width: 120px;
     height: auto;
 }
 
 /* --- 3. LINHAS ROSAS E ALTURA MANTIDA --- */
-.form-group {
+.form-email-password {
     position: relative;
     margin-bottom: 45px;
 }
 
-.form-group input {
+.form-email-password input {
     width: 100%;
     border: none;
     border-bottom: 2px solid #d17eb0; /* Linha rosa e um pouco mais grossa */
@@ -80,17 +80,17 @@ html, body {
 }
 
 /* Efeito de foco sutil, já que a linha já é rosa */
-.form-group input:focus {
+.form-email-password input:focus {
     /* Podemos adicionar um leve brilho ou manter como está */
     border-bottom-color: #c875a5; /* Escurece um pouco no foco */
 }
 
-.form-group input::placeholder {
+.form-email-password input::placeholder {
     color: #aaa;
     font-size: 20px;
 }
 
-.form-group a {
+.form-email-password a {
     position: absolute;
     right: 5px;
     bottom: 18px;
@@ -166,3 +166,25 @@ html, body {
     width: 700px;
     height: 885px;
 }
+
+@media screen and (max-width: 1387px) {
+    .modelo1-login, .modelo2-login {
+      display: none;
+    }
+    .carrosel-login {
+        display: none;
+    }
+
+    .p-login{
+        margin: 2rem;
+    }
+    .logo-login img{
+        width: 250px;
+        height: auto;
+        margin: 2rem; 
+    }
+    .social-buttons-login{
+    align-items: center;
+    justify-content: center;
+    }
+    }
