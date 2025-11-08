@@ -101,6 +101,8 @@ main {
   100% { transform: translateX(-50%); }
 }
 
+
+
 .section-botoes {
   display: flex;
 

@@ -118,6 +118,7 @@ $dataOfferProducts = [
       <p><i class="ph ph-lightning"></i> Envio <span>expresso</span> disponível</p>
     </div>
   </div>
+</div>
 
   <section class="products">
     <section class="section-botoes">
