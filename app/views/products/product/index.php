@@ -1,4 +1,13 @@
-<link rel="stylesheet" href="app\views\products\product\styles.css">
+<?php 
+require 'config/database.php';
+
+$stmt = $db->prepare("SELECT * FROM tatifit_products");
+$stmt->execute();
+
+$dataOfferProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+<link rel="stylesheet" href="app/views/products/product/styles.css">
 
 <body>
   <section class="section-botoes">
@@ -12,84 +21,79 @@
 
   <section>
     <div class="products-container">
+      <?php foreach ($dataOfferProducts as $product): ?>
       <div class="product-card">
-        <div class="product-badge">
-          <span class="badge-new">Novo</span>
-        </div>
+
+        <?php if ($product['is_new'] == 1): ?> 
+          <div class="product-badge">
+            <span class="badge-new">Lançamento</span>
+          </div>
+        <?php endif; ?>
+        
         <div class="product-image">
-          <img src="public\images\image 14.jpg" alt="Top Fitness">
+          <img 
+            src="<?= htmlspecialchars($product['url_image']) ?>" 
+            alt="<?= htmlspecialchars($product['name']) ?>"
+          /> 
         </div>
+
         <div class="product-info">
-          <div class="product-discount">15% OFF</div>
-          <h3 class="product-title">Top Fitness Feminino Premium - Tecido Respirável</h3>
+          <?php if (isset($product['discount_percent'])): ?>
+            <div class="product-discount"><?= $product['discount_percent'] ?>% OFF</div>
+          <?php endif; ?>
+
+          <h3 class="product-title"><?= htmlspecialchars($product['name']) ?></h3>
+
           <div class="product-rating">
-            <span class="stars">★★★★★</span>
-            <span class="rating-count">(127)</span>
+            <?php 
+              $maxStars = 5;
+
+              $filledStars = (int) floor($product['rating']);
+              $emptyStars = $maxStars - $filledStars;
+
+              $stars = str_repeat('<i class="ph-fill ph-star" style="color:#FFD700;"></i>', $filledStars);
+              $stars .= str_repeat('<i class="ph ph-star" style="color:#ccc;"></i>', $emptyStars);
+            ?>
+            <span class="stars"><?= $stars ?></span>
+            <span class="rating-count">(<?= (int)$product['rating_count'] ?>)</span>
           </div>
-          <div class="free-shipping">Frete Grátis</div>
+
+          <?php if ($product['free_shipping']): ?>
+            <div class="free-shipping">Frete Grátis</div>
+          <?php endif; ?>
+
           <div>
-            <span class="product-old-price">R$ 58,82</span>
-            <span class="product-price">R$ 50,00</span>
+            <?php if (isset($product['old_price'])): ?>
+              <span 
+                class="product-old-price"
+              >
+                R$ <?= number_format($product['old_price'], 2, ',', '.') ?>
+              </span>
+            <?php endif; ?>
+            
+            <span 
+              class="product-price"
+            >
+              R$ <?= number_format($product['price'], 2, ',', '.') ?>
+            </span>
           </div>
-          <p class="product-installments">ou 10x de R$ 5,00 sem juros</p>
+
+          <?php if (!empty($product['installments_info'])): ?>
+            <p 
+              class="product-installments">
+                <?= htmlspecialchars($product['installments_info']) ?>
+            </p>
+          <?php endif; ?>
           <div class="product-actions">
             <a href="cart" class="product-button">Comprar</a>
-            <button class="btn-wishlist" title="Adicionar aos favoritos">♡</button>
+            <button class="btn-wishlist" title="Adicionar aos favoritos">
+              <i class="ph ph-heart"></i>
+            </button>
           </div>
         </div>
       </div>
 
-      <div class="product-card">
-        <div class="product-image">
-          <img src="public\images\shorts-fit.jpg" alt="Shorts Fitness">
-        </div>
-        <div class="product-info">
-          <div class="product-discount">20% OFF</div>
-          <h3 class="product-title">Shorts Fitness Masculino - Alta Performance</h3>
-          <div class="product-rating">
-            <span class="stars">★★★★☆</span>
-            <span class="rating-count">(89)</span>
-          </div>
-          <div class="free-shipping">Frete Grátis</div>
-          <div>
-            <span class="product-old-price">R$ 56,25</span>
-            <span class="product-price">R$ 45,00</span>
-          </div>
-          <p class="product-installments">ou 10x de R$ 4,50 sem juros</p>
-          <div class="product-actions">
-            <a href="cart" class="product-button">Comprar</a>
-            <button class="btn-wishlist" title="Adicionar aos favoritos">♡</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-badge">
-          <span class="badge-new">Lançamento</span>
-        </div>
-        <div class="product-image">
-          <img src="public\images\conjunto-fit.jpg" alt="Conjunto Fitness">
-        </div>
-        <div class="product-info">
-          <div class="product-discount">25% OFF</div>
-          <h3 class="product-title">Conjunto Fitness Completo - Top + Legging</h3>
-          <div class="product-rating">
-            <span class="stars">★★★★★</span>
-            <span class="rating-count">(203)</span>
-          </div>
-          <div class="free-shipping">Frete Grátis</div>
-          <div>
-            <span class="product-old-price">R$ 160,00</span>
-            <span class="product-price">R$ 120,00</span>
-          </div>
-          <p class="product-installments">ou 12x de R$ 10,00 sem juros</p>
-          <div class="product-actions">
-            <a href="cart" class="product-button">Comprar</a>
-            <button class="btn-wishlist" title="Adicionar aos favoritos">♡</button>
-          </div>
-        </div>
-      </div>
-
+      <?php endforeach; ?>
     </div>
   </section>
 

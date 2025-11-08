@@ -1,24 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-/* ----------------------------
-   CONFIGURAÇÕES GERAIS
------------------------------ */
-:root {
-  --primary-color: #D67EBF;
-  --border-color: #DBDBDB;
-  --shadow-default: 0 4px 8px rgba(0, 0, 0, 0.2);
-  --shadow-hover: 0 20px 30px rgba(0, 0, 0, 0.2);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* ----------------------------
-   CONTAINERS PRINCIPAIS
------------------------------ */
 .products-container {
   display: flex;
   justify-content: center;
