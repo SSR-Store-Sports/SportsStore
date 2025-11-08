@@ -7,17 +7,17 @@
       <h4>Navegação</h4>
       <ul>
         <li><a href="/"><i class="ph ph-house"></i> Home</a></li>
-        <li><a href="/products"><i class="ph ph-package"></i> Produtos</a></li>
-        <li><a href="/cart"><i class="ph ph-shopping-cart"></i> Carrinho</a></li>
+        <li><a href="/produtos"><i class="ph ph-package"></i> Produtos</a></li>
+        <li><a href="/carrinho"><i class="ph ph-shopping-cart"></i> Carrinho</a></li>
       </ul>
     </div>
 
     <div class="nav-section">
       <h4>Conta</h4>
       <ul>
-        <li><a href="/login"><i class="ph ph-sign-in"></i> Login</a></li>
-        <li><a href="/register"><i class="ph ph-user-plus"></i> Cadastrar</a></li>
-        <li><a href="/check"><i class="ph ph-gear"></i> Configurações</a></li>
+        <li><a href="/auth/login"><i class="ph ph-sign-in"></i> Login</a></li>
+        <li><a href="/auth/register"><i class="ph ph-user-plus"></i> Cadastrar</a></li>
+        <li><a href="/configuracoes"><i class="ph ph-gear"></i> Configurações</a></li>
       </ul>
     </div>
 

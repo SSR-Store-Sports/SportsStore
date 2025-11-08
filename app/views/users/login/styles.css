@@ -1,168 +1,192 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #555;
-}
-
 .login-main {
     display: flex;
     align-items: stretch;
-    height: 100%;
+    min-height: 100vh;
 }
 
-/* --- 1. LARGURA DA IMAGEM FIXA EM 50% --- */
 .carrosel {
-    width: 50%; /* Voltamos para 50% para manter a divisão igual */
-    background-color: black;
     display: flex;
-    gap: 10px;
-    padding: 20px;
-    box-sizing: border-box;
+    width: 50%;
+    
+    gap: 16px;
+    padding: 24px;
+
+    position: relative;
+    overflow: hidden;
+
+    background-color: var(--bg-quinary);
+}
+
+.carrosel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    opacity: 0.1;
+    z-index: 1;
+    background: linear-gradient(45deg, var(--primary-color), rgba(214, 126, 191, 0.8));
 }
 
 .carrosel img {
     width: 50%;
+    height: 100%;
     object-fit: cover;
+    border-radius: 12px;
+    position: relative;
+    z-index: 2;
 }
 
-/* --- 2. ALARGANDO OS ITENS DENTRO DO FORMULÁRIO --- */
 .login-container {
-    flex: 1; /* Ocupa os 50% restantes */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 8%; /* Usamos padding percentual para controlar o espaçamento das bordas */
-    background-color: #fff;
-    box-sizing: border-box;
+
+    flex: 1;
+    
+    padding: 40px;
+    background-color: var(--bg-secondary-white);
 }
 
-/* O .login-form agora ocupa 100% do seu contêiner (que já tem padding) */
 .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     width: 100%;
-    max-width: none; /* Removemos a largura máxima fixa */
+    max-width: 400px;
 }
 
-/* Título e Logo (sem alterações) */
-.login-form h1 {
-    font-size: 24px;
-    font-weight: 500;
-    margin-bottom: 40px;
-    color: #333;
+.logo-login {
+    height: 154px;
 }
 
-.logo {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.logo img {
-    width: 120px;
-    height: auto;
-}
-
-/* --- 3. LINHAS ROSAS E ALTURA MANTIDA --- */
 .form-group {
     position: relative;
-    margin-bottom: 45px;
+    margin-bottom: 24px;
 }
 
 .form-group input {
     width: 100%;
-    border: none;
-    border-bottom: 2px solid #d17eb0; /* Linha rosa e um pouco mais grossa */
-    background-color: transparent;
-    padding: 15px 5px;
-    font-size: 20px;
+    border: 2px solid var(--bg-quaternary);
+    border-radius: 8px;
+    background-color: var(--bg-secondary-white);
+    padding: 16px;
+    font-size: 16px;
+    color: var(--text-color-gray);
     outline: none;
-    transition: all 0.3s; /* Transição suave para tudo */
+    transition: all 0.3s ease;
 }
 
-/* Efeito de foco sutil, já que a linha já é rosa */
 .form-group input:focus {
-    /* Podemos adicionar um leve brilho ou manter como está */
-    border-bottom-color: #c875a5; /* Escurece um pouco no foco */
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(214, 126, 191, 0.1);
 }
 
 .form-group input::placeholder {
-    color: #aaa;
-    font-size: 20px;
+    color: var(--text-color-gray-100);
+    font-size: 16px;
 }
 
 .form-group a {
     position: absolute;
-    right: 5px;
-    bottom: 18px;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 14px;
-    color: #888;
+    color: var(--primary-color);
     text-decoration: none;
+    font-weight: 500;
+}
+
+.form-group a:hover {
+    text-decoration: underline;
 }
 
 .btn-login {
     width: 100%;
-    padding: 18px;
-    background-color: #d17eb0;
-    color: #fff;
+    padding: 16px;
+    background-color: var(--primary-color);
+    color: var(--text-color-white);
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 20px;
-    transition: background-color 0.3s;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 8px;
+    transition: all 0.3s ease;
 }
 
 .btn-login:hover {
-    background-color: #c875a5;
+    background-color: #C56BA8;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
 }
 
-/* O .social-login também ocupa 100% da largura disponível */
-.social-login {
-    margin-top: 40px;
-    width: 100%;
-}
-
-/* Demais estilos (sem alterações) */
 .login-form > p {
     text-align: center;
-    margin-top: 30px;
-    font-size: 16px;
+    margin-top: 24px;
+    font-size: 14px;
+    color: var(--text-color-gray);
 }
 
 .login-form > p a {
-    color: #d17eb0;
-    font-weight: bold;
+    color: var(--primary-color);
+    font-weight: 600;
     text-decoration: none;
+}
+
+.login-form > p a:hover {
+    text-decoration: underline;
+}
+
+.social-login {
+    margin-top: 32px;
+    width: 100%;
+    max-width: 400px;
 }
 
 .social-login button {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: #fff;
+    border: 2px solid var(--bg-quaternary);
+    background-color: var(--bg-secondary-white);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 15px;
-    font-size: 16px;
-    color: #555;
-    transition: background-color 0.3s;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-color-gray);
+    transition: all 0.3s ease;
 }
 
 .social-login button:hover {
-    background-color: #f9f9f9;
+    border-color: var(--primary-color);
+    background-color: var(--bg-primary-gray);
 }
 
 .social-login img {
-    margin-right: 10px;
+    margin-right: 12px;
     width: 20px;
     height: 20px;
 }
 
-.modelo1, .modelo2 {
-    width: 700px;
-    height: 885px;
+@media (max-width: 768px) {
+    .login-main {
+        flex-direction: column;
+    }
+    
+    .carrosel {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .login-container {
+        padding: 24px;
+    }
 }
