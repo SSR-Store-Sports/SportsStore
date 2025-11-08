@@ -1,5 +1,4 @@
 <?php
-// require "app/config/database.php";
 
 $dataOfferProducts = [
   [
@@ -65,6 +64,15 @@ $dataOfferProducts = [
 // $user = $stmt->fetch(); // Fetches a single row
 // print_r($user);
 
+// Exemplo de consulta segura
+// $stmt = $db->prepare("SELECT * FROM tatifit_products");
+// $stmt->execute();
+
+// $dataOfferProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// foreach ($dataOfferProducts as $user) {
+//   echo "User: " . $user['name'] . "<br>";
+// }
 
 ?>
 
@@ -127,7 +135,8 @@ $dataOfferProducts = [
     </div>
 
     <div class="root-products">
-      <?php foreach ($dataOfferProducts as $product): ?>
+      <?php if ($dataOfferProducts): ?>
+        <?php foreach ($dataOfferProducts as $product): ?>
         <div class="product" data-id="<?= $product['id'] ?>">
           <div class="discount-badge"><?= $product['discount'] ?>% OFF</div>
 
@@ -148,7 +157,17 @@ $dataOfferProducts = [
             </button>
           </div>
         </div>
-      <?php endforeach; ?>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <div>
+          <div>
+            <h1>Parece que não há nenhum pedido cadastrado!</h1>
+            <i class="ph ph-smiley-sad"></i>
+          </div>
+
+          <p>Tente novamente mais tarde.</p>
+        </div>
+      <?php endif; ?>
     </div>
   </section>
 
