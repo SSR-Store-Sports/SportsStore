@@ -5,43 +5,60 @@ use Bramus\Router\Router;
 
 $router = new Router();
 
-$_ROUTER = $_SERVER["REQUEST_URI"];
 include 'app/views/components/header/index.php';
 include 'app/views/components/sidebar/index.php';
 
-$router->get('/', function() {
+$router->mount("/auth", function () use ($router) {
+  $router->get('/login', function () {
+    require 'app/views/users/login/index.php';
+  });
+
+  $router->get('/registro', function () {
+    require 'app/views/users/register/index.php';
+  });
+});
+
+$router->get('/', function () {
   require 'app/views/index.php';
 });
 
-$router->get('/login', function() {
-  require 'app/views/users/login/index.php';
-});
-
-$router->get('/register', function() {
-  require 'app/views/users/register/index.php';
-});
-
-$router->get('/check', function() {
+$router->get('/check', function () {
   require 'app/views/users/check/index.php';
 });
 
-$router->get('/products', function() {
+$router->get('/produtos', function () {
   require 'app/views/products/product/index.php';
 });
 
-$router->get('/cart', function() {
+$router->get('/carrinho', function () {
   require 'app/views/products/cart/index.php';
 });
 
-$router->get('/admin', function() {
+$router->get('/admin', function () {
   require 'app/views/users/admin/index.php';
 });
 
-$router->get('/address', function() {
-  require 'app\views\users\address\index.php';
+$router->get('/configuracoes', function () {
+  require 'app/views/users/configuration/index.php';
 });
 
-$router->set404(function() {
+$router->get('/endereco', function () {
+  require 'app/views/users/address/index.php';
+});
+
+$router->get('/acompanhamento', function () {
+  require 'app/views/products/follow-up/index.php';
+});
+
+$router->get('/historico', function () {
+  require 'app/views/products/history/index.php';
+});
+
+$router->get('/produto-selecionado', function () {
+  require 'app/views/products/product-selected/index.php';
+});
+
+$router->set404(function () {
   require 'app/views/not-found/index.php';
 });
 

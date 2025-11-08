@@ -1,22 +1,20 @@
-<link rel="stylesheet" href="/app/views/users/check/style.css">
+<link rel="stylesheet" href="/app/views/users/check/styles.css">
 
 <body>
-<main class="checking">
-
-<div class="image_check">
-    <img class="check" src="/public\images/check.png" alt="">
+    <main class="checking">
+        <div class="image_check">
+            <img class="check" src="/public/images/check.png" alt="">
         </div>
 
-    <h1>
-        Conta criada com sucesso!
-    </h1>
-</div>
+        <h1>
+            Conta criada com sucesso!
+        </h1>
 
-<div class="text-p">
-    <p>
-    Bem-vinda(o) à TatiFit!
-    Agora você pode fazer login e começar suas compras.
-    </p>
-</div>
-</main>
+        <div class="text-p">
+            <p>
+                Bem-vinda(o) à TatiFit!
+                Agora você pode fazer login e começar suas compras.
+            </p>
+        </div>
+    </main>
 </body>
