@@ -16,7 +16,7 @@
       <h4>Conta</h4>
       <ul>
         <li><a href="/auth/login"><i class="ph ph-sign-in"></i> Login</a></li>
-        <li><a href="/auth/register"><i class="ph ph-user-plus"></i> Cadastrar</a></li>
+        <li><a href="/auth/registro"><i class="ph ph-user-plus"></i> Cadastrar</a></li>
         <li><a href="/configuracoes"><i class="ph ph-gear"></i> Configurações</a></li>
       </ul>
     </div>

@@ -1,9 +1,14 @@
-<link rel="stylesheet" href="app/views/products/product/styles.css">
+<!-- Importa o arquivo CSS responsável pelos estilos da página -->
+<link rel="stylesheet" href="/app/views/users/address/styles.css">
 
 <body>
+<!-- ===========================
+     CABEÇALHO DA PÁGINA
+=========================== -->
 <div class="address-header">
   <h1>Endereço de entrega</h1>
 
+  <!-- ===== Barra de Progresso do Checkout ===== -->
   <div class="checkout-progress">
     <ul>
       <li class="active">Carrinho</li>
@@ -13,11 +18,18 @@
     </ul>
   </div>
 </div>
+
+
+
   <main class="address-main">
+    <!-- ===========================
+         SEÇÃO: RESUMO DO PEDIDO
+    ============================ -->
     <section class="address-content">
       <div class="address-items">
         <h2><i class="ph ph-package"></i>Resumo do pedido</h2>
 
+        <!-- Item de exemplo do pedido -->
         <div class="item">
           <div class="item-image">
             <img src="public/images/conjunto-fit.jpg" alt="Conjunto Fitness">
@@ -30,7 +42,8 @@
             <div class="price-current">R$ 49,90</div>
           </div>
         </div>
-        
+
+        <!-- ===== Subtotal / Total ===== -->
         <div class="order-summary">
           <p>Subtotal: <strong>R$ 49,90</strong></p>
           <p>Frete: <strong>R$ 9,90</strong></p>
@@ -38,6 +51,7 @@
           <p>Total: <strong>R$ 59,80</strong></p>
         </div>
 
+        <!-- ===== Cupom de Desconto ===== -->
         <div class="discount-code">
           <input type="text" placeholder="Digite seu cupom" />
           <button class="btn-apply-coupon">
@@ -46,13 +60,18 @@
           </button>
         </div>
 
+        <!-- ===========================
+             SEÇÃO: ADICIONAR ENDEREÇO
+        ============================ -->
         <div class="add-address">
           <h2>Finalize seu pedido com o endereço perfeito!</h2>
 
+          <!-- Botão que exibe/esconde o formulário -->
           <button id="add-address-button" class="btn-add-address">
             <i class="ph ph-plus"></i>
           </button>
 
+          <!-- Formulário oculto por padrão -->
           <form id="address-form" class="address-form">
             <h3>Cadastre seu endereço</h3>
 
@@ -74,6 +93,9 @@
       </div>
     </section>
 
+    <!-- ===========================
+         SEÇÃO: DETALHES DO ENDEREÇO
+    ============================ -->
     <section class="address-details">
       <div class="address-info-block">
         <h2 class="address-info-title">
@@ -89,8 +111,10 @@
           <p><strong>CEP:</strong> 0546-020</p>
         </div>
 
+        <!-- Novo botão de edição -->
         <button class="btn-edit-address"><span>Editar Endereço</span></button>
-        
+
+        <!-- Mapa ilustrativo -->
         <div class="address-map">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3473.6088428075577!2d-46.69501382022828!3d-23.660689023892804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce50402ebbf84f%3A0xa5d75dec15d9823f!2sR.%20Arlindo%20Veiga%20dos%20Santos%20-%20Campo%20Grande%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004671-300!5e1!3m2!1spt-BR!2sbr!4v1762366036614!5m2!1spt-BR!2sbr"
@@ -114,6 +138,9 @@
     </section>
   </main>
 
+  <!-- ===========================
+       SCRIPT: INTERAÇÃO DO FORMULÁRIO
+  ============================ -->
   <script>
     const addButton = document.getElementById('add-address-button');
     const form = document.getElementById('address-form');
