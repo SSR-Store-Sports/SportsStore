@@ -5,8 +5,8 @@ use Bramus\Router\Router;
 
 $router = new Router();
 
-include 'app/views/components/header/index.php';
-include 'app/views/components/sidebar/index.php';
+include 'app/views/_components/header/index.php';
+include 'app/views/_components/sidebar/index.php';
 
 $router->mount("/auth", function () use ($router) {
   $router->get('/login', function () {
@@ -34,8 +34,14 @@ $router->get('/carrinho', function () {
   require 'app/views/products/cart/index.php';
 });
 
-$router->get('/admin', function () {
-  require 'app/views/users/admin/index.php';
+$router->mount("/admin", function () use ($router) {
+  $router->get('/', function () {
+    require 'app/views/admin/index.php';
+  });
+
+  $router->get('/produtos', function () {
+    require 'app/views/admin/products/index.php';
+  });
 });
 
 $router->get('/configuracoes', function () {
@@ -64,4 +70,4 @@ $router->set404(function () {
 
 $router->run();
 
-include 'app/views/components/footer/index.php';
+include 'app/views/_components/footer/index.php';

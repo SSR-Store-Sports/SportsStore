@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/app/views/users/admin/styles.css">
+<link rel="stylesheet" href="/app/views/admin/styles.css">
 
 <body>
     <main class="admin-main">

@@ -17,7 +17,7 @@ function searchProducts() {
         return;
     }
     
-    window.location.href = `/products?search=${encodeURIComponent(searchTerm)}`;
+    window.location.href = `/produtos?name=${encodeURIComponent(searchTerm)}`;
 }
 
 document.addEventListener('DOMContentLoaded', function() {

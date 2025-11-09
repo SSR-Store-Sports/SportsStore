@@ -1,0 +1,171 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fafafa;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.user-config {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.config-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.config-header h1 {
+  font-size: 1.8rem;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.config-header p {
+  color: #666;
+  font-size: 1rem;
+}
+
+.config-container {
+  display: flex;
+  gap: 2rem;
+}
+
+.config-menu {
+  flex: 1;
+  background: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  max-width: 300px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.profile .avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #e94ca0;
+}
+
+.profile-info h2 {
+  font-size: 1rem;
+  margin: 0;
+  color: #222;
+}
+
+.profile-info p {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.menu-item {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: none;
+  background: #fff;
+  border-radius: 8px;
+  text-align: left;
+  color: #444;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.menu-item:hover {
+  background: #f9e3f0;
+  color: #e94ca0;
+}
+
+.menu-item.active {
+  background: var(--bg-tertiary);;
+  color: #fff;
+}
+
+.config-content {
+  flex: 2;
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.form h3 {
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.3rem;
+}
+
+input {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+input:focus {
+  border-color: #e94ca0;
+  outline: none;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.btn-save {
+  background: var(--bg-tertiary);;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-save:hover {
+  background: #d73a8f;
+}
+
+.btn-logout {
+  color: #999;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn-logout:hover {
+  color: var(--bg-tertiary);
+}

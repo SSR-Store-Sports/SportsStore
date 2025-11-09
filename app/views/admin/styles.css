@@ -2,6 +2,7 @@
     margin: 0;
     justify-content: center;
     align-items: center;
+    color: var(--text-color-gray);
 }
 
 h1 {

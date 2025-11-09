@@ -19,8 +19,8 @@ Funcionalidade que o usuário interage de alguma forma.
 - [ ] O usuário deve poder se autenticar;
 - [ ] O usuário deve poder alterar sua senha;
 - [ ] O usuário deve poder obter o seu perfil de um usuário logado;
-- [ ] O usuário deve poder visualizar todos os produtos;
-- [ ] O usuário deve poder buscar por produto(s);
+- [x] O usuário deve poder visualizar todos os produtos;
+- [x] O usuário deve poder buscar por produto(s);
 - [ ] O usuário deve poder selecionar um produto gerando o carrinho de compras;
 - [ ] O usuário deve poder finalizar a compra (gerar venda);
 - [ ] x - O usuário deve ter uma lista de items favoritos;
