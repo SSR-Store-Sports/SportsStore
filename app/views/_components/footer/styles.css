@@ -1,0 +1,114 @@
+footer {
+  background-color: var(--bg-quinary);
+  color: white;
+  padding: 3rem 2rem 1rem;
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.footer-content section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-content h2 {
+  color: var(--text-color-pink);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.footer-content p {
+  line-height: 1.6;
+  color: var(--text-color-gray-100);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-content p strong {
+  color: var(--text-color-white);
+}
+
+.footer-content p i {
+  color: var(--primary-color);
+  font-size: 16px;
+  min-width: 16px;
+}
+
+.payment-info {
+  margin-top: 1rem;
+}
+
+.links-info {
+  margin-top: 1rem;
+}
+
+.links-info a {
+  color: var(--text-color-gray-100);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.links-info a:hover {
+  color: var(--primary-color);
+}
+
+.social-buttons {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.social-buttons button {
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.social-buttons button:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.social-buttons i {
+  color: white;
+  font-size: 1.2rem;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--text-color-gray-100);
+  margin-top: 2rem;
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: var(--text-color-gray-100);
+  font-size: 12px;
+}
+
+@media screen and (max-width: 768px) {
+  footer {
+    padding: 2rem 1rem;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
