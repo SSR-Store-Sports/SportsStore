@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/Router.php';
+
 use Bramus\Router\Router;
 
 $router = new Router();

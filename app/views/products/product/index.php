@@ -1,4 +1,4 @@
-<?php 
+<?php
 require 'config/database.php';
 
 $itemsPerPage = 6;
