@@ -1,0 +1,315 @@
+/* =====================================================
+   1. ESTILOS GERAIS
+   ----------------------------------------------------- */
+
+.purchase-history {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+/* =====================================================
+   2. CABEÇALHO DA PÁGINA ("Histórico de Compras")
+   ----------------------------------------------------- */
+.purchase-history_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--bg-quaternary);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.history-header {
+  color: var(--text-color-pink);
+  font-size: 28px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.history-count {
+  color: var(--text-color-gray-100);
+  font-size: 16px;
+}
+
+/* =====================================================
+   3. LISTA DE HISTÓRICO
+   ----------------------------------------------------- */
+.history-list {
+  color: var(--text-color-black);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* =====================================================
+   4. BLOCO DE UM ITEM DO HISTÓRICO
+   ----------------------------------------------------- */
+.history-item {
+  background-color: var(--bg-secondary-white);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  transition: transform 0.2s ease;
+}
+
+.history-item:hover {
+  transform: translateY(-2px);
+}
+
+/* =====================================================
+   5. CABEÇALHO DO PEDIDO (número e botões)
+   ----------------------------------------------------- */
+.history-number {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  width: 100%;
+  padding: 20px 24px;
+  border: 1px solid #D67EBF;
+  border-radius: 8px;
+  color: var(--text-color-black);
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* =====================================================
+   6. BOTÕES (ver detalhes)
+   ----------------------------------------------------- */
+.history-btn {
+  position: relative;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  background-color: transparent;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  overflow: hidden;
+}
+
+/* efeito gradiente na borda */
+.history-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(var(--primary-color) 0 0)
+    no-repeat calc(200% - var(--p, 0%)) 100% / 200% var(--p, 0.2em);
+  transition: 0.3s var(--t, 0s),
+              background-position 0.3s calc(0.3s - var(--t, 0s));
+  z-index: 0;
+}
+
+.history-btn:hover::before {
+  --p: 100%;
+  --t: 0.3s;
+}
+
+.history-btn span,
+.history-btn i {
+  position: relative;
+  z-index: 1;
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+
+.history-btn:hover span,
+.history-btn:hover i {
+  color: var(--text-color-white);
+}
+
+.history-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* =====================================================
+   7. INFORMAÇÕES DE PAGAMENTO
+   ----------------------------------------------------- */
+.history-payment {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 10px;
+  font-size: 15px;
+  color: var(--text-color-gray-200);
+}
+
+.history-payment i {
+  color: var(--primary-color);
+  font-size: 18px;
+}
+
+/* =====================================================
+   8. DETALHES DO ITEM
+   ----------------------------------------------------- */
+.history-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 10px;
+  border-top: 1px solid var(--bg-quaternary);
+  gap: 16px;
+}
+
+.history-details-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.history-details-info img {
+  width: 90px;
+  height: 90px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #eee;
+}
+
+.history-texts {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* =====================================================
+   9. STATUS DO PEDIDO (entregue, cancelado, etc.)
+   ----------------------------------------------------- */
+.history-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 500;
+  gap: 6px;
+  text-align: center;
+  min-width: 180px;
+}
+
+.history-status--delivered {
+  background-color: #e8fbee;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.history-status--canceled {
+  background-color: #fff0f0;
+  color: #d32f2f;
+  border: 1px solid #f5b7b1;
+}
+
+/* =====================================================
+   10. RESPONSIVIDADE
+   ----------------------------------------------------- */
+
+/* Correções gerais */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.history-number,
+.history-details,
+.history-details-info {
+  min-width: 0;
+}
+
+.history-number > p,
+.history-texts {
+  flex: 1 1 0%;
+  min-width: 0;
+}
+
+.history-btn {
+  flex: 0 1 auto;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.history-status {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.history-details-info img {
+  flex: 0 0 90px;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+}
+
+/* Versão mobile */
+@media (max-width: 480px) {
+  .purchase-history {
+    padding: 16px;
+  }
+
+  .purchase-history_header {
+    gap: 8px;
+  }
+
+  .history-header {
+    font-size: 18px;
+  }
+
+  .history-number {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .history-btn {
+    width: 100%;
+    max-width: none;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .history-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .history-details-info {
+    display: flex;
+    width: 100%;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .history-texts {
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+
+  .history-status {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .history-texts p,
+  .history-payment {
+    font-size: 13px;
+  }
+}
