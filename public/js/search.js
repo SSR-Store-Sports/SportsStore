@@ -16,7 +16,7 @@ function searchProducts() {
     if (searchTerm === '') {
         return;
     }
-    
+
     window.location.href = `/produtos?name=${encodeURIComponent(searchTerm)}`;
 }
 

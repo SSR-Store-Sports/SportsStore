@@ -20,7 +20,7 @@ try {
 
     $db = new PDO("mysql:host=$servername;dbname=$database;charset=utf8;port=$port", $username, $password);
 
-    echo "Conexão SSL em PHP estabelecida com sucesso!";
+    // echo "Conexão SSL em PHP estabelecida com sucesso!";
 } catch (PDOException $e) {
     error_log("Erro de Conexão: " . $e->getMessage());
 }
