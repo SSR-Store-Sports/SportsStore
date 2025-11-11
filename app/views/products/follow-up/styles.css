@@ -225,39 +225,115 @@
 
 
 
-/* =====================================================
-   10. RESPONSIVIDADE
-   ----------------------------------------------------- */
-@media (max-width: 768px) {
+/* ===== Correções gerais para responsividade (cole no fim do CSS) ===== */
+
+/* 1) box-sizing para evitar cálculo estranho de larguras */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2) permitir que itens flex encolham (resolve estouro causado por texto/botões) */
+.number-orders,
+.details-item,
+.details-item-info {
+  min-width: 0; /* permite que filhos encolham corretamente */
+}
+
+/* 3) permitir que parágrafos dentro de flex encolham e quebrem linha quando preciso */
+.number-orders > p,
+.details-texts {
+  flex: 1 1 0%;
+  min-width: 0;   /* ESSENCIAL para evitar overflow em flex items */
+}
+
+/* 4) botões ocupam apenas o necessário e não forçam o container a crescer */
+.number-orders .tracking-btn {
+  flex: 0 1 auto;  /* pode encolher */
+  max-width: 220px; /* limite razoável em telas grandes */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 5) status não força largura (remove min-width fixo) */
+.product-status {
+  min-width: 0;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 6) imagem do produto responsiva e fixa razoável */
+.details-item-info img {
+  flex: 0 0 90px; /* mantém tamanho consistente */
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+}
+
+/* 7) ajustes de fonte/padding para telas pequenas */
+@media (max-width: 480px) {
+  .orders-tracking {
+    padding: 16px;
+  }
+
+  .orders-tracking_header {
+    gap: 8px;
+  }
+
+  .orders-header {
+    font-size: 18px;
+  }
+
   .number-orders {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    padding: 12px;
+    gap: 10px;
   }
 
-  .tracking-btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  /* 🔹 Oculta o botão "Gerenciar Pedido" no mobile */
-  .tracking-btn:first-of-type {
+  /* ocultar primeiro botão (Gerenciar Pedido) — se já quer isso */
+  .number-orders .tracking-btn:first-of-type {
     display: none;
   }
 
+  /* botão "Ver Detalhes" fica full width */
+  .number-orders .tracking-btn:last-of-type {
+    width: 100%;
+    max-width: none;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  /* detalhes: imagem + textos ficam em linha, texto ocupa o restante */
   .details-item {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
   }
 
-  .details-item img {
-    width: 80px;
-    height: 80px;
+  .details-item-info {
+    display: flex;
+    width: 100%;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .details-texts {
+    flex: 1 1 0%;
+    min-width: 0;
   }
 
   .product-status {
-    align-self: flex-start;
-    margin-left: 0;
+    width: 100%;
+    justify-content: flex-start;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  /* reduzir tamanho do texto nos parágrafos pra caber melhor */
+  .details-texts p,
+  .payment-orders {
+    font-size: 13px;
   }
 }
 
