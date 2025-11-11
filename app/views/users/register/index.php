@@ -1,6 +1,9 @@
 <link rel="stylesheet" href="/app/views/users/register/styles.css">
 
+
+
 <body>
+    
     <main class="register-main">
         <div class="carrosel">
             <img class="modelo1" src="/public/images/modelo1.jpg" alt="Modelo 1">
@@ -8,7 +11,9 @@
         </div>
 
         <div class="register-container">
-            <form>
+           <form action="/Register/TestRegister.php" method="POST">
+
+
                 <div class="register-form">
                     <div>
                         <img src="/public/images/logo.png" alt="TatiFit Wear">
