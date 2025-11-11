@@ -1,0 +1,263 @@
+/* =====================================================
+   1. ESTILOS GERAIS
+   ----------------------------------------------------- */
+
+.orders-tracking {
+  width: 100%;
+  max-width: 1400px; /* aumente conforme o layout */
+  margin: 0 auto;
+  padding: 40px;
+}
+
+/* =====================================================
+   2. CABEÇALHO DA PÁGINA ("Meus Pedidos")
+   ----------------------------------------------------- */
+.orders-tracking_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--bg-quaternary);
+  flex-wrap: wrap; /* permite quebra em telas menores */
+  gap: 12px; /* espaçamento entre os itens quando quebrar */
+}
+.orders-header {
+  color: var(--text-color-pink);
+  font-size: 28px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.orders-count {
+  color: var(--text-color-gray-100);
+  font-size: 16px;
+}
+
+/* =====================================================
+   3. LISTA DE PEDIDOS (container geral)
+   ----------------------------------------------------- */
+.orders-list {
+  color: var(--text-color-black);
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* espaço entre cada pedido */
+}
+
+/* =====================================================
+   4. BLOCO DE UM PEDIDO INDIVIDUAL
+   ----------------------------------------------------- */
+.follow-up-item {
+  background-color: var(--bg-secondary-white);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  transition: transform 0.2s ease;
+}
+
+.follow-up-item:hover {
+  transform: translateY(-2px);
+}
+
+/* =====================================================
+   5. CABEÇALHO DO PEDIDO (número e botões)
+   ----------------------------------------------------- */
+.number-orders {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* melhora no responsivo */
+  gap: 24px;
+  width: 100%;
+  padding: 20px 24px;
+  border: 1px solid #D67EBF;
+  border-radius: 8px;
+  color: var(--text-color-black);
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* =====================================================
+   6. BOTÕES DE ACOMPANHAMENTO (gerenciar / ver detalhes)
+   ----------------------------------------------------- */
+.tracking-btn {
+  position: relative;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  background-color: transparent;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  overflow: hidden;
+}
+
+/* efeito gradiente na borda */
+.tracking-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(var(--primary-color) 0 0)
+    no-repeat calc(200% - var(--p, 0%)) 100% / 200% var(--p, 0.2em);
+  transition: 0.3s var(--t, 0s),
+              background-position 0.3s calc(0.3s - var(--t, 0s));
+  z-index: 0;
+}
+
+/* animação hover */
+.tracking-btn:hover::before {
+  --p: 100%;
+  --t: 0.3s;
+}
+
+/* texto e ícones acima do gradiente */
+.tracking-btn span,
+.tracking-btn i {
+  position: relative;
+  z-index: 1;
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+
+/* mudança de cor no hover */
+.tracking-btn:hover span,
+.tracking-btn:hover i {
+  color: var(--text-color-white);
+}
+
+/* leve elevação */
+.tracking-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* =====================================================
+   7. INFORMAÇÕES DE PAGAMENTO
+   ----------------------------------------------------- */
+.payment-orders {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 10px;
+  font-size: 15px;
+  color: var(--text-color-gray-200);
+}
+
+.payment-orders i {
+  color: var(--primary-color);
+  font-size: 18px;
+}
+
+/* =====================================================
+   8. DETALHES DO ITEM DO PEDIDO
+   ----------------------------------------------------- */
+.details-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 10px;
+  border-top: 1px solid var(--bg-quaternary);
+  gap: 16px;
+}
+
+/* 🔹 Container da imagem + textos */
+.details-item-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 🔹 Imagem do produto */
+.details-item-info img {
+  width: 90px;
+  height: 90px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #eee;
+}
+
+/* 🔹 Textos ao lado da imagem */
+.details-texts {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* 🔹 Status à direita, centralizado verticalmente */
+.product-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFF1FA;
+  color: var(--text-color-pink);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 500;
+  gap: 6px;
+  min-width: 180px;
+  text-align: center;
+}
+
+/* 🔹 Status à direita, centralizado verticalmente */
+.status-transporte {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e6f0ff; /* Azul claro de fundo */
+  color: #1e66f5; /* Azul principal */
+  font-weight: 500;
+  min-width: 180px;
+  text-align: center;
+  padding: 8px 16px;
+  border-radius: 20px;
+  gap: 6px;
+}
+
+
+
+/* =====================================================
+   10. RESPONSIVIDADE
+   ----------------------------------------------------- */
+@media (max-width: 768px) {
+  .number-orders {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .tracking-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* 🔹 Oculta o botão "Gerenciar Pedido" no mobile */
+  .tracking-btn:first-of-type {
+    display: none;
+  }
+
+  .details-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .details-item img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .product-status {
+    align-self: flex-start;
+    margin-left: 0;
+  }
+}
+
