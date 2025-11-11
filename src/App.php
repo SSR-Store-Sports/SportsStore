@@ -23,7 +23,7 @@
 
 <body>
   <?php
-    require_once 'routes/web.php';
+    require_once 'Router.php';
   ?>
 
   <div vw class="enabled">

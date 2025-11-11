@@ -73,6 +73,28 @@ A instituição decide, o proprietário do software dita.
 - [ ] Usuários que não estão logados, devem conseguir adquirir produtos para ficar no carrinho (direcionar p/ login);
 - [ ] O usuário que quer algo específico, poderá acessar o canal alternativo (WhatsApp);
 
+# TASKS ARQUITETURAIS
+
+## 🔴 CRÍTICO - Segurança (Prioridade 1)
+- [ ] Implementar Sistema de Autenticação JWT
+- [ ] Corrigir Vulnerabilidades XSS
+- [ ] Implementar Proteção CSRF
+- [ ] Criptografia de Senhas
+
+## 🟡 ALTO - Estrutura e Padrões (Prioridade 2)
+- [ ] Implementar Padrão MVC Completo
+- [ ] Sistema de Tratamento de Erros
+- [ ] Validação de Dados
+
+## 🟢 MÉDIO - Funcionalidades Core (Prioridade 3)
+- [ ] Sistema de Usuários Completo
+- [ ] Carrinho de Compras
+- [ ] Sistema de Vendas
+
+## 🔵 BAIXO - Melhorias (Prioridade 4)
+- [ ] Paginação e Performance
+- [ ] Interface e UX
+
 # GUIDE PHP COMMANDS
 
 - Creating Server Embuting PHP
