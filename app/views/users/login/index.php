@@ -1,4 +1,20 @@
 <link rel="stylesheet" href="/app/views/users/login/styles.css">
+<?php
+
+session_start();
+require 'C:/Users/User/OneDrive/Documentos/tatifit/SportsStore/config/database.php';
+
+if (isset($_POST['entrar_usuario'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // lógica para autenticar o usuário
+    $sql = "SELECT * FROM tatifit_users WHERE email = '$email' AND password = '$password'";
+    $result = mysqli_query($db, $sql);
+
+}                                             
+
+?>
 
 <body>
     <main class="login-main">
@@ -8,7 +24,7 @@
         </div>
 
         <div class="login-container">
-            <form>
+            <form action="" method="POST">
                 <div class="login-form">
                     <div>
                         <img class="logo-login" src="/public/images/logo.png" alt="TatiFit Wear">
@@ -20,7 +36,7 @@
                         <input type="password" id="password" name="password" placeholder="Senha">
                         <a href="#">Esqueci a senha</a>
                     </div>
-                    <button type="submit" class="btn-login">Entrar</button>
+                    <button type="submit" name="entrar_usuario" class="btn-login">Entrar</button>
                     <p>Não tem conta? <a href="/auth/register">Criar conta</a></p>
                 </div>
             </form>
