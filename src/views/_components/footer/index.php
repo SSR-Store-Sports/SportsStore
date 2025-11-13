@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/app/views/_components/footer/styles.css">
+<link rel="stylesheet" href="/src/views/_components/footer/styles.css">
 
 <footer>
     <div class="footer-content">

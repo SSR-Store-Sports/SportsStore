@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/app/views/_components/header/styles.css">
+<link rel="stylesheet" href="/src/views/_components/header/styles.css">
 <script src="/public/js/search.js"></script>
 
 <header>

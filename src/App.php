@@ -10,7 +10,7 @@
 
   <title>TatiFit Wear</title>
   <link rel="icon" href="/public/images/favicon.png" />
-  <link rel="stylesheet" href="/globals.css" />
+  <link rel="stylesheet" href="/src/globals.css" />
   
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
@@ -23,7 +23,8 @@
 
 <body>
   <?php
-    require_once 'router.php';
+    // echo "<h1>App funcionando!</h1>";
+    require_once __DIR__ . '/Router.php';
   ?>
 
   <div vw class="enabled">

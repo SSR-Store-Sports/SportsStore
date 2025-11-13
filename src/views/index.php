@@ -76,7 +76,7 @@ $dataOfferProducts = [
 
 ?>
 
-<link rel="stylesheet" href="/app/views/styles.css">
+<link rel="stylesheet" href="/src/views/styles.css">
 
 <main>
   <section class="carrossel">
