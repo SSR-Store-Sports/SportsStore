@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/utils/Bramus/Router.php';
+require '/src/utils/Bramus/Router.php';
 
 use Bramus\Router\Router;
 
