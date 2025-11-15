@@ -1,20 +1,42 @@
-<link rel="stylesheet" href="/app/views/users/login/styles.css">
 <?php
 
 session_start();
-require 'C:/Users/User/OneDrive/Documentos/tatifit/SportsStore/config/database.php';
 
-if (isset($_POST['entrar_usuario'])) {
+require 'config/database.php';
+
+if ($_POST['submit_form']) {
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = $_POST['passsword'];
 
-    // lógica para autenticar o usuário
-    $sql = "SELECT * FROM tatifit_users WHERE email = '$email' AND password = '$password'";
-    $result = mysqli_query($db, $sql);
+    // verificar se email é um email
+    // seu código aqui
+    
+    // buscar usuário apenas por usuário
+    $query = "SELECT id, name, password_hash FROM tatifit_users WHERE email = '$email';
+    $user = db->execute($query);
 
+    if (!isset($user)) {
+      // lançar um aviso (erro): usuário não cadastrado
+      // não executa o código abaixo
+    }
+
+    // verificar se a senha não é maliciosa
+    
+    // verificar se a senha que o usuário digitou faz sentido com o hash gravado na tabela
+    $passwordHash = bcrypt.compare("$user['password']", $password);
+
+    if (!isset($passwordHash)) {
+        // lança um erro genérico
+    }
+
+    // salva o nome do usuário de forma global
+    $_SESSION['name'] = $user['name'];
+    
 }                                             
 
 ?>
+
+<link rel="stylesheet" href="/app/views/users/login/styles.css">
 
 <body>
     <main class="login-main">
@@ -24,7 +46,7 @@ if (isset($_POST['entrar_usuario'])) {
         </div>
 
         <div class="login-container">
-            <form action="" method="POST">
+            <form action="submit_form" method="POST">
                 <div class="login-form">
                     <div>
                         <img class="logo-login" src="/public/images/logo.png" alt="TatiFit Wear">
