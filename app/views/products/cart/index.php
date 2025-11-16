@@ -94,10 +94,10 @@
                 <div class="installments-info">
                     <p>em até <strong>12x de R$ 18,48</strong> sem juros</p>
                 </div>
-                <button class="checkout-btn">
+                <a href="/endereco" class="checkout-btn">
                     <i class="ph ph-credit-card"></i>
                     Finalizar compra
-                </button>
+                </a>
                 <div class="security-info">
                     <i class="ph ph-shield-check"></i>
                     <span>Compra 100% segura</span>
@@ -110,7 +110,7 @@
                     <input type="text" placeholder="Digite seu CEP" maxlength="9">
                     <button class="calc-btn">Calcular</button>
                 </div>
-                <a href="#" class="cep-link">Não sei meu CEP</a>
+                <a target="_blank" href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="cep-link">Não sei meu CEP</a>
             </div>
         </div>
     </div>

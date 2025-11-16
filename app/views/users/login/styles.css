@@ -59,27 +59,22 @@
     max-width: 400px;
 }
 
-.logo-login {
-    height: 154px;
-}
-
-.logo-login {
+.logo-container {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 32px;
 }
 
-.logo-login img {
+.logo-login {
     width: 120px;
     height: auto;
 }
 
-/* --- 3. LINHAS ROSAS E ALTURA MANTIDA --- */
-.form-email-password {
+.form-group {
     position: relative;
     margin-bottom: 24px;
 }
 
-.form-email-password input {
+.form-group input {
     width: 100%;
     border: 2px solid var(--bg-quaternary);
     border-radius: 8px;
@@ -89,20 +84,19 @@
     color: var(--text-color-gray);
     outline: none;
     transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
-/* Efeito de foco sutil, já que a linha já é rosa */
-.form-email-password input:focus {
-    /* Podemos adicionar um leve brilho ou manter como está */
-    border-bottom-color: #c875a5; /* Escurece um pouco no foco */
+.form-group input:focus {
+    border-color: var(--primary-color);
 }
 
-.form-email-password input::placeholder {
+.form-group input::placeholder {
     color: #aaa;
-    font-size: 20px;
+    font-size: 16px;
 }
 
-.form-email-password a {
+.forgot-password {
     position: absolute;
     right: 16px;
     top: 50%;
@@ -113,7 +107,7 @@
     font-weight: 500;
 }
 
-.form-group a:hover {
+.forgot-password:hover {
     text-decoration: underline;
 }
 
@@ -137,20 +131,20 @@
     box-shadow: var(--shadow);
 }
 
-.login-form > p {
+.register-link {
     text-align: center;
     margin-top: 24px;
     font-size: 14px;
     color: var(--text-color-gray);
 }
 
-.login-form > p a {
+.register-link a {
     color: var(--primary-color);
     font-weight: 600;
     text-decoration: none;
 }
 
-.login-form > p a:hover {
+.register-link a:hover {
     text-decoration: underline;
 }
 
@@ -194,8 +188,7 @@
     }
     
     .carrosel {
-        width: 100%;
-        height: 200px;
+        display: none;
     }
     
     .login-container {

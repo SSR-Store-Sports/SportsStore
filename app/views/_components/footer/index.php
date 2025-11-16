@@ -4,7 +4,9 @@
     <div class="footer-content">
         <section class="about-section">
             <h2>Sobre nós</h2>
-            <p>Na SportsStore, unimos conforto, estilo e qualidade para quem ama se sentir bem na academia e no dia a dia. Somos especialistas em moda fitness, trazendo peças modernas que valorizam cada movimento e cada conquista.</p>
+            <p>Na SportsStore, unimos conforto, estilo e qualidade para quem ama se sentir bem na academia e no dia a
+                dia. Somos especialistas em moda fitness, trazendo peças modernas que valorizam cada movimento e cada
+                conquista.</p>
             <p><strong>✓ Frete grátis</strong> para compras acima de R$ 199</p>
             <p><strong>✓ Parcelamento</strong> em até 12x sem juros</p>
             <p><strong>✓ Troca grátis</strong> em 30 dias</p>
@@ -35,14 +37,28 @@
             </div>
             <div class="links-info">
                 <p><strong>Links úteis:</strong></p>
-                <p><a href="/size-guide">Guia de tamanhos</a></p>
-                <p><a href="/care-guide">Como cuidar das peças</a></p>
-                <p><a href="/returns">Política de trocas</a></p>
-                <p><a href="/privacy">Privacidade</a></p>
+                <p><a href="/tamanho-guia">Guia de tamanhos</a></p>
+                <p><a href="/pecas-guia">Como cuidar das peças</a></p>
+                <p><a href="/retorno">Política de trocas</a></p>
+                <p><a href="/privacidade">Privacidade</a></p>
             </div>
         </section>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2024 SportsStore - CNPJ: 12.345.678/0001-90 - Todos os direitos reservados.</p>
+        <p>
+            CNPJ: xx.xxx.678/0001-90 - Todos os direitos reservados.
+        </p>
+        <a href="tatifitwear.com.br">Tatifitwear</a> © 2025 by <a href="https://github.com/SSR-Store-Sports">Henrique
+            Maximo / José Caique / Cauan Matheus / Rodrigo Arruda</a> is licensed under <a
+            href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a><img
+            src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt=""
+            style="max-width: 1em;max-height:1em;margin-left: .2em;"><img
+            src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt=""
+            style="max-width: 1em;max-height:1em;margin-left: .2em;"><img
+            src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt=""
+            style="max-width: 1em;max-height:1em;margin-left: .2em;"><img
+            src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" alt=""
+            style="max-width: 1em;max-height:1em;margin-left: .2em;"
+        />
     </div>
 </footer>

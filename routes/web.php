@@ -1,14 +1,18 @@
 <?php
 
-require __DIR__ . '/Router.php';
+require __DIR__ . '/Router.php'; // importação do script de gerenciamento de rotas
+use Bramus\Router\Router; // habilitar script para uso no arquivo
+$router = new Router(); // instaciando class Router para utilizar seus métodos (Mount, Get, Post, etc...)
 
-use Bramus\Router\Router;
+// importação global (todas as páginas)
+include 'app/views/_components/header/index.php'; // importando o header
+include 'app/views/_components/sidebar/index.php'; // importando a sidebar
 
-$router = new Router();
+/*
+  ROTAS DE LOGIN E REGISTRO
+*/
 
-include 'app/views/_components/header/index.php';
-include 'app/views/_components/sidebar/index.php';
-
+// método "mount" para adicionar um prefixo nas rotas (agrupamento de rotas)
 $router->mount("/auth", function () use ($router) {
   $router->get('/login', function () {
     require 'app/views/users/login/index.php';
@@ -19,50 +23,56 @@ $router->mount("/auth", function () use ($router) {
   });
 });
 
+/*
+  ROTAS PRINCIPAIS
+*/
+
 $router->get('/', function () {
   require 'app/views/index.php';
-});
-
-$router->get('/check', function () {
-  require 'app/views/users/check/index.php';
 });
 
 $router->get('/produtos', function () {
   require 'app/views/products/product/index.php';
 });
 
+$router->get('/produto', function () {
+  require 'app/views/products/product-selected/index.php';
+});
+
 $router->get('/carrinho', function () {
   require 'app/views/products/cart/index.php';
-});
-
-$router->mount("/admin", function () use ($router) {
-  $router->get('/', function () {
-    require 'app/views/admin/index.php';
-  });
-
-  $router->get('/produtos', function () {
-    require 'app/views/admin/products/index.php';
-  });
-});
-
-$router->get('/configuracoes', function () {
-  require 'app/views/users/configuration/index.php';
-});
-
-$router->get('/endereco', function () {
-  require 'app/views/users/address/index.php';
-});
-
-$router->get('/acompanhamento', function () {
-  require 'app/views/products/follow-up/index.php';
 });
 
 $router->get('/historico', function () {
   require 'app/views/products/history/index.php';
 });
 
-$router->get('/produto-selecionado', function () {
-  require 'app/views/products/product-selected/index.php';
+$router->get('/acompanhamento', function () {
+  require 'app/views/products/follow-up/index.php';
+});
+
+$router->get('/endereco', function () {
+  require 'app/views/users/address/index.php';
+});
+
+$router->get('/check', function () {
+  require 'app/views/users/check/index.php';
+}); 
+
+/*
+  ROTAS DE ADMINISTRAÇÃO
+*/
+
+$router->mount("/admin", function () use ($router) {
+  $router->get('/', function () {
+    require 'app/views/admin/index.php';
+  });
+});
+
+$router->mount("/users", function () use ($router) {
+  $router->get('/', function () {
+    require 'app/views/users/configuration/index.php';
+  });
 });
 
 $router->set404(function () {
@@ -71,4 +81,4 @@ $router->set404(function () {
 
 $router->run();
 
-include 'app/views/_components/footer/index.php';
+include 'app/views/_components/footer/index.php'; // importando o footer

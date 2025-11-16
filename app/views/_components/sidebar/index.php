@@ -3,42 +3,48 @@
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <aside class="sidebar" id="sidebar">
   <nav class="sidebar-nav">
+
     <div class="nav-section">
       <h4>Navegação</h4>
       <ul>
-        <li><a href="/"><i class="ph ph-house"></i> Home</a></li>
-        <li><a href="/produtos"><i class="ph ph-package"></i> Produtos</a></li>
-        <li><a href="/carrinho"><i class="ph ph-shopping-cart"></i> Carrinho</a></li>
-        <li><a href="/check">check</a></li>
+        <li><a href="/"><i class="ph ph-house"></i>Home</a></li>
+        <li><a href="/produtos"><i class="ph ph-package"></i>Produtos</a></li>
+        <li><a href="/carrinho"><i class="ph ph-shopping-cart"></i>Carrinho</a></li>
+        <li><a href="/historico"><i class="ph ph-clock-clockwise"></i>Histórico</a></li>
+        <li><a href="/acompanhamento"><i class="ph ph-map-pin"></i>Acompanhamento</a></li>
       </ul>
     </div>
 
     <div class="nav-section">
       <h4>Conta</h4>
       <ul>
-        <li><a href="/auth/login"><i class="ph ph-sign-in"></i> Login</a></li>
-        <li><a href="/auth/registro"><i class="ph ph-user-plus"></i> Cadastrar</a></li>
-        <li><a href="/configuracoes"><i class="ph ph-user-plus"></i> Meu endereço</a></li>
-        <li><a href="/configuracoes"><i class="ph ph-gear"></i> Configurações</a></li>
-        <li><a href="/endereco"><i class="ph ph-gear"></i>Endereço</a></li>
-        <li><a href="/acompanhamento"><i class="ph ph-gear"></i>Acompanhamento</a></li>
-        <li><a href="/historico"><i class="ph ph-gear"></i>Historico</a></li>
-        <li><a href="/produto-selecionado"><i class="ph ph-gear"></i>Produto selecionado</a></li>
+        <li><a href="/auth/login"><i class="ph ph-sign-in"></i>Login</a></li>
+        <li><a href="/auth/registro"><i class="ph ph-user-plus"></i>Cadastrar</a></li>
+        <li><a href="/users/"><i class="ph ph-gear"></i>Configurações</a></li>
       </ul>
     </div>
 
     <div class="nav-section">
       <h4>Administração</h4>
       <ul>
-        <li><a href="/admin"><i class="ph ph-shield-check"></i> Painel Admin</a></li>
-        <li><a href="/admin/produtos"><i class="ph ph-shield-check"></i> Painel Admin Produto</a></li>
+        <li><a href="/admin"><i class="ph ph-gauge"></i>Painel Administrativo</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-section">
+      <h4>Base de Conhecimento</h4>
+      <ul>
+        <li><a href="/"><i class="ph ph-ruler"></i>Guia de tamanhos</a></li>
+        <li><a href="/"><i class="ph ph-heart"></i>Como cuidar das peças</a></li>
+        <li><a href="/"><i class="ph ph-arrow-clockwise"></i>Política de trocas</a></li>
       </ul>
     </div>
 
     <div class="nav-section">
       <h4>Termos de Serviço</h4>
       <ul>
-        <li><a href="/admin"><i class="ph ph-shield-check"></i>Consulte</a></li>
+        <li><a href="/"><i class="ph ph-file-text"></i>Termos</a></li>
+        <li><a href="/"><i class="ph ph-shield-check"></i>Privacidade</a></li>
       </ul>
     </div>
   </nav>
@@ -60,26 +66,26 @@
 </aside>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const menuToggle = document.querySelector('.menu-toggle');
-  const sidebar = document.getElementById('sidebar');
-  const sidebarOverlay = document.getElementById('sidebarOverlay');
-  const sidebarClose = document.getElementById('sidebarClose');
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const sidebarClose = document.getElementById('sidebarClose');
 
-  function openSidebar() {
-    sidebar.classList.add('active');
-    sidebarOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+    function openSidebar() {
+      sidebar.classList.add('active');
+      sidebarOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
 
-  function closeSidebar() {
-    sidebar.classList.remove('active');
-    sidebarOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-  }
+    function closeSidebar() {
+      sidebar.classList.remove('active');
+      sidebarOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
 
-  menuToggle?.addEventListener('click', openSidebar);
-  sidebarClose?.addEventListener('click', closeSidebar);
-  sidebarOverlay?.addEventListener('click', closeSidebar);
-});
+    menuToggle?.addEventListener('click', openSidebar);
+    sidebarClose?.addEventListener('click', closeSidebar);
+    sidebarOverlay?.addEventListener('click', closeSidebar);
+  });
 </script>
