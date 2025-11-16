@@ -44,7 +44,7 @@
 
 .not-found-message {
   font-size: 18px;
-  color: var(--text-color-gray-100);
+  color: var(--text-color-gray);
   margin-bottom: 40px;
   line-height: 1.6;
 }

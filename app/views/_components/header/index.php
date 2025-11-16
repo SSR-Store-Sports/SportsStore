@@ -15,7 +15,7 @@
 
         <div class="nav-actions">
             <button class="cart-btn" aria-label="Carrinho">
-                <a href="/cart"><i class="ph ph-shopping-cart"></i></a>
+                <a href="/carrinho"><i class="ph ph-shopping-cart"></i></a>
             </button>
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Buscar produtos..." class="search-input" style="display: none;">

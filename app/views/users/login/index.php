@@ -8,33 +8,24 @@
         </div>
 
         <div class="login-container">
-            <form>
-                <div class="login-form">
-                    <div>
-                        <img class="logo-login" src="/public/images/logo.png" alt="TatiFit Wear">
-                    </div>
+            <div class="login-form">
+                <div class="logo-container">
+                    <img class="logo-login" src="/public/images/logo.png" alt="TatiFit Wear">
+                </div>
+                
+                <form>
                     <div class="form-group">
                         <input type="email" id="email" name="email" placeholder="Email">
                     </div>
                     <div class="form-group">
                         <input type="password" id="password" name="password" placeholder="Senha">
-                        <a href="#">Esqueci a senha</a>
+                        <a href="#" class="forgot-password">Esqueci a senha</a>
                     </div>
                     <button type="submit" class="btn-login">Entrar</button>
-                    <p>Não tem conta? <a href="/auth/register">Criar conta</a></p>
-                </div>
-            </form>
-
-            <!-- <div class="social-login">
-                <button class="google-login">
-                    <img src="/public/images/google-icon1.png" alt="Google" />
-                    Entrar com Google
-                </button>
-                <button class="facebook-login">
-                    <img src="/public/images/facebook-icon1.png" alt="Facebook">
-                    Entrar com Facebook
-                </button>
-            </div> -->
+                </form>
+                
+                <p class="register-link">Não tem conta? <a href="/auth/registro">Criar conta</a></p>
+            </div>
         </div>
     </main>
 </body>

@@ -1,3 +1,4 @@
+/* variáveis de estilo para serem usadas na aplicação */
 :root {
   --bg-primary-gray: #f2f3f4; /* cor de fundo cinza */
   --bg-secondary-white: #ffff; /* cor de fundo branca */
@@ -23,6 +24,7 @@
   --shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* sombra dos elementos */
 }
 
+/* config abaixo para realizar um reset do css */
 * {
   margin: 0;
   padding: 0;
@@ -32,7 +34,7 @@
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--bg-primary-gray);
-  color: var(--text-color-white);
+  color: var(--text-color-gray);
 
   line-height: 1.6;
   min-height: 100vh;

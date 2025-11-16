@@ -102,6 +102,10 @@ footer {
   font-size: 12px;
 }
 
+.footer-bottom a {
+  font-size: 12px;
+}
+
 @media screen and (max-width: 768px) {
   footer {
     padding: 2rem 1rem;

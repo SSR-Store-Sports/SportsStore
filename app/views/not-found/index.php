@@ -21,7 +21,7 @@
                     <i class="ph ph-house"></i>
                     Voltar ao Início
                 </a>
-                <a href="/products" class="not-found-btn secondary">
+                <a href="/produtos" class="not-found-btn secondary">
                     <i class="ph ph-shopping-bag"></i>
                     Ver Produtos
                 </a>

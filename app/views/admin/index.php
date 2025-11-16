@@ -1,32 +1,96 @@
 <link rel="stylesheet" href="/app/views/admin/styles.css">
+<link href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" rel="stylesheet">
 
 <body>
     <main class="admin-main">
-        <h1>ADMINISTRADOR</h1>
+        <div class="admin-header">
+            <h1><i class="ph ph-shield-check"></i> Painel Administrativo</h1>
+            <p>Gerencie sua loja de forma eficiente</p>
+        </div>
         
-        <div class="admin-container">
-            <div class="Produtos">
-                <h2 class="border product">Produtos</h2>
-                <button class="btn-admin"><strong>Cadastrar Produto</strong></button>
-                <p>adicione novos itens.</p>
-                <button class="btn-admin"><strong>Gerenciar Estoque</strong></button>
-                <p>atualize quantidades.</p>
+        <div class="admin-grid">
+            <div class="admin-card">
+                <div class="card-header">
+                    <div class="card-icon products">
+                        <i class="ph ph-package"></i>
+                    </div>
+                    <h3>Produtos</h3>
+                </div>
+                <div class="card-content">
+                    <div class="card-actions">
+                        <a href="/admin/produtos/cadastrar" class="btn-action primary">
+                            <i class="ph ph-plus"></i>
+                            <span>Cadastrar Produto</span>
+                        </a>
+                        <a href="/admin/estoque" class="btn-action secondary">
+                            <i class="ph ph-warehouse"></i>
+                            <span>Gerenciar Estoque</span>
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <div class="Fornecedores">
-                <h2 class="border supplier">Fornecedores</h2>
-                <button class="btn-admin"><strong>Cadastrar Fornecedores</strong></button>
-                <p>adicionar novos fornecedores.</p>
-                <button class="btn-admin"><strong>Lista de Fornecedores</strong></button>
-                <p>visualizar e editar fornecedores.</p>
+            <div class="admin-card">
+                <div class="card-header">
+                    <div class="card-icon suppliers">
+                        <i class="ph ph-truck"></i>
+                    </div>
+                    <h3>Fornecedores</h3>
+                </div>
+                <div class="card-content">
+                    <div class="card-actions">
+                        <a href="/admin/fornecedores/cadastrar" class="btn-action primary">
+                            <i class="ph ph-plus"></i>
+                            <span>Cadastrar Fornecedor</span>
+                        </a>
+                        <a href="/admin/fornecedores" class="btn-action secondary">
+                            <i class="ph ph-list"></i>
+                            <span>Lista de Fornecedores</span>
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <div class="Pedidos">
-                <h2 class="border order">Pedidos</h2>
-                <button class="btn-admin"><strong>Gerenciar Pedidos</strong></button>
-                <p>Acompanhamento e status.</p>
-                <button class="btn-admin"><strong>Gerenciar Devoluções</strong></button>
-                <p>processar devoluções e reembolsos.</p>
+            <div class="admin-card">
+                <div class="card-header">
+                    <div class="card-icon orders">
+                        <i class="ph ph-shopping-bag"></i>
+                    </div>
+                    <h3>Pedidos</h3>
+                </div>
+                <div class="card-content">
+                    <div class="card-actions">
+                        <a href="/admin/pedidos" class="btn-action primary">
+                            <i class="ph ph-clipboard-text"></i>
+                            <span>Gerenciar Pedidos</span>
+                        </a>
+                        <a href="/admin/devolucoes" class="btn-action secondary">
+                            <i class="ph ph-arrow-clockwise"></i>
+                            <span>Devoluções</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header">
+                    <div class="card-icon users">
+                        <i class="ph ph-users"></i>
+                    </div>
+                    <h3>Usuários</h3>
+                </div>
+                <div class="card-content">
+                    <div class="card-actions">
+                        <a href="/admin/usuarios" class="btn-action primary">
+                            <i class="ph ph-user-gear"></i>
+                            <span>Gerenciar Usuários</span>
+                        </a>
+                        <a href="/admin/relatorios" class="btn-action secondary">
+                            <i class="ph ph-chart-bar"></i>
+                            <span>Relatórios</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

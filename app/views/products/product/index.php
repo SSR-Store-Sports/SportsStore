@@ -102,7 +102,7 @@ $dataOfferProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </p>
           <?php endif; ?>
           <div class="product-actions">
-            <a href="cart" class="product-button">Comprar</a>
+            <a href="/produto" class="product-button">Comprar</a>
             <button class="btn-wishlist" title="Adicionar aos favoritos">
               <i class="ph ph-heart"></i>
             </button>
