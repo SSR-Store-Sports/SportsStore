@@ -21,6 +21,10 @@ $router->mount("/auth", function () use ($router) {
   $router->get('/registro', function () {
     require 'app/views/users/register/index.php';
   });
+
+  $router->post('/registro', function () {
+    require 'app/views/users/register/index.php';
+  });
 });
 
 /*

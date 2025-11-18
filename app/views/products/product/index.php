@@ -1,20 +1,25 @@
 <?php
-require 'config/database.php';
+require_once 'config/database.php';
 
 $itemsPerPage = 6;
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int) $_GET['page'] : 1;
 $offset = ($page - 1) * $itemsPerPage;
 
-$countStmt = $db->query("SELECT COUNT(*) as total FROM tatifit_products");
-$totalProducts = $countStmt->fetch(PDO::FETCH_ASSOC)['total'];
-$totalPages = ceil($totalProducts / $itemsPerPage);
+try {
+  $countStmt = $db->query("SELECT COUNT(*) as total FROM tatifit_products");
+  $totalProducts = $countStmt->fetch(PDO::FETCH_ASSOC)['total'];
+  $totalPages = ceil($totalProducts / $itemsPerPage);
 
-$stmt = $db->prepare("SELECT * FROM tatifit_products LIMIT :limit OFFSET :offset");
-$stmt->bindValue(':limit', $itemsPerPage, PDO::PARAM_INT);
-$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-$stmt->execute();
+  $stmt = $db->prepare("SELECT * FROM tatifit_products LIMIT :limit OFFSET :offset");
+  $stmt->bindValue(':limit', $itemsPerPage, PDO::PARAM_INT);
+  $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+  $stmt->execute(); 
 
-$dataOfferProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $dataOfferProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+  echo "Erro: " . $e->getMessage();
+};
+
 ?>
 
 <link rel="stylesheet" href="app/views/products/product/styles.css">
