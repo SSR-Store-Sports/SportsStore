@@ -59,6 +59,18 @@ $router->get('/check', function () {
   require 'app/views/users/check/index.php';
 }); 
 
+$router->get('/care-parts', function () {
+  require 'app/views/knowledge_base/care-parts/index.php';
+}); 
+
+$router->get('/exchange_policy', function () {
+  require 'app/views/knowledge_base/exchange_policy/index.php';
+}); 
+
+$router->get('/sizes-guide', function () {
+  require 'app/views/knowledge_base/sizes-guide/index.php';
+}); 
+
 /*
   ROTAS DE ADMINISTRAÇÃO
 */
