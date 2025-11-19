@@ -3,6 +3,7 @@ require 'config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $name = $_SESSION['name'];
+  $id_user = $_SESSION['id'];
   $message = "";
   // echo "<pre>POST recebido: ";
   // var_dump($_POST);
@@ -38,51 +39,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       ':price' => $productRegisterd['price'],
       ':old_price' => $productRegisterd['old_price'],
       ':discount_percent' => $productRegisterd['discount_percent'],
-      ':role' => 'user',
-    ]);
+      ':free_shipping' => $productRegisterd['free_shipping'],
+      ':rating' => $productRegisterd['rating'],
+      ':rating_count' => $productRegisterd['rating_count'],
+      ':installments_info' => $productRegisterd['installments_info'],
+      ':is_new' => $productRegisterd['is_new'],
+      ':amount' => $productRegisterd['amount'],
+      ':status' => $productRegisterd['status'],
+      ':url_image' => $productRegisterd['url_image'],
 
-    $message = "✅ Produto cadastrado com sucesso!";
-  } catch (Exception $e) {
-    echo $e->getMessage();
-  }
-}
-
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
-
-  try {
-    $db->beginTransaction();
-
-    // Inserir usuário
-    $sqlOnlyUser = 'INSERT INTO tatifit_users (name, email, password, telefone, cpf, role) VALUES (:name, :email, :password, :telefone, :cpf, :role)';
-    $stmtUser = $db->prepare($sqlOnlyUser);
-    $stmtUser->execute([
-      ':name' => $userRegistered['name'],
-      ':email' => $userRegistered['email'],
-      ':password' => password_hash($userRegistered['password'], PASSWORD_DEFAULT),
-      ':telefone' => $userRegistered['phone'],
-      ':cpf' => $userRegistered['cpf'],
-      ':role' => 'user',
-    ]);
-
-    $lastUserId = $db->lastInsertId();
-    $sqlOnlyAddress = 'INSERT INTO tatifit_users_address (type, cep, street, neighborhood, number, city, state, user_id) VALUES (:type, :cep, :street, :neighborhood, :number, :city, :state, :user_id)';
-    $stmtAddress = $db->prepare($sqlOnlyAddress);
-    $stmtAddress->execute([
-      ':type' => 'Residencial',
-      ':cep' => $userRegistered['cep'],
-      ':street' => $userRegistered['street'],
-      ':neighborhood' => $userRegistered['neighborhood'],
-      ':number' => $userRegistered['number'],
-      ':city' => $userRegistered['city'],
-      ':state' => $userRegistered['state'],
-      ':user_id' => $lastUserId,
+      ':author_id' => $id_user,
     ]);
 
     $db->commit();
-    echo "<script>window.location.href = '/check';</script>";
-    exit();
-  } catch (PDOException $e) {
+    $message = "✅ Produto cadastrado com sucesso!";
+  } catch (Exception $e) {
     $db->rollback();
     echo "Erro: " . $e->getMessage();
   }
