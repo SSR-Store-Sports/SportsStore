@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $userRegistered = [
         'name' => trim($_POST['name'] ?? ''),
         'email' => trim($_POST['email'] ?? ''),
-        'password' => password_hash($_POST['password'] ?? '', PASSWORD_DEFAULT),
+        'password' => trim($_POST['password'] ?? ''),
         'phone' => trim($_POST['phone'] ?? ''),
         'cpf' => trim($_POST['cpf'] ?? ''),
         'type' => trim($_POST['type'] ?? ''),
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $stmtUser->execute([
             ':name' => $userRegistered['name'],
             ':email' => $userRegistered['email'],
-            ':password' => substr($userRegistered['password'], 0, 20),
+            ':password' => password_hash($userRegistered['password'], PASSWORD_DEFAULT),
             ':telefone' => $userRegistered['phone'],
             ':cpf' => $userRegistered['cpf'],
             ':role' => 'user',
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         ]);
         
         $db->commit();
-        header('Location: /check');
+        echo "<script>window.location.href = '/check';</script>";
         exit();
     } catch (PDOException $e) {
         $db->rollback();

@@ -20,7 +20,7 @@
 
                 <p>Em 5 minutos será redicionado automaticamente.</p>
                 
-                <a href="/users/login" class="btn-login">Fazer Login</a>
+                <a href="/auth/login" class="btn-login">Fazer Login</a>
             </div>
         </div>
     </main>
