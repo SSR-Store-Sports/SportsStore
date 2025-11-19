@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     checkFields($email, $password);
 
     try {
-        $stmt = $db->prepare("SELECT id, name, password FROM tatifit_users WHERE email = :email");
+        $stmt = $db->prepare("SELECT id, name, password, role FROM tatifit_users WHERE email = :email");
         $stmt->execute([':email' => $email]);
         $user = $stmt->fetch();
 
@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['name'] = $user['name'];
                 $_SESSION['email'] = $user['email'];
+                $_SESSION['role'] = $user['role'];
 
                 echo "<script>window.location.href = '/';</script>";
                 exit();

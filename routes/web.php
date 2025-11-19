@@ -75,6 +75,17 @@ $router->mount("/admin", function () use ($router) {
   $router->get('/', function () {
     require 'app/views/admin/index.php';
   });
+
+  $router->mount("/produtos", function () use ($router) {
+    $router->get('/cadastrar', function () {
+      require 'app/views/admin/products/index.php';
+    });
+
+    $router->post('/cadastrar', function () {
+      require 'app/views/admin/products/index.php';
+    });
+
+  });
 });
 
 $router->mount("/users", function () use ($router) {

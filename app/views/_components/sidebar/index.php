@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <link rel="stylesheet" href="/app/views/_components/sidebar/styles.css">
 
 <div class="sidebar-overlay" id="sidebarOverlay"></div>

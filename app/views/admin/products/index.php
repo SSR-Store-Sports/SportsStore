@@ -1,31 +1,93 @@
-<?php 
+<?php
 require 'config/database.php';
-$message = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $stmt = $db->prepare("INSERT INTO tatifit_products 
+  $name = $_SESSION['name'];
+  $message = "";
+  // echo "<pre>POST recebido: ";
+  // var_dump($_POST);
+  // echo "</pre>";
+
+  $productRegisterd = [
+    'name' => trim($_POST['name'] ?? ''),
+    'description' => trim($_POST['description'] ?? ''),
+    'price' => trim($_POST['price'] ?? ''),
+    'old_price' => trim($_POST['old_price'] ?? ''),
+    'discount_percent' => trim($_POST['discount_percent'] ?? ''),
+    'free_shipping' => trim($_POST['free_shipping'] ?? ''),
+    'rating' => trim($_POST['rating'] ?? ''),
+    'rating_count' => trim($_POST['rating_count'] ?? ''),
+    'installments_info' => trim($_POST['installments_info'] ?? ''),
+    'is_new' => trim($_POST['is_new'] ?? ''),
+    'amount' => trim($_POST['amount'] ?? ''),
+    'status' => trim($_POST['status'] ?? ''),
+    'url_image' => trim($_POST['url_image'] ?? ''),
+  ];
+
+  try {
+    $db->beginTransaction();
+
+    $stmt = $db->prepare("INSERT INTO tatifit_products 
     (name, descrição, price, old_price, discount_percent, free_shipping, rating, rating_count, installments_info, is_new, amount, status, url_image)
     VALUES (:name, :descricao, :price, :old_price, :discount_percent, :free_shipping, :rating, :rating_count, :installments_info, :is_new, :amount, :status, :url_image)
   ");
 
-  $stmt->execute([
-    ':name' => $_POST['name'],
-    ':descricao' => $_POST['descricao'],
-    ':price' => $_POST['price'],
-    ':old_price' => $_POST['old_price'] ?? null,
-    ':discount_percent' => $_POST['discount_percent'] ?? null,
-    ':free_shipping' => isset($_POST['free_shipping']) ? 1 : 0,
-    ':rating' => $_POST['rating'] ?? 0,
-    ':rating_count' => $_POST['rating_count'] ?? 0,
-    ':installments_info' => $_POST['installments_info'] ?? null,
-    ':is_new' => isset($_POST['is_new']) ? 1 : 0,
-    ':amount' => $_POST['amount'] ?? 0,
-    ':status' => $_POST['status'],
-    ':url_image' => $_POST['url_image']
-  ]);
+    $stmtUser->execute([
+      ':name' => $productRegisterd['name'],
+      ':descricao' => $productRegisterd['description'],
+      ':price' => $productRegisterd['price'],
+      ':old_price' => $productRegisterd['old_price'],
+      ':discount_percent' => $productRegisterd['discount_percent'],
+      ':role' => 'user',
+    ]);
 
-  $message = "✅ Produto cadastrado com sucesso!";
+    $message = "✅ Produto cadastrado com sucesso!";
+  } catch (Exception $e) {
+    echo $e->getMessage();
+  }
 }
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+
+  try {
+    $db->beginTransaction();
+
+    // Inserir usuário
+    $sqlOnlyUser = 'INSERT INTO tatifit_users (name, email, password, telefone, cpf, role) VALUES (:name, :email, :password, :telefone, :cpf, :role)';
+    $stmtUser = $db->prepare($sqlOnlyUser);
+    $stmtUser->execute([
+      ':name' => $userRegistered['name'],
+      ':email' => $userRegistered['email'],
+      ':password' => password_hash($userRegistered['password'], PASSWORD_DEFAULT),
+      ':telefone' => $userRegistered['phone'],
+      ':cpf' => $userRegistered['cpf'],
+      ':role' => 'user',
+    ]);
+
+    $lastUserId = $db->lastInsertId();
+    $sqlOnlyAddress = 'INSERT INTO tatifit_users_address (type, cep, street, neighborhood, number, city, state, user_id) VALUES (:type, :cep, :street, :neighborhood, :number, :city, :state, :user_id)';
+    $stmtAddress = $db->prepare($sqlOnlyAddress);
+    $stmtAddress->execute([
+      ':type' => 'Residencial',
+      ':cep' => $userRegistered['cep'],
+      ':street' => $userRegistered['street'],
+      ':neighborhood' => $userRegistered['neighborhood'],
+      ':number' => $userRegistered['number'],
+      ':city' => $userRegistered['city'],
+      ':state' => $userRegistered['state'],
+      ':user_id' => $lastUserId,
+    ]);
+
+    $db->commit();
+    echo "<script>window.location.href = '/check';</script>";
+    exit();
+  } catch (PDOException $e) {
+    $db->rollback();
+    echo "Erro: " . $e->getMessage();
+  }
+}
+
 ?>
 
 <link rel="stylesheet" href="/app/views/admin/products/styles.css">
@@ -41,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="alert success"><?= $message ?></div>
       <?php endif; ?>
 
-      <form method="POST" class="product-form">
+      <form action="" method="POST" class="product-form">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Nome do Produto</label>
@@ -109,7 +171,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="form-row image-section">
           <div class="form-group image-input">
             <label for="url_image">URL da Imagem</label>
-            <input type="text" name="url_image" id="url_image" placeholder="https://exemplo.com/imagem.jpg" oninput="previewImage()">
+            <input type="text" name="url_image" id="url_image" placeholder="https://exemplo.com/imagem.jpg"
+              oninput="previewImage()">
           </div>
           <div class="image-preview">
             <img id="preview" src="https://via.placeholder.com/250x250?text=Pré+visualização" alt="Pré-visualização">
