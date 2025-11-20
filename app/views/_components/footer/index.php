@@ -37,9 +37,9 @@
             </div>
             <div class="links-info">
                 <p><strong>Links úteis:</strong></p>
-                <p><a href="/tamanho-guia">Guia de tamanhos</a></p>
-                <p><a href="/pecas-guia">Como cuidar das peças</a></p>
-                <p><a href="/retorno">Política de trocas</a></p>
+                <p><a href="/guia-tamanhos">Guia de tamanhos</a></p>
+                <p><a href="/cuidar-pecas">Como cuidar das peças</a></p>
+                <p><a href="/politica-troca">Política de trocas</a></p>
                 <p><a href="/privacidade">Privacidade</a></p>
             </div>
         </section>

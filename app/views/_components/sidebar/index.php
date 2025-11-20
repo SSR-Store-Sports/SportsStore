@@ -34,9 +34,9 @@
     <div class="nav-section">
       <h4>Base de Conhecimento</h4>
       <ul>
-        <li><a href="\app\views\knowledge_base\sizes-guide"><i class="ph ph-ruler"></i>Guia de tamanhos</a></li>
-        <li><a href="\app\views\knowledge_base\care-parts"><i class="ph ph-heart"></i>Como cuidar das peças</a></li>
-        <li><a href="\app\views\knowledge_base\exchange-policy"><i class="ph ph-arrow-clockwise"></i>Política de trocas</a></li>
+        <li><a href="/guia-tamanhos"><i class="ph ph-ruler"></i>Guia de tamanhos</a></li>
+        <li><a href="/cuidar-pecas"><i class="ph ph-heart"></i>Como cuidar das peças</a></li>
+        <li><a href="/politica-troca"><i class="ph ph-arrow-clockwise"></i>Política de trocas</a></li>
       </ul>
     </div>
 

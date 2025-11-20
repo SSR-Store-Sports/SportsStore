@@ -59,15 +59,15 @@ $router->get('/check', function () {
   require 'app/views/users/check/index.php';
 }); 
 
-$router->get('/care-parts', function () {
+$router->get('/cuidar-pecas', function () {
   require 'app/views/knowledge_base/care-parts/index.php';
 }); 
 
-$router->get('/exchange_policy', function () {
-  require 'app/views/knowledge_base/exchange_policy/index.php';
+$router->get('/politica-troca', function () {
+  require 'app/views/knowledge_base/exchange-policy/index.php';
 }); 
 
-$router->get('/sizes-guide', function () {
+$router->get('/guia-tamanhos', function () {
   require 'app/views/knowledge_base/sizes-guide/index.php';
 }); 
 
