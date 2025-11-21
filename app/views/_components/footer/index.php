@@ -16,9 +16,9 @@
             <h2>Contato</h2>
             <p><i class="ph ph-phone"></i> Telefone: (11) 1234-5678</p>
             <p><i class="ph ph-whatsapp-logo"></i> WhatsApp: (11) 99999-9999</p>
-            <p><i class="ph ph-envelope"></i> Email: contato@sportsstore.com.br</p>
+            <p><i class="ph ph-envelope"></i> Email: contato@tatifitwear.com.br</p>
             <p><i class="ph ph-clock"></i> Atendimento: Seg-Sex 8h às 18h</p>
-            <p><i class="ph ph-storefront"></i> Loja física: Shopping Center - SP</p>
+            <p><i class="ph ph-storefront"></i> Loja física: Indisponível</p>
             <div class="payment-info">
                 <p><strong>Formas de pagamento:</strong></p>
                 <p><i class="ph ph-credit-card"></i> Cartões de crédito</p>
@@ -49,7 +49,7 @@
             CNPJ: xx.xxx.678/0001-90 - Todos os direitos reservados.
         </p>
         <a href="tatifitwear.com.br">Tatifitwear</a> © 2025 by <a href="https://github.com/SSR-Store-Sports">Henrique
-            Maximo / José Caique / Cauan Matheus / Rodrigo Arruda</a> is licensed under <a
+            Maximo / José Caique / Cauan Lima / Rodrigo Arruda</a> is licensed under <a
             href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a><img
             src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt=""
             style="max-width: 1em;max-height:1em;margin-left: .2em;"><img
