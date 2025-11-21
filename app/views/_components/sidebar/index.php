@@ -44,7 +44,7 @@
       <h4>Termos de Serviço</h4>
       <ul>
         <li><a href="/"><i class="ph ph-file-text"></i>Termos</a></li>
-        <li><a href="/"><i class="ph ph-shield-check"></i>Privacidade</a></li>
+        <li><a href="/privacidade"><i class="ph ph-shield-check"></i>Privacidade</a></li>
       </ul>
     </div>
   </nav>

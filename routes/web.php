@@ -79,6 +79,10 @@ $router->get('/guia-tamanhos', function () {
   require 'app/views/knowledge_base/sizes-guide/index.php';
 }); 
 
+$router->get('/privacidade', function () {
+  require 'app/views/privacity/index.php';
+}); 
+
 /*
   ROTAS DE ADMINISTRAÇÃO
 */

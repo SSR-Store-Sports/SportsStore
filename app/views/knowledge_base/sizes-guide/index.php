@@ -65,10 +65,10 @@
       </thead>
       <tbody>
         <tr>
-          <td>PP (34)</td>
-          <td>78–82</td>
-          <td>58–62</td>
-          <td>86–90</td>
+          <td> PP (34) </td>
+          <td> 78–82 </td>
+          <td> 58–62 </td>
+          <td> 86–90 </td>
         </tr>
         <tr>
           <td>P (36–38)</td>
