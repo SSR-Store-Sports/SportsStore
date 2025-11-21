@@ -48,9 +48,9 @@ $role = trim($_SESSION['role'] ?? "");
     <div class="nav-section">
       <h4>Base de Conhecimento</h4>
       <ul>
-        <li><a href="/"><i class="ph ph-ruler"></i>Guia de tamanhos</a></li>
-        <li><a href="/"><i class="ph ph-heart"></i>Como cuidar das peças</a></li>
-        <li><a href="/"><i class="ph ph-arrow-clockwise"></i>Política de trocas</a></li>
+        <li><a href="/guia-tamanhos"><i class="ph ph-ruler"></i>Guia de tamanhos</a></li>
+        <li><a href="/cuidar-pecas"><i class="ph ph-heart"></i>Como cuidar das peças</a></li>
+        <li><a href="/politica-troca"><i class="ph ph-arrow-clockwise"></i>Política de trocas</a></li>
       </ul>
     </div>
 
@@ -58,7 +58,7 @@ $role = trim($_SESSION['role'] ?? "");
       <h4>Termos de Serviço</h4>
       <ul>
         <li><a href="/"><i class="ph ph-file-text"></i>Termos</a></li>
-        <li><a href="/"><i class="ph ph-shield-check"></i>Privacidade</a></li>
+        <li><a href="/privacidade"><i class="ph ph-shield-check"></i>Privacidade</a></li>
       </ul>
     </div>
   </nav>
