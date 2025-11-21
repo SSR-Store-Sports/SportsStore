@@ -3,6 +3,7 @@
   justify-content: center;
   padding: 2rem;
   color: var(--text-color-gray);
+  background: linear-gradient(1deg, var(--primary-color), #efa3cf);
 }
 
 .product-card {
@@ -14,7 +15,28 @@
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
+.product-card a {
+  color: var(--text-color-gray);
+  transition: background-color 2s ease;
+}
+
+.product-card a:hover {
+  color: var(--text-color-pink);
+}
+
+.product-back-page {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+
+  gap: 0.50rem;
+}
+
 .product-card > p {
+  color: var(--text-color-pink);
   margin-bottom: 2rem;
 }
 
@@ -95,7 +117,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 .btn-primary {
-  background: #e94ca0;
+  background: var(--text-color-pink);
   color: #fff;
   padding: 0.9rem 2.2rem;
   border: none;

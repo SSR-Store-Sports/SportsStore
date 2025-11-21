@@ -70,7 +70,23 @@ header {
 
 .nav-actions {
   display: flex;
+  align-items: center;
   gap: 1rem;
+}
+
+.user-greeting {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.user-greeting span {
+  white-space: nowrap;
 }
 
 .nav-actions button {
@@ -120,5 +136,10 @@ header {
   
   .nav-actions {
     gap: 0.5rem;
+  }
+  
+  .user-greeting {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
   }
 }

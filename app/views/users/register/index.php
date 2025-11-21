@@ -2,14 +2,10 @@
 require 'config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    // echo "<pre>POST recebido: ";
-    // var_dump($_POST);
-    // echo "</pre>";
-    
     $userRegistered = [
         'name' => trim($_POST['name'] ?? ''),
         'email' => trim($_POST['email'] ?? ''),
-        'password' => password_hash($_POST['password'] ?? '', PASSWORD_DEFAULT),
+        'password' => trim($_POST['password'] ?? ''),
         'phone' => trim($_POST['phone'] ?? ''),
         'cpf' => trim($_POST['cpf'] ?? ''),
         'type' => trim($_POST['type'] ?? ''),
@@ -23,20 +19,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     try {
         $db->beginTransaction();
-        
+
         // Inserir usuário
-        $sqlOnlyUser = 'INSERT INTO tatifit_users (name, email, password, telefone, cpf, role) VALUES (:name, :email, :password, :telefone, :cpf, :role)';
+        $sqlOnlyUser = 'INSERT INTO tatifit_users (name, email, password, phone, cpf, role) VALUES (:name, :email, :password, :phone, :cpf, :role)';
         $stmtUser = $db->prepare($sqlOnlyUser);
         $stmtUser->execute([
             ':name' => $userRegistered['name'],
             ':email' => $userRegistered['email'],
-            ':password' => substr($userRegistered['password'], 0, 20),
-            ':telefone' => $userRegistered['phone'],
+            ':password' => password_hash($userRegistered['password'], PASSWORD_DEFAULT),
+            ':phone' => $userRegistered['phone'],
             ':cpf' => $userRegistered['cpf'],
             ':role' => 'user',
         ]);
-        
-        $lastUserId = $db->lastInsertId();  
+
+        $lastUserId = $db->lastInsertId();
         $sqlOnlyAddress = 'INSERT INTO tatifit_users_address (type, cep, street, neighborhood, number, city, state, user_id) VALUES (:type, :cep, :street, :neighborhood, :number, :city, :state, :user_id)';
         $stmtAddress = $db->prepare($sqlOnlyAddress);
         $stmtAddress->execute([
@@ -49,9 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             ':state' => $userRegistered['state'],
             ':user_id' => $lastUserId,
         ]);
-        
+
         $db->commit();
-        header('Location: /check');
+        echo "<script>window.location.href = '/check';</script>";
         exit();
     } catch (PDOException $e) {
         $db->rollback();
@@ -84,11 +80,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <div class="form-group">
                             <input type="email" id="email" name="email" placeholder="Email" required>
                         </div>
-                        <div class="form-group">
-                            <input type="tel" id="phone" name="phone" placeholder="Telefone" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="cpf" name="cpf" placeholder="CPF" required>
+                        <div class="form-inputs-inline">
+                            <div class="form-group">
+                                <input type="tel" id="phone" name="phone" placeholder="Telefone" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="cpf" name="cpf" placeholder="CPF" required>
+                            </div>
                         </div>
                         <div class="form-group">
                             <input type="password" id="password" name="password" placeholder="Senha" required>

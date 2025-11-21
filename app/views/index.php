@@ -122,7 +122,7 @@ $dataOfferProducts = [
 
   <section class="products">
     <section class="section-botoes">
-      <a href="/products"><button class="btn">Todos os Produtos</button></a>
+      <a href="/produtos"><button class="btn">Todos os Produtos</button></a>
       <button class="btn">Tops</button>
       <button class="btn">Calças</button>
       <button class="btn">Shorts</button>
