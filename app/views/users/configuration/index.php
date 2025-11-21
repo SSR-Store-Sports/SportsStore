@@ -1,3 +1,12 @@
+<?php
+
+if (empty($_SESSION['email'])) {
+    echo "<script>window.location.href = '/auth/login';</script>";
+    exit();
+}
+
+?>
+
 <link rel="stylesheet" href="/app/views/users/configuration/styles.css">
 
 <body>
@@ -10,10 +19,10 @@
     <div class="config-container">
       <aside class="config-menu">
         <div class="profile">
-          <img src="/public/images/user-default.png" alt="Usuário" class="avatar">
+          <!-- <img src="/public/images/user-default.png" alt="Usuário" class="avatar"> -->
           <div class="profile-info">
-            <h2><?= htmlspecialchars($user['name'] ?? 'Usuário') ?></h2>
-            <p><?= htmlspecialchars($user['email'] ?? 'email@exemplo.com') ?></p>
+            <h2><?= htmlspecialchars($_SESSION['name'] ?? 'Usuário') ?></h2>
+            <p><?= htmlspecialchars($_SESSION['email'] ?? 'email@exemplo.com') ?></p>
           </div>
         </div>
 
@@ -68,7 +77,7 @@
 
           <div class="form-actions">
             <button type="submit" class="btn-save">Salvar Alterações</button>
-            <a href="/logout" class="btn-logout">Sair da Conta</a>
+            <a href="/auth/logout" class="btn-logout">Sair da Conta</a>
           </div>
         </form>
       </main>

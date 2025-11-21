@@ -5,11 +5,12 @@
 }
 
 .carrosel {
-    width: 50%;
-    background-color: var(--bg-quinary);
     display: flex;
+
+    width: 50%;
     gap: 8px;
     padding: 16px;
+    
     position: relative;
     overflow: hidden;
 }
@@ -56,7 +57,7 @@
 }
 
 .logo-register {
-    width: 120px;
+    width: 182px;
     height: auto;
 }
 
@@ -117,6 +118,13 @@
 .form-group input::placeholder {
     color: var(--text-color-gray);
     font-size: 13px;
+}
+
+.form-inputs-inline {
+    display: flex;
+    flex-direction: row;
+
+    gap: 0.50rem;
 }
 
 .btn-register {

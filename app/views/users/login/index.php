@@ -1,8 +1,7 @@
 <?php
 require 'config/database.php';
 
-function checkFields($email, $password)
-{
+function checkFields($email, $password) {
     if (empty($email) || empty($password)) {
         echo "<script>alert('Preencha todos os campos.');</script>";
         echo "<script>window.location.href = '/auth/login';</script>";
@@ -18,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     checkFields($email, $password);
 
     try {
-        $stmt = $db->prepare("SELECT id, name, password, role FROM tatifit_users WHERE email = :email");
+        $stmt = $db->prepare("SELECT id, name, email, password, role FROM tatifit_users WHERE email = :email");
         $stmt->execute([':email' => $email]);
         $user = $stmt->fetch();
 
@@ -31,12 +30,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['role'] = $user['role'];
 
-                echo "<script>window.location.href = '/';</script>";
+                echo "<script>window.location.href = '/auth/loading';</script>";
                 exit();
             } else {
                 $error = 'Credênciais inválidas!';
             }
-
         } else {
             $error = 'Credênciais inválidas!';
         }
@@ -72,11 +70,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <input type="password" id="password" name="password" placeholder="Senha">
                         <a href="#" class="forgot-password">Esqueci a senha</a>
                     </div>
-                    <?php
-                    if (isset($error) && !empty($error)) {
-                        echo "<p>Erro: $error</p>";
-                    }
-                    ?>
+                    <?php if (isset($error) && !empty($error)): ?>
+                        <div class="error-container">
+                            <p class="error">Erro: <?=$error ?></p>
+                        </div>
+                    <?php endif; ?>
                     <button type="submit" class="btn-login">Entrar</button>
                 </form>
 

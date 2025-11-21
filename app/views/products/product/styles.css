@@ -281,7 +281,7 @@
 
 .pagination-btn {
   padding: 0.6rem 1rem;
-  border: 1px solid #e94ca0;
+  border: 1px solid var(--border-color-pink);
   border-radius: 6px;
   color: #e94ca0;
   text-decoration: none;
@@ -290,12 +290,12 @@
 }
 
 .pagination-btn:hover {
-  background: #e94ca0;
+  background: var(--primary-color);
   color: #fff;
 }
 
 .pagination-btn.active {
-  background: #e94ca0;
+  background: var(--primary-color);
   color: #fff;
   pointer-events: none;
 }

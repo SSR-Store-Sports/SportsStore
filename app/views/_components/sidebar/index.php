@@ -1,5 +1,9 @@
 <?php
 
+$name = trim($_SESSION['name'] ?? "");
+$email = trim($_SESSION['email'] ?? "");
+$role = trim($_SESSION['role'] ?? "");
+
 ?>
 
 <link rel="stylesheet" href="/app/views/_components/sidebar/styles.css">
@@ -14,26 +18,32 @@
         <li><a href="/"><i class="ph ph-house"></i>Home</a></li>
         <li><a href="/produtos"><i class="ph ph-package"></i>Produtos</a></li>
         <li><a href="/carrinho"><i class="ph ph-shopping-cart"></i>Carrinho</a></li>
-        <li><a href="/historico"><i class="ph ph-clock-clockwise"></i>Histórico</a></li>
-        <li><a href="/acompanhamento"><i class="ph ph-map-pin"></i>Acompanhamento</a></li>
       </ul>
     </div>
 
     <div class="nav-section">
       <h4>Conta</h4>
       <ul>
-        <li><a href="/auth/login"><i class="ph ph-sign-in"></i>Login</a></li>
-        <li><a href="/auth/registro"><i class="ph ph-user-plus"></i>Cadastrar</a></li>
-        <li><a href="/users/"><i class="ph ph-gear"></i>Configurações</a></li>
+        <?php if (empty($email)): ?>
+          <li><a href="/auth/login"><i class="ph ph-sign-in"></i>Login</a></li>
+          <li><a href="/auth/registro"><i class="ph ph-user-plus"></i>Cadastrar</a></li>
+        <?php else: ?>
+          <li><a href="/historico"><i class="ph ph-clock-clockwise"></i>Histórico</a></li>
+          <li><a href="/acompanhamento"><i class="ph ph-map-pin"></i>Acompanhamento</a></li>
+          <li><a href="/users/"><i class="ph ph-gear"></i>Configurações</a></li>
+          <li><a href="/auth/logout"><i class="ph ph-sign-out"></i>Sair</a></li>
+        <?php endif; ?>
       </ul>
     </div>
 
-    <div class="nav-section">
-      <h4>Administração</h4>
-      <ul>
-        <li><a href="/admin"><i class="ph ph-gauge"></i>Painel Administrativo</a></li>
-      </ul>
-    </div>
+    <?php if (isset($role) && $role === 'admin'): ?>
+      <div class="nav-section">
+        <h4>Administração</h4>
+        <ul>
+          <li><a href="/admin"><i class="ph ph-gauge"></i>Painel Administrativo</a></li>
+        </ul>
+      </div>
+    <?php endif; ?>
 
     <div class="nav-section">
       <h4>Base de Conhecimento</h4>
@@ -59,8 +69,13 @@
         <i class="ph ph-user"></i>
       </div>
       <div class="user-details">
-        <h3>Minha Conta</h3>
-        <p>Bem-vindo!</p>
+        <?php if ($email): ?>
+          <h3>Olá, <?= $name ?></h3>
+          <p><?= $email; ?></p>
+        <?php else: ?>
+          <h3>Minha Conta</h3>
+          <p>Bem-vindo. <a href="/auth/login">Entre agora!</a></p>
+        <?php endif; ?>
       </div>
     </div>
     <button class="sidebar-close" id="sidebarClose">

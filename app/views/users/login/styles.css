@@ -14,7 +14,7 @@
     position: relative;
     overflow: hidden;
 
-    background-color: var(--bg-quinary);
+    /* background-color: var(--primary-color); */
 }
 
 .carrosel::before {
@@ -109,6 +109,18 @@
 
 .forgot-password:hover {
     text-decoration: underline;
+}
+
+.error-container {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.error {
+    letter-spacing: 2px;
+    border-radius: 1rem;
+    border: 2px solid var(--border-color-pink);
+    color: var(--text-color-pink);
 }
 
 .btn-login {

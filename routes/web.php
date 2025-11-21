@@ -29,6 +29,14 @@ $router->mount("/auth", function () use ($router) {
   $router->post('/registro', function () {
     require 'app/views/users/register/index.php';
   });
+
+  $router->get('/logout', function () {
+    require 'app/views/users/logout/index.php';
+  });
+
+  $router->get('/loading', function () {
+    require 'app/views/users/loading/index.php';
+  });
 });
 
 /*
@@ -84,8 +92,38 @@ $router->mount("/admin", function () use ($router) {
     $router->post('/cadastrar', function () {
       require 'app/views/admin/products/index.php';
     });
-
   });
+
+  $router->mount("/fornecedores", function () use ($router) {
+    $router->get('/cadastrar', function () {
+      require 'app/views/admin/supplier/index.php';
+    });
+
+    $router->post('/cadastrar', function () {
+      require 'app/views/admin/supplier/index.php';
+    });
+  });
+
+  $router->mount("/pedidos", function () use ($router) {
+    $router->get('/gerenciar', function () {
+      require 'app/views/admin/supplier/index.php';
+    });
+
+    $router->post('/devolucoes', function () {
+      require 'app/views/admin/supplier/index.php';
+    });
+  });
+
+  $router->mount("/usuarios", function () use ($router) {
+    $router->get('/gerenciar', function () {
+      require 'app/views/admin/supplier/index.php';
+    });
+
+    $router->post('/relatorios', function () {
+      require 'app/views/admin/supplier/index.php';
+    });
+  });
+
 });
 
 $router->mount("/users", function () use ($router) {

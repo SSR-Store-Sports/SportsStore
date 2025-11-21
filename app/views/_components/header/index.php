@@ -1,3 +1,9 @@
+<?php
+
+$email = trim($_SESSION['email'] ?? "");
+
+?>
+
 <link rel="stylesheet" href="/app/views/_components/header/styles.css">
 <script src="/public/js/search.js"></script>
 
@@ -17,12 +23,25 @@
             <button class="cart-btn" aria-label="Carrinho">
                 <a href="/carrinho"><i class="ph ph-shopping-cart"></i></a>
             </button>
+            
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Buscar produtos..." class="search-input" style="display: none;">
                 <button class="search-btn" onclick="toggleSearch()" aria-label="Buscar">
                     <i class="ph ph-magnifying-glass"></i>
                 </button>
             </div>
+
+            <?php if($email): ?>
+                <button class="cart-btn" aria-label="Carrinho">
+                    <a href="/auth/logout"><i class="ph ph-sign-out"></i></i></a>
+                </button>
+            <?php endif; ?>
+
+            <!-- <?php if (!empty($_SESSION['name'])): ?>
+            <div class="user-greeting">
+                <span>Olá, <?= $_SESSION['name'] ?>!</span>
+            </div>
+            <?php endif; ?> -->
         </div>
     </nav>
 </header>
