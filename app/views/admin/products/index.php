@@ -1,31 +1,64 @@
-<?php 
+<?php
 require 'config/database.php';
-$message = "";
 
+if ($_SESSION['role'] === "user") {
+    echo "<script>window.location.href = '/';</script>";
+    exit();
+}
+
+$message = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $stmt = $db->prepare("INSERT INTO tatifit_products 
-    (name, descrição, price, old_price, discount_percent, free_shipping, rating, rating_count, installments_info, is_new, amount, status, url_image)
-    VALUES (:name, :descricao, :price, :old_price, :discount_percent, :free_shipping, :rating, :rating_count, :installments_info, :is_new, :amount, :status, :url_image)
+  $productRegisterd = [
+    'name' => trim($_POST['name'] ?? ''),
+    'description' => trim($_POST['description'] ?? ''),
+    'price' => trim($_POST['price'] ?? ''),
+    'old_price' => trim($_POST['old_price'] ?? ''),
+    'discount_percent' => trim($_POST['discount_percent'] ?? ''),
+    'free_shipping' => trim($_POST['free_shipping'] ?? ''),
+    'rating' => trim($_POST['rating'] ?? ''),
+    'rating_count' => trim($_POST['rating_count'] ?? ''),
+    'installments_info' => trim($_POST['installments_info'] ?? ''),
+    'is_new' => trim($_POST['is_new'] ?? ''),
+    'amount' => trim($_POST['amount'] ?? ''),
+    'status' => trim($_POST['status'] ?? ''),
+    'url_image' => trim($_POST['url_image'] ?? ''),
+  ];
+
+  try {
+    $db->beginTransaction();
+
+    $stmt = $db->prepare("INSERT INTO tatifit_products 
+    (name, description, price, old_price, discount_percent, free_shipping, rating, rating_count, installments_info, is_new, amount, status, url_image, author_id)
+    VALUES (:name, :description, :price, :old_price, :discount_percent, :free_shipping, :rating, :rating_count, :installments_info, :is_new, :amount, :status, :url_image, :author_id)
   ");
 
-  $stmt->execute([
-    ':name' => $_POST['name'],
-    ':descricao' => $_POST['descricao'],
-    ':price' => $_POST['price'],
-    ':old_price' => $_POST['old_price'] ?? null,
-    ':discount_percent' => $_POST['discount_percent'] ?? null,
-    ':free_shipping' => isset($_POST['free_shipping']) ? 1 : 0,
-    ':rating' => $_POST['rating'] ?? 0,
-    ':rating_count' => $_POST['rating_count'] ?? 0,
-    ':installments_info' => $_POST['installments_info'] ?? null,
-    ':is_new' => isset($_POST['is_new']) ? 1 : 0,
-    ':amount' => $_POST['amount'] ?? 0,
-    ':status' => $_POST['status'],
-    ':url_image' => $_POST['url_image']
-  ]);
+    $params = [
+      ':name' => $productRegisterd['name'],
+      ':description' => $productRegisterd['description'],
+      ':price' => $productRegisterd['price'],
+      ':old_price' => $productRegisterd['old_price'],
+      ':discount_percent' => $productRegisterd['discount_percent'],
+      ':free_shipping' => $productRegisterd['free_shipping'] ? 1 : 0,
+      ':rating' => $productRegisterd['rating'],
+      ':rating_count' => $productRegisterd['rating_count'],
+      ':installments_info' => $productRegisterd['installments_info'],
+      ':is_new' => $productRegisterd['is_new'] ? 1 : 0,
+      ':amount' => $productRegisterd['amount'],
+      ':status' => $productRegisterd['status'],
+      ':url_image' => $productRegisterd['url_image'],
+      ':author_id' => $_SESSION['user_id'],
+    ];
+    
+    $result = $stmt->execute($params);
 
-  $message = "✅ Produto cadastrado com sucesso!";
+    $db->commit();
+    $message = "✅ Produto cadastrado com sucesso!";
+  } catch (Exception $e) {
+    $db->rollback();
+    echo "Erro: " . $e->getMessage();
+  }
 }
+
 ?>
 
 <link rel="stylesheet" href="/app/views/admin/products/styles.css">
@@ -33,15 +66,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
   <main class="product-page">
     <div class="product-card">
+      <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a>
       <h1>Cadastro de Produto</h1>
       <p>Adicione um novo item à loja com todas as informações necessárias.</p>
-
 
       <?php if ($message): ?>
         <div class="alert success"><?= $message ?></div>
       <?php endif; ?>
 
-      <form method="POST" class="product-form">
+      <form action="" method="POST" class="product-form">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Nome do Produto</label>
@@ -49,8 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
 
           <div class="form-group">
-            <label for="descricao">Descrição</label>
-            <textarea name="descricao" id="descricao" rows="3" placeholder="Descrição breve do produto"></textarea>
+            <label for="description">Descrição</label>
+            <textarea name="description" id="description" rows="3" placeholder="Descrição breve do produto"></textarea>
           </div>
         </div>
 
@@ -59,28 +92,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="price">Preço Atual (R$)</label>
             <input type="number" name="price" step="0.01" required>
           </div>
-          <div class="form-group">
-            <label for="old_price">Preço Antigo (R$)</label>
-            <input type="number" name="old_price" step="0.01">
-          </div>
-          <div class="form-group">
-            <label for="discount_percent">Desconto (%)</label>
-            <input type="number" name="discount_percent" min="0" max="100">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="amount">Estoque</label>
-            <input type="number" name="amount" min="0">
-          </div>
-
+          
           <div class="form-group">
             <label for="status">Status</label>
             <select name="status">
               <option value="Ativo">Ativo</option>
               <option value="Inativo">Inativo</option>
             </select>
+          </div>
+
+          <!-- <div class="form-group">
+            <label for="old_price">Preço Antigo (R$)</label>
+            <input type="number" name="old_price" step="0.01">
+          </div> -->
+          <!-- <div class="form-group">
+            <label for="discount_percent">Desconto (%)</label>
+            <input type="number" name="discount_percent" min="0" max="100">
+          </div> -->
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="amount">Estoque</label>
+            <input type="number" name="amount" min="0">
           </div>
 
           <div class="form-group">
@@ -109,7 +143,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="form-row image-section">
           <div class="form-group image-input">
             <label for="url_image">URL da Imagem</label>
-            <input type="text" name="url_image" id="url_image" placeholder="https://exemplo.com/imagem.jpg" oninput="previewImage()">
+            <input type="text" name="url_image" id="url_image" placeholder="https://exemplo.com/imagem.jpg"
+              oninput="previewImage()">
           </div>
           <div class="image-preview">
             <img id="preview" src="https://via.placeholder.com/250x250?text=Pré+visualização" alt="Pré-visualização">

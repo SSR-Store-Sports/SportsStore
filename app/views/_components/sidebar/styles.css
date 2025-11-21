@@ -89,6 +89,10 @@
   opacity: 0.9;
 }
 
+.user-details p > a:hover {
+  color: var(--text-color-gray-100);
+}
+
 .sidebar-close {
   background: none;
   border: none;
