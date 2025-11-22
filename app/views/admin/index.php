@@ -1,11 +1,19 @@
+<?php
+
+if ($_SESSION['role'] === "user") {
+    echo "<script>window.location.href = '/';</script>";
+    exit();
+}
+
+?>
+
 <link rel="stylesheet" href="/app/views/admin/styles.css">
-<link href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" rel="stylesheet">
 
 <body>
     <main class="admin-main">
         <div class="admin-header">
             <h1><i class="ph ph-shield-check"></i> Painel Administrativo</h1>
-            <p>Gerencie sua loja de forma eficiente</p>
+            <p>Olá, <?=$_SESSION["name"]?></p>
         </div>
         
         <div class="admin-grid">
@@ -60,11 +68,11 @@
                 </div>
                 <div class="card-content">
                     <div class="card-actions">
-                        <a href="/admin/pedidos" class="btn-action primary">
+                        <a href="/admin/pedidos/gerenciar" class="btn-action primary">
                             <i class="ph ph-clipboard-text"></i>
                             <span>Gerenciar Pedidos</span>
                         </a>
-                        <a href="/admin/devolucoes" class="btn-action secondary">
+                        <a href="/admin/pedidos/devolucoes" class="btn-action secondary">
                             <i class="ph ph-arrow-clockwise"></i>
                             <span>Devoluções</span>
                         </a>
@@ -81,11 +89,11 @@
                 </div>
                 <div class="card-content">
                     <div class="card-actions">
-                        <a href="/admin/usuarios" class="btn-action primary">
+                        <a href="/admin/usuarios/gerenciar" class="btn-action primary">
                             <i class="ph ph-user-gear"></i>
                             <span>Gerenciar Usuários</span>
                         </a>
-                        <a href="/admin/relatorios" class="btn-action secondary">
+                        <a href="/admin/usuarios/relatorios" class="btn-action secondary">
                             <i class="ph ph-chart-bar"></i>
                             <span>Relatórios</span>
                         </a>

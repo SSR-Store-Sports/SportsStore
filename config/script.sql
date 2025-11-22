@@ -22,6 +22,7 @@ CREATE TABLE tatifit_users_address (
     number INT NOT NULL,
     city VARCHAR(100) NOT NULL,
     state VARCHAR(100) NOT NULL,
+    
     user_id INT NOT NULL,
     FOREIGN KEY (user_id)
         REFERENCES tatifit_users (id)

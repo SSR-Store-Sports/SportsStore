@@ -15,8 +15,8 @@
 ## RFs (requisitos funcionais):
 Funcionalidade que o usuário interage de alguma forma.
 
-- [ ] O usuário deve poder se cadastrar;
-- [ ] O usuário deve poder se autenticar;
+- [x] O usuário deve poder se cadastrar;
+- [x] O usuário deve poder se autenticar;
 - [ ] O usuário deve poder alterar sua senha;
 - [ ] O usuário deve poder obter o seu perfil de um usuário logado;
 - [x] O usuário deve poder visualizar todos os produtos;
@@ -87,3 +87,24 @@ https://www.php.net/manual/pt_BR/features.commandline.php
 https://www.php.net/manual/pt_BR/features.commandline.webserver.php
 https://en.wikipedia.org/wiki/Port_(computer_networking)
 https://www.php.net/manual/pt_BR/ini.core.php#ini.auto-prepend-file
+
+```
+
+echo "<pre>POST recebido: ";
+var_dump($_POST);
+echo "</pre>";
+
+echo "<pre>Parâmetros: ";
+var_dump($params);
+echo "</pre>";
+
+echo "<pre>Resultado da execução: ";
+var_dump($result);
+echo "Linhas afetadas: " . $stmt->rowCount();
+
+if (!$result) {
+    echo "\nErro PDO: ";
+    var_dump($stmt->errorInfo());
+  }
+echo "</pre>";
+```

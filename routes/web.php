@@ -18,8 +18,24 @@ $router->mount("/auth", function () use ($router) {
     require 'app/views/users/login/index.php';
   });
 
+  $router->post('/login', function () {
+    require 'app/views/users/login/index.php';
+  });
+
   $router->get('/registro', function () {
     require 'app/views/users/register/index.php';
+  });
+
+  $router->post('/registro', function () {
+    require 'app/views/users/register/index.php';
+  });
+
+  $router->get('/logout', function () {
+    require 'app/views/users/logout/index.php';
+  });
+
+  $router->get('/loading', function () {
+    require 'app/views/users/loading/index.php';
   });
 });
 
@@ -59,6 +75,22 @@ $router->get('/check', function () {
   require 'app/views/users/check/index.php';
 }); 
 
+$router->get('/cuidar-pecas', function () {
+  require 'app/views/knowledge_base/care-parts/index.php';
+}); 
+
+$router->get('/politica-troca', function () {
+  require 'app/views/knowledge_base/exchange-policy/index.php';
+}); 
+
+$router->get('/guia-tamanhos', function () {
+  require 'app/views/knowledge_base/sizes-guide/index.php';
+}); 
+
+$router->get('/privacidade', function () {
+  require 'app/views/privacity/index.php';
+}); 
+
 /*
   ROTAS DE ADMINISTRAÇÃO
 */
@@ -67,6 +99,47 @@ $router->mount("/admin", function () use ($router) {
   $router->get('/', function () {
     require 'app/views/admin/index.php';
   });
+
+  $router->mount("/produtos", function () use ($router) {
+    $router->get('/cadastrar', function () {
+      require 'app/views/admin/products/index.php';
+    });
+
+    $router->post('/cadastrar', function () {
+      require 'app/views/admin/products/index.php';
+    });
+  });
+
+  $router->mount("/fornecedores", function () use ($router) {
+    $router->get('/cadastrar', function () {
+      require 'app/views/admin/supplier/index.php';
+    });
+
+    $router->post('/cadastrar', function () {
+      require 'app/views/admin/supplier/index.php';
+    });
+  });
+
+  $router->mount("/pedidos", function () use ($router) {
+    $router->get('/gerenciar', function () {
+      require 'app/views/admin/supplier/index.php';
+    });
+
+    $router->post('/devolucoes', function () {
+      require 'app/views/admin/supplier/index.php';
+    });
+  });
+
+  $router->mount("/usuarios", function () use ($router) {
+    $router->get('/gerenciar', function () {
+      require 'app/views/admin/supplier/index.php';
+    });
+
+    $router->post('/relatorios', function () {
+      require 'app/views/admin/supplier/index.php';
+    });
+  });
+
 });
 
 $router->mount("/users", function () use ($router) {

@@ -1,48 +1,73 @@
 <?php
-require 'config/database.php';
+require_once 'config/database.php';
 
-$itemsPerPage = 6;
-$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int) $_GET['page'] : 1;
-$offset = ($page - 1) * $itemsPerPage;
+// Obter os valores: página atual, item de pesquisa, categoria de pesquisa
+$pageValueDefault = (int) 1; // primeira página padrão
+$itemsPerPage = (int) 6; // itens por página
+$pageCurrent = isset($_GET['page']) ? (int) $_GET['page'] : $pageValueDefault;
+$searchProduct = isset($_GET['name']) ? (string) trim($_GET['name']) : null;
+$searchCategorie = isset($_GET['categoria']) ? (string) trim($_GET['categoria']) : null;
 
-$searchTerm    = isset($_GET['name'])      ? trim($_GET['name'])      : null;
-$categoriaTerm = isset($_GET['categoria']) ? trim($_GET['categoria']) : null;
+// função que retorna itens que devem ser esquecidos por página
+function calcPagination(int $page, $items): int {
+  return ($page - 1) * $items; 
+}
+
+$valueFilters = [
+  'pageCurrent' => (int) $pageCurrent,
+  'searchProduct' => (string) $searchProduct,
+  'searchCategorie' => (string) $searchCategorie,
+];
+
+$offset = calcPagination($valueFilters['pageCurrent'], $itemsPerPage);
 
 $whereParts = [];
 $params = [];
-
-if (!empty($searchTerm)) {
-    $whereParts[] = "name LIKE :name";
-    $params[':name'] = "%$searchTerm%";
-}
-
-if (!empty($categoriaTerm)) {
-    $whereParts[] = "name LIKE :categoria";
-    $params[':categoria'] = "%$categoriaTerm%";
-}
-
 $whereSQL = "";
+
+// pesquisa por nome
+if (!empty($valueFilters['searchProduct'])) {
+  $_SESSION['searchProduct'] = $valueFilters['searchProduct'];
+
+  $whereParts[] = "name LIKE :name";
+  $params[':name'] = '%' . $valueFilters['searchProduct'] . '%';
+}
+
+// pesquisa por categoria
+if (!empty($valueFilters['searchCategorie'])) {
+  $_SESSION['searchCategorie'] = $valueFilters['searchCategorie'];
+
+  $whereParts[] = "categoria = :categoria";
+  $params[':categoria'] = $valueFilters['searchCategorie'];
+}
+
 if (count($whereParts) > 0) {
-    $whereSQL = "WHERE " . implode(" AND ", $whereParts);
+  $whereSQL = "WHERE " . implode(" AND ", $whereParts);
 }
 
-$countStmt = $db->prepare("SELECT COUNT(*) AS total FROM tatifit_products $whereSQL");
-$countStmt->execute($params);
-$totalProducts = $countStmt->fetch(PDO::FETCH_ASSOC)['total'];
-$totalPages = ceil($totalProducts / $itemsPerPage);
+try {
+  $countStmt = $db->prepare("SELECT COUNT(*) AS total FROM tatifit_products $whereSQL");
+  $countStmt->execute($params);
+  $totalProducts = $countStmt->fetch(PDO::FETCH_ASSOC)['total'];
+  $totalPages = ceil($totalProducts / $itemsPerPage);
 
-$sql = "SELECT * FROM tatifit_products $whereSQL LIMIT :limit OFFSET :offset";
-$stmt = $db->prepare($sql);
+  $sql = "SELECT * FROM tatifit_products $whereSQL LIMIT :limit OFFSET :offset";
+  $stmt = $db->prepare($sql);
 
-foreach ($params as $key => $value) {
+  foreach ($params as $key => $value) {
     $stmt->bindValue($key, $value);
-}
+  }
 
-$stmt->bindValue(':limit', $itemsPerPage, PDO::PARAM_INT);
-$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-$stmt->execute();
+  $stmt->bindValue(':limit', $itemsPerPage, PDO::PARAM_INT);
+  $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+  $stmt->execute();
 
-$dataOfferProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $dataOfferProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+  error_log("Erro na consulta de produtos: " . $e->getMessage());
+  echo "Ops! Não foi possível carregar os produtos. Tente novamente.";
+};
+
 ?>
 
 <link rel="stylesheet" href="app/views/products/product/styles.css">
@@ -124,18 +149,18 @@ $dataOfferProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
   </div>
 
   <div class="pagination">
-    <?php if ($page > 1): ?>
-      <a href="?page=<?= $page - 1 ?>" class="pagination-btn">← Anterior</a>
+    <?php if ($valueFilters['pageCurrent'] > 1): ?>
+      <a href="?page=<?= $valueFilters['pageCurrent'] - 1 ?>" class="pagination-btn">← Anterior</a>
     <?php endif; ?>
 
     <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-      <a href="?page=<?= $i ?>" class="pagination-btn <?= $i === $page ? 'active' : '' ?>">
+      <a href="?page=<?= $i ?>" class="pagination-btn <?= $i === $valueFilters['pageCurrent'] ? 'active' : '' ?>">
         <?= $i ?>
       </a>
     <?php endfor; ?>
 
-    <?php if ($page < $totalPages): ?>
-      <a href="?page=<?= $page + 1 ?>" class="pagination-btn">Próximo →</a>
+    <?php if ($valueFilters['pageCurrent'] < $totalPages): ?>
+      <a href="?page=<?= $valueFilters['pageCurrent'] + 1 ?>" class="pagination-btn">Próximo →</a>
     <?php endif; ?>
   </div>
 
