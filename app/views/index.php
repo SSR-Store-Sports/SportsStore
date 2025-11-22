@@ -79,21 +79,35 @@ $dataOfferProducts = [
 <link rel="stylesheet" href="/app/views/styles.css">
 
 <main>
-  <section class="carrossel">
-    <button>
-      <i class="ph ph-arrow-left icon"></i>
-    </button>
+<section class="carrossel">
+  <button class="btn-prev">
+    <i class="ph ph-arrow-left icon"></i>
+  </button>
 
-    <div class="imgs-carrossel">
-      <img src="/public/images/modelo01.png" alt="" />
-      <img src="/public/images/modelo02.png" alt="" />
-      <img src="/public/images/modelo03.png" alt="" />
+  <div class="imgs-carrossel">
+
+    <div class="slide slide-cta">
+      <img src="public/images/banner_black_friday.gif" alt="Slide animado" />
+
+      <a href="/produtos" class="btn-saiba-mais">
+        Ver produtos
+      </a>
     </div>
 
-    <button>
-      <i class="ph ph-arrow-right icon"></i>
-    </button>
-  </section>
+    <div class="slide group-slide">
+      <img src="/public/images/modelo02.png" alt="" />
+      <img src="/public/images/modelo03.png" alt="" />
+      <img src="/public/images/modelo1.jpg" alt="" />
+    </div>
+
+  </div>
+
+  <button class="btn-next">
+    <i class="ph ph-arrow-right icon"></i>
+  </button>
+</section>
+
+
 
   <div class="message-payment">
     <div class="group-payment">
@@ -180,4 +194,68 @@ $dataOfferProducts = [
       <span>Compre seu produto online e retire na loja</span>
     </div>
   </div>
+
+<script>
+  const track = document.querySelector(".imgs-carrossel");
+  const slides = document.querySelectorAll(".slide");
+  let index = 0;
+
+  // AUTOPLAY
+  let auto = setInterval(nextSlide, 4000);
+
+  // Pausa ao passar o mouse
+  track.addEventListener("mouseenter", () => clearInterval(auto));
+  track.addEventListener("mouseleave", () => {
+    auto = setInterval(nextSlide, 4000);
+  });
+
+  // Atualiza posição do slide
+  function updateSlide() {
+    const offset = index * -100;
+    slides.forEach(slide => {
+      slide.style.transform = `translateX(${offset}%)`;
+    });
+  }
+
+  // Próximo e anterior
+  function nextSlide() {
+    index = (index + 1) % slides.length;
+    updateSlide();
+  }
+
+  function prevSlide() {
+    index = (index - 1 + slides.length) % slides.length;
+    updateSlide();
+  }
+
+  document.querySelector(".btn-next").addEventListener("click", nextSlide);
+  document.querySelector(".btn-prev").addEventListener("click", prevSlide);
+
+  // SWIPE MOBILE
+  let startX = 0;
+  let endX = 0;
+
+  track.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+  });
+
+  track.addEventListener("touchmove", e => {
+    endX = e.touches[0].clientX;
+  });
+
+  track.addEventListener("touchend", () => {
+    const diff = startX - endX;
+    if (diff > 50) {
+      nextSlide(); // Swipe para esquerda
+    } else if (diff < -50) {
+      prevSlide(); // Swipe para direita
+    }
+  });
+
+  // Inicializa
+  updateSlide();
+</script>
+  
+
 </main>
+
