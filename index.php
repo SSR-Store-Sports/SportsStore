@@ -28,7 +28,7 @@
 <body>
   <?php
     // importação das routes da aplicação
-    session_start();
+    // session_start();
     require_once 'routes/web.php';
   ?>
 
