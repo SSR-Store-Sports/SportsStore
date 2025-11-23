@@ -37,6 +37,14 @@ $router->mount("/auth", function () use ($router) {
   $router->get('/loading', function () {
     require 'app/views/users/loading/index.php';
   });
+  
+  $router->get('/forgot-password', function () {
+    require 'app/views/users/forgot-password/index.php';
+  });
+
+  $router->post('/forgot-password', function () {
+    require 'app/views/users/forgot-password/index.php';
+  });
 });
 
 /*

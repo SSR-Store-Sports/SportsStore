@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </div>
                     <div class="form-group">
                         <input type="password" id="password" name="password" placeholder="Senha">
-                        <a href="#" class="forgot-password">Esqueci a senha</a>
+                        <a href="/auth/forgot-password" class="forgot-password">Esqueci a senha</a>
                     </div>
                     <?php if (isset($error) && !empty($error)): ?>
                         <div class="error-container">
