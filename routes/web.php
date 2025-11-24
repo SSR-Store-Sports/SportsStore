@@ -130,21 +130,21 @@ $router->mount("/admin", function () use ($router) {
 
   $router->mount("/pedidos", function () use ($router) {
     $router->get('/gerenciar', function () {
-      require 'app/views/admin/supplier/index.php';
+      require 'app/views/admin/orders/index.php';
     });
 
     $router->post('/devolucoes', function () {
-      require 'app/views/admin/supplier/index.php';
+      require 'app/views/admin/orders/index.php';
     });
   });
 
   $router->mount("/usuarios", function () use ($router) {
     $router->get('/gerenciar', function () {
-      require 'app/views/admin/supplier/index.php';
+      require 'app/views/admin/users/index.php';
     });
 
     $router->post('/relatorios', function () {
-      require 'app/views/admin/supplier/index.php';
+      require 'app/views/admin/users/index.php';
     });
   });
 

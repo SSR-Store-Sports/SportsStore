@@ -1,7 +1,8 @@
 <?php
 require 'config/database.php';
 
-function checkFields($email, $password) {
+function checkFields($email, $password)
+{
     if (empty($email) || empty($password)) {
         echo "<script>alert('Preencha todos os campos.');</script>";
         echo "<script>window.location.href = '/auth/login';</script>";
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($user) {
             $doesPasswordMatches = password_verify($password, $user['password']);
-            
+
             if ($doesPasswordMatches) {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['name'] = $user['name'];
@@ -72,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </div>
                     <?php if (isset($error) && !empty($error)): ?>
                         <div class="error-container">
-                            <p class="error">Erro: <?=$error ?></p>
+                            <p class="error">Erro: <?= $error ?></p>
                         </div>
                     <?php endif; ?>
                     <button type="submit" class="btn-login">Entrar</button>

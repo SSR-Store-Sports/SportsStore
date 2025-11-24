@@ -93,6 +93,15 @@
   color: var(--text-color-gray-100);
 }
 
+.email-address {
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  
+  display: block; 
+  max-width: 100%; 
+}
+
 .sidebar-close {
   background: none;
   border: none;
