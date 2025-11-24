@@ -169,3 +169,97 @@ input:focus {
 .btn-logout:hover {
   color: var(--bg-tertiary);
 }
+
+/* Mobile Responsivo */
+@media (max-width: 768px) {
+  .user-config {
+    margin: 1rem auto;
+    padding: 0 1rem;
+  }
+
+  .config-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .config-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .config-menu {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .profile {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .profile-info h2 {
+    font-size: 1.1rem;
+  }
+
+  .menu-item {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+
+  .config-content {
+    padding: 1.5rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-save {
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-config {
+    padding: 0 0.5rem;
+  }
+
+  .config-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .config-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .config-menu,
+  .config-content {
+    padding: 1rem;
+  }
+
+  .form h3 {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+
+  input {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+
+  label {
+    font-size: 0.95rem;
+  }
+}
