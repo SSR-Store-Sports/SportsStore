@@ -88,16 +88,16 @@ $dataOfferProducts = [
 
     <div class="slide slide-cta">
       <img src="public/images/banner_black_friday.gif" alt="Slide animado" />
-
-      <a href="/produtos" class="btn-saiba-mais">
-        Ver produtos
-      </a>
     </div>
 
     <div class="slide group-slide">
       <img src="/public/images/modelo02.png" alt="" />
       <img src="/public/images/modelo03.png" alt="" />
       <img src="/public/images/modelo1.jpg" alt="" />
+
+      <a href="/produtos" class="btn-saiba-mais">
+        Ver produtos
+      </a>
     </div>
 
   </div>
