@@ -66,7 +66,7 @@ $name_short = nameTreament($name);
     <div class="nav-section">
       <h4>Termos de Serviço</h4>
       <ul>
-        <li><a href="/"><i class="ph ph-file-text"></i>Termos</a></li>
+        <li><a href="/termos"><i class="ph ph-file-text"></i>Termos</a></li>
         <li><a href="/privacidade"><i class="ph ph-shield-check"></i>Privacidade</a></li>
       </ul>
     </div>
