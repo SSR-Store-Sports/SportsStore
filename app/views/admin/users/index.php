@@ -6,6 +6,66 @@ if ($_SESSION['role'] === "user") {
     exit();
 }
 
+// Obter os valores: página atual, item de pesquisa, categoria de pesquisa
+$pageValueDefault = (int) 1; // primeira página padrão
+$itemsPerPage = (int) 6; // itens por página
+$pageCurrent = isset($_GET['page']) ? (int) $_GET['page'] : $pageValueDefault;
+$searchUsers = isset($_GET['searchUsers']) ? (string) trim($_GET['name']) : null;
+
+// função que retorna itens que devem ser esquecidos por página
+function calcPagination(int $page, $items): int
+{
+    return ($page - 1) * $items;
+}
+
+$valueFilters = [
+    'pageCurrent' => (int) $pageCurrent,
+    'searchUsers' => (string) $searchUsers,
+];
+
+$offset = calcPagination($valueFilters['pageCurrent'], $itemsPerPage);
+
+try {
+    $countStmt = $db->prepare("SELECT 
+        COUNT(id) AS total,
+        SUM(CASE
+            WHEN role = 'user' THEN 1
+            ELSE 0
+        END) AS total_users,
+        SUM(CASE
+            WHEN role = 'admin' THEN 1
+            ELSE 0
+        END) AS total_admins
+    FROM
+        tatifit_users;");
+    $countStmt->execute($params);
+    $results = $countStmt->fetch(PDO::FETCH_ASSOC);
+
+    $totalRegistros = $results['total'];
+    $totalUsers     = $results['total_users'];
+    $totalAdmins    = $results['total_admins'];
+
+    $totalPages = ceil($totalRegistros / $itemsPerPage);
+
+    $sql = "SELECT * FROM tatifit_users LIMIT :limit OFFSET :offset";
+    $stmt = $db->prepare($sql);
+
+    foreach ($params as $key => $value) {
+        $stmt->bindValue($key, $value);
+    }
+
+    $stmt->bindValue(':limit', $itemsPerPage, PDO::PARAM_INT);
+    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $dataUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo $dataUsers;
+} catch (Exception $e) {
+    error_log("Erro na consulta de produtos: " . $e->getMessage());
+    echo "Erro na consulta de usuários.";
+}
+;
+
 ?>
 
 <link rel="stylesheet" href="/app/views/admin/users/styles.css">
@@ -34,7 +94,7 @@ if ($_SESSION['role'] === "user") {
                     <i class="ph ph-users-three"></i>
                 </div>
                 <div class="stat-info">
-                    <span class="stat-number"><?= $totalUsers ?></span>
+                    <span class="stat-number"><?= $totalRegistros ?></span>
                     <span class="stat-label">Total</span>
                 </div>
             </div>
@@ -43,7 +103,7 @@ if ($_SESSION['role'] === "user") {
                     <i class="ph ph-user"></i>
                 </div>
                 <div class="stat-info">
-                    <span class="stat-number"><?= $regularUsers ?></span>
+                    <span class="stat-number"><?= $totalUsers ?></span>
                     <span class="stat-label">Clientes</span>
                 </div>
             </div>
@@ -52,7 +112,7 @@ if ($_SESSION['role'] === "user") {
                     <i class="ph ph-shield-check"></i>
                 </div>
                 <div class="stat-info">
-                    <span class="stat-number"><?= $adminUsers ?></span>
+                    <span class="stat-number"><?= $totalAdmins ?></span>
                     <span class="stat-label">Administradores</span>
                 </div>
             </div>
@@ -72,49 +132,98 @@ if ($_SESSION['role'] === "user") {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($users as $user): ?>
-                    <tr data-role="<?= $user['role'] ?>">
-                        <td>
-                            <div class="user-info">
-                                <div class="user-avatar">
-                                    <i class="ph ph-user-circle"></i>
+                    <?php foreach ($dataUsers as $user): ?>
+                        <tr data-role="<?= $user['role'] ?>">
+                            <td>
+                                <div class="user-info">
+                                    <div class="user-avatar">
+                                        <i class="ph ph-user-circle"></i>
+                                    </div>
+                                    <strong><?= htmlspecialchars($user['name']) ?></strong>
                                 </div>
-                                <strong><?= htmlspecialchars($user['name']) ?></strong>
-                            </div>
-                        </td>
-                        <td><?= htmlspecialchars($user['email']) ?></td>
-                        <td><?= htmlspecialchars($user['telefone']) ?></td>
-                        <td><?= htmlspecialchars($user['cpf']) ?></td>
-                        <td>
-                            <span class="role-badge <?= $user['role'] ?>">
-                                <?= $user['role'] === 'admin' ? 'Administrador' : 'Cliente' ?>
-                            </span>
-                        </td>
-                        <td class="orders-count"><?= $user['orders_count'] ?></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-view" title="Ver perfil">
-                                    <i class="ph ph-eye"></i>
-                                </button>
-                                <button class="btn-edit" title="Editar usuário">
-                                    <i class="ph ph-pencil"></i>
-                                </button>
-                                <button class="btn-role" title="Alterar perfil">
-                                    <i class="ph ph-user-gear"></i>
-                                </button>
-                                <button class="btn-delete" title="Desativar usuário">
-                                    <i class="ph ph-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                            <td><?= htmlspecialchars($user['email']) ?></td>
+                            <td><?= htmlspecialchars($user['telefone']) ?></td>
+                            <td><?= htmlspecialchars($user['cpf']) ?></td>
+                            <td>
+                                <span class="role-badge <?= $user['role'] ?>">
+                                    <?= $user['role'] === 'admin' ? 'Administrador' : 'Cliente' ?>
+                                </span>
+                            </td>
+                            <td class="orders-count"><?= $user['orders_count'] ?? 0 ?></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-view" title="Ver perfil">
+                                        <i class="ph ph-eye"></i>
+                                    </button>
+                                    <button class="btn-edit" title="Editar usuário">
+                                        <i class="ph ph-pencil"></i>
+                                    </button>
+                                    <button class="btn-role" title="Alterar perfil">
+                                        <i class="ph ph-user-gear"></i>
+                                    </button>
+                                    <button class="btn-delete" title="Desativar usuário">
+                                        <i class="ph ph-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
+
+        <div class="users-cards">
+            <?php foreach ($dataUsers as $user): ?>
+                <div class="user-card" data-role="<?= $user['role'] ?>">
+                    <div class="user-card-header">
+                        <div class="user-avatar">
+                            <i class="ph ph-user-circle"></i>
+                        </div>
+                        <div class="user-card-info">
+                            <div class="user-card-name"><?= htmlspecialchars($user['name']) ?></div>
+                            <div class="user-card-email"><?= htmlspecialchars($user['email']) ?></div>
+                        </div>
+                    </div>
+
+                    <div class="user-card-details">
+                        <div class="user-card-detail">
+                            <span class="user-card-label">Telefone</span>
+                            <span class="user-card-value"><?= htmlspecialchars($user['telefone']) ?></span>
+                        </div>
+                        <div class="user-card-detail">
+                            <span class="user-card-label">CPF</span>
+                            <span class="user-card-value"><?= htmlspecialchars($user['cpf']) ?></span>
+                        </div>
+                    </div>
+
+                    <div class="user-card-actions">
+                        <div class="user-card-role">
+                            <span class="role-badge <?= $user['role'] ?>">
+                                <?= $user['role'] === 'admin' ? 'Administrador' : 'Cliente' ?>
+                            </span>
+                            <span class="user-card-orders"><?= $user['orders_count'] ?? 0 ?> pedidos</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-view" title="Ver perfil">
+                                <i class="ph ph-eye"></i>
+                            </button>
+                            <button class="btn-edit" title="Editar usuário">
+                                <i class="ph ph-pencil"></i>
+                            </button>
+                            <button class="btn-role" title="Alterar perfil">
+                                <i class="ph ph-user-gear"></i>
+                            </button>
+                            <button class="btn-delete" title="Desativar usuário">
+                                <i class="ph ph-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </main>
 
-    <!-- Modal Alterar Perfil -->
     <div id="roleModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
