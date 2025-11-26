@@ -14,11 +14,11 @@
 
         <section class="contact-section">
             <h2>Contato</h2>
-            <p><i class="ph ph-phone"></i> Telefone: (11) 1234-5678</p>
-            <p><i class="ph ph-whatsapp-logo"></i> WhatsApp: (11) 99999-9999</p>
+            <p><i class="ph ph-phone"></i> Telefone: +55 11 97893-6260</p>
+            <p><i class="ph ph-whatsapp-logo"></i> WhatsApp: +55 11 97893-6260</p>
             <p><i class="ph ph-envelope"></i> Email: contato@tatifitwear.com.br</p>
             <p><i class="ph ph-clock"></i> Atendimento: Seg-Sex 8h às 18h</p>
-            <p><i class="ph ph-storefront"></i> Loja física: Indisponível</p>
+            <p><i class="ph ph-storefront"></i> Loja física: R. José Bochiglieri, 186 - Vila São José</p>
             <div class="payment-info">
                 <p><strong>Formas de pagamento:</strong></p>
                 <p><i class="ph ph-credit-card"></i> Cartões de crédito</p>
