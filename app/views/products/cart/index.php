@@ -36,9 +36,11 @@
                     <p class="stock-info">Estoque disponível</p>
                 </div>
                 <div class="item-price">
-                    <div class="price-old">R$ 119,90</div>
-                    <div class="price-current">R$ 89,90</div>
-                    <div class="price-installments">12x R$ 7,49 sem juros</div>
+                    <div class="price-info">
+                        <div class="price-old">R$ 119,90</div>
+                        <div class="price-current">R$ 89,90</div>
+                        <div class="price-installments">12x R$ 7,49 sem juros</div>
+                    </div>
                     <div class="price-discount">25% OFF</div>
                 </div>
             </div>
@@ -70,8 +72,10 @@
                     <p class="stock-info">Últimas 3 unidades</p>
                 </div>
                 <div class="item-price">
-                    <div class="price-current">R$ 65,90</div>
-                    <div class="price-installments">10x R$ 6,59 sem juros</div>
+                    <div class="price-info">
+                        <div class="price-current">R$ 65,90</div>
+                        <div class="price-installments">10x R$ 6,59 sem juros</div>
+                    </div>
                 </div>
             </div>
         </div>

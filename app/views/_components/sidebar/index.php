@@ -4,6 +4,15 @@ $name = trim($_SESSION['name'] ?? "");
 $email = trim($_SESSION['email'] ?? "");
 $role = trim($_SESSION['role'] ?? "");
 
+function nameTreament($name): string {
+  $nameParts = explode(" ", $name); // transformar em um array, olhando para os espaços
+  $firstAndSurname = array_slice($nameParts, 0, 2); // pegar os dois primeiros elementos
+  $name = implode(" ", $firstAndSurname); // juntar os elementos em uma string
+  return $name; 
+} 
+
+$name_short = nameTreament($name);
+
 ?>
 
 <link rel="stylesheet" href="/app/views/_components/sidebar/styles.css">
@@ -57,7 +66,7 @@ $role = trim($_SESSION['role'] ?? "");
     <div class="nav-section">
       <h4>Termos de Serviço</h4>
       <ul>
-        <li><a href="/"><i class="ph ph-file-text"></i>Termos</a></li>
+        <li><a href="/termos"><i class="ph ph-file-text"></i>Termos</a></li>
         <li><a href="/privacidade"><i class="ph ph-shield-check"></i>Privacidade</a></li>
       </ul>
     </div>
@@ -70,8 +79,8 @@ $role = trim($_SESSION['role'] ?? "");
       </div>
       <div class="user-details">
         <?php if ($email): ?>
-          <h3>Olá, <?= $name ?></h3>
-          <p><?= $email; ?></p>
+          <h3>Olá, <?= $name_short ?></h3>
+          <p class="email-address"><?= $email; ?></p>
         <?php else: ?>
           <h3>Minha Conta</h3>
           <p>Bem-vindo. <a href="/auth/login">Entre agora!</a></p>

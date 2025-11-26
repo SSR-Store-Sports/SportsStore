@@ -18,7 +18,7 @@ Funcionalidade que o usuário interage de alguma forma.
 - [x] O usuário deve poder se cadastrar;
 - [x] O usuário deve poder se autenticar;
 - [ ] O usuário deve poder alterar sua senha;
-- [ ] O usuário deve poder obter o seu perfil de um usuário logado;
+- [x] O usuário deve poder obter o seu perfil de um usuário logado;
 - [x] O usuário deve poder visualizar todos os produtos;
 - [x] O usuário deve poder buscar por produto(s);
 - [ ] O usuário deve poder selecionar um produto gerando o carrinho de compras;
@@ -26,7 +26,7 @@ Funcionalidade que o usuário interage de alguma forma.
 - [ ] x - O usuário deve ter uma lista de items favoritos;
 - [ ] O usuário deve poder visualizar o histórico de compras;
 - [ ] O funcionário/administrador deve poder cadastrar um fornecedor;
-- [ ] O funcionário/administrador deve poder cadastrar um produto;
+- [x] O funcionário/administrador deve poder cadastrar um produto;
 - [ ] O funcionário/administrador deve poder gerenciar o estoque de produtos (atualizar stock).
 - [ ] O administrador pode desativar um usuário;
 - [ ] O administrador deve poder cadastrar um usuário como funcionário/administrador;
@@ -35,9 +35,9 @@ Funcionalidade que o usuário interage de alguma forma.
 ## RNFs (requisitos não-funcionais):
 Não funcionalidades, mais tratativas.
 
-- [ ] A senha do usuário deve estar criptografada;
+- [x] A senha do usuário deve estar criptografada;
 - [ ] O usuário deve ser identificado por um JWT (JSON Web Token);
-- [ ] Deve ser possível diferenciar usuários por cargos;
+- [x] Deve ser possível diferenciar usuários por cargos;
 - [ ] O usuário não autenticado deve ter um id associado para utilizar o carrinho de compras;
 - [ ] O usuário cadastrado como funcionário/administrador terá que usar o
 authenticator (aplicativo de validação - opcional);
@@ -51,7 +51,7 @@ authenticator (aplicativo de validação - opcional);
 ## RNs (Regras de negócios):
 A instituição decide, o proprietário do software dita.
 
-- [ ] O usuário deve se cadastrar utilizando:
+- [x] O usuário deve se cadastrar utilizando:
   - nome
   - sobrenome
   - email;
@@ -61,15 +61,15 @@ A instituição decide, o proprietário do software dita.
   - complemento;
   - telefone;
   - data de nascimento.
-- [ ] O usuário deve aceitar os termos para se cadastrar;
-- [ ] O usuário não deve poder se cadastrar com um usuário duplicado;
-- [ ] Todos os usuários cadastrados recebem por padrão o cargo de cliente;
+- [x] O usuário deve aceitar os termos para se cadastrar;
+- [x] O usuário não deve poder se cadastrar com um usuário duplicado;
+- [x] Todos os usuários cadastrados recebem por padrão o cargo de cliente;
 - [ ] O usuário deve ter mais quem um método de autenticação;
 - [ ] O limite de itens no carrinho é 20 por usuário;
 - [ ] Um produto pode estar atrelado a um fornecedor;
 - [ ] O preço do produto deve incluir impostos (ex.: ICMS);
-- [ ] Todas as consultas devem ter paginação: 10 itens p/página;
-- [ ] Todos os filtros são opcionais;
+- [x] Todas as consultas devem ter paginação: 6 itens p/página;
+- [x] Todos os filtros são opcionais;
 - [ ] Usuários que não estão logados, devem conseguir adquirir produtos para ficar no carrinho (direcionar p/ login);
 - [ ] O usuário que quer algo específico, poderá acessar o canal alternativo (WhatsApp);
 
