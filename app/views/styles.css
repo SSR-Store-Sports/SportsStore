@@ -6,26 +6,24 @@
   color: var(--text-color-gray);
 } */
 
+/* =========================================================
+   CONTROLES DO CARROSSEL (setas / container externo)
+   ========================================================= */
 .carrossel {
   display: flex;
-
   justify-content: center;
   align-items: center;
-
   margin: auto 1rem;
-
   gap: 2rem;
 }
 
+/* Botões laterais */
 .carrossel button {
   display: flex;
-
-  justify-content: center;  
+  justify-content: center;
   align-items: center;
-  
   padding: 0.50rem;
   border-radius: 9999px;
-
   color: var(--icon-secondary);
   transition: background-color 0.5s ease-in-out;
 }
@@ -39,24 +37,186 @@
   background-color: var(--bg-tertiary);
 }
 
+
+/* =========================================================
+   ÁREA PRINCIPAL DO CARROSSEL
+   ========================================================= */
+
+/* Container que agrupa todos os slides */
 .imgs-carrossel {
   display: flex;
   width: 100%;
   height: 400px;
-  /* gap: 16px; */
   overflow: hidden;
-  /* border-radius: 12px; */
+  position: relative;
+  transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-.imgs-carrossel img {
-  flex: 1;
+/* Cada slide ocupa 100% da largura total */
+.slide {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  display: flex;
+  filter: brightness(0.95);
+  transition: transform .4s ease, filter .4s ease;
+}
+
+/* Imagens dentro de um slide padrão */
+.slide img {
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */ /* desativado */
+    transition: transform 0.3s ease;
+}
+
+/* Hover suave nas imagens */
+.slide img:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+
+/* =========================================================
+   GRUPO ESPECIAL DE IMAGENS (slide 2 / group-slide)
+   ========================================================= */
+
+.group-slide {
+  display: flex;
+  gap: 1rem;
+}
+
+.group-slide img {
+  width: calc(100% / 3);
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  border-radius: 12px;
 }
 
-.imgs-carrossel img:hover {
-  transform: scale(1.02);
+
+/* =========================================================
+   CTA (Botão dentro dos slides)
+   ========================================================= */
+
+.slide-cta {
+  position: relative;
+}
+
+/* Botão com efeito neon */
+.btn-saiba-mais {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+
+  color: var(--text-color-white);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+
+  min-width: 140px;
+  overflow: visible;
+
+  box-shadow: 0 0 12px rgba(214, 126, 191, 0.45);
+
+  z-index: 2;
+  transition: transform .25s ease, background .3s ease;
+}
+
+/* Anéis de pulsação */
+.btn-saiba-mais::before,
+.btn-saiba-mais::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  border: 2px solid var(--primary-color);
+  animation: pulsePink 2.2s ease-out infinite;
+  opacity: 0;
+}
+
+.btn-saiba-mais::after {
+  animation-delay: 1.1s;
+}
+
+/* Hover */
+.btn-saiba-mais:hover {
+  transform: scale(1.06);
+  background: rgba(0, 0, 0, 0.75);
+}
+
+/* Animação neon */
+@keyframes pulsePink {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+    box-shadow: 0 0 12px rgba(214, 126, 191, 0.6);
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+    box-shadow: 0 0 24px rgba(214, 126, 191, 0);
+  }
+}
+
+
+/* =========================================================
+   Mobile carrosel  — ATÉ 480px
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  /* Remove botões laterais */
+  .btn-prev,
+  .btn-next {
+    display: none !important;
+  }
+
+  /* Ajusta container do carrossel */
+  .carrossel {
+    gap: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  /* Reduz altura e remove bordas */
+  .imgs-carrossel {
+    height: 250px;
+    overflow: hidden;
+    border-radius: 0;
+  }
+
+  /* Imagens padrão sem borda */
+  .slide img {
+    border-radius: 0 !important;
+  }
+
+  /* Mantém bordas no slide especial */
+  .group-slide img {
+    border-radius: 12px !important;
+    width: calc((100% - 1rem) / 3);
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .group-slide {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+  }
+
+/*.btn-saiba-mais {
+   display: none !important;
+  }*/
+
+
 }
 
 .message-payment {
@@ -100,8 +260,6 @@
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-
-
 
 .section-botoes {
   display: flex;
@@ -185,9 +343,31 @@
   background-color: var(--bg-primary-gray);
 }
 
+/* Efeito apenas para dispositivos com mouse (desktop) */
+@media (hover: hover) {
+  .product {
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    border: 1px solid var(--bg-quaternary);
+  }
+
+  .product:hover {
+    transform: translateY(-4px);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 20px;
+    border-color: var(--primary-color);
+  }
+
+  .product img {
+    transition: transform 0.28s ease;
+  }
+
+  .product:hover img {
+    transform: scale(1.02); /* sobe e dá VIDA ao hover */
+  }
+}
+
 .root-products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1rem;
   padding: 0 20px;
   max-width: 1200px;
@@ -214,24 +394,38 @@
 
 .discount-badge {
   position: absolute;
-
-  top: 0.75rem;
-  right: 0.75rem;
-
-  padding: 0.3rem 0.6rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
+  top: 0.55rem;
+  right: 0.55rem;
+  padding: 0.22rem 0.45rem;
+  border-radius: 10px;
+  font-size: 0.65rem;
   font-weight: 700;
   z-index: 3;
-
   color: var(--text-color-white);
   background: linear-gradient(135deg, #ff4757, #ff3742);
-  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
+  box-shadow: 0 1px 6px rgba(255, 71, 87, 0.28);
+
+  /* melhora fluidez em telas pequenas */
+  transform-origin: center;
+  will-change: transform;
+  animation: badgeBreath 2.8s ease-in-out infinite;
+}
+
+@keyframes badgeBreath {
+  0% { transform: scale(1); }
+  60% { transform: scale(1.055); } /* expansão mais natural */
+  100% { transform: scale(1); }
+}
+
+@media (hover: none) {
+  .product:active {
+    box-shadow: 0 0 12px rgba(0,0,0,0.15);
+  }
 }
 
 .product h2 {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 10px;
 }
 
 .root-header {
@@ -241,37 +435,47 @@
 .deitals-product {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.deitals-product h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+  color: var(--text-color-black);
 }
 
 .price-product {
-  text-align: center;
-  margin-bottom: 1rem;
+  margin: 0;
 }
 
 .price-product h3 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--text-color-pink);
-  margin-bottom: 0.25rem;
-  display: inline;
+  margin: 0;
+}
+
+.price-product .original-price {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 0.85rem;
+  color: var(--text-color-gray);
+  text-decoration: line-through;
 }
 
 .price-product p {
-  font-size: 0.9rem;
-  color: var(--text-color-gray);
-  font-weight: 400;
-}
-
-.original-price {
-  font-size: 0.9rem;
-  color: var(--text-color-gray);
-  text-decoration: line-through;
-  margin-right: 0.5rem;
+  margin-top: 0.1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-color-gray-dark);
 }
 
 .deitals-product button {
-  padding: 0.50rem;
+  padding: 0.55rem;
   border: 2px solid var(--border-color-pink);
   border-radius: 1rem;
   transition: background-color 0.5s ease-in-out;
@@ -281,63 +485,264 @@
   background-color: var(--bg-tertiary);
   color: var(--text-color-white);
 }
+button:active {
+  transform: scale(0.96);
+}
 
-/* Mobile Responsivo */
-@media screen and (max-width: 768px) {
+
+
+/* =======================
+   DESKTOP (default)
+   ======================= */
+
+/* Área geral mais respirada no desktop */
+@media (min-width: 1024px) {
+  .products {
+    padding: 3rem 0 4rem 0;
+    gap: 3rem;
+  }
+
   .root-products {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
-    padding: 0 16px;
+    max-width: 1400px;
+    gap: 1.5rem;     /* mais espaço entre cards */
+    padding: 0 40px; /* maior respiro lateral */
   }
 
   .product {
-    padding: 0.8rem;
+    padding: 1.25rem;              /* card mais robusto */
+    border-radius: 1rem;
+    border: 1px solid var(--bg-quaternary);
+    transition:
+      transform 0.32s ease,
+      box-shadow 0.32s ease,
+      border-color 0.32s ease,
+      background-color 0.3s ease;
   }
 
   .product img {
-    height: 150px;
+    height: 230px;                 /* mais destaque para imagem */
+    border-radius: 0.65rem;
+    transition: transform 0.32s ease, filter 0.32s ease;
   }
 
+  /* HOVER premium */
+  .product:hover {
+    transform: translateY(-6px);
+    background-color: var(--bg-secondary-white);
+    border-color: var(--primary-color);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  }
+
+  .product:hover img {
+    transform: scale(1.04);
+    filter: brightness(1.02);  /* micro-polimento na imagem */
+  }
+
+  /* Títulos mais elegantes no desktop */
   .product h2 {
-    font-size: 0.9rem;
-    line-height: 1.2;
+    font-size: 1.15rem;
+    margin-bottom: 0.6rem;
   }
 
   .price-product h3 {
-    font-size: 1.2rem;
+    font-size: 1.55rem;
   }
 
   .deitals-product button {
-    font-size: 0.8rem;
-    padding: 0.6rem;
+    padding: 0.65rem;
+    border-radius: 1.1rem;
+    font-size: 0.95rem;
+    transition: 0.25s ease;
   }
+
+  .deitals-product button:hover {
+    transform: translateY(-2px);
+  }
+
+  
 }
 
-@media screen and (max-width: 480px) {
+
+/* =======================
+   TABLET / MOBILE MÉDIO → 768px
+   ======================= */
+
+@media screen and (max-width: 768px) {
   .root-products {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 0 12px;
+    gap: 1.2rem;
+    padding: 0 20px;
   }
 
   .product {
-    padding: 1rem;
+    padding: 0.9rem;
   }
 
   .product img {
-    height: 200px;
+    height: 160px;
   }
 
   .product h2 {
     font-size: 1rem;
+    line-height: 1.25;
   }
 
   .price-product h3 {
     font-size: 1.3rem;
   }
+}
+
+/* =======================
+   MOBILE MÉDIO → 480px
+   ======================= */
+
+@media screen and (max-width: 480px) {
+  .root-products {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.9rem;
+    padding: 0 12px;
+  }
+
+  .product {
+    padding: 0.7rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color-pink);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product img {
+    height: 150px;
+    border-radius: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .product h2 {
+    text-align: center;
+  }
+
+  .price-product {
+    text-align: center;
+  }
+
+  .price-product h3 {
+    font-size: 1.15rem;
+  }
 
   .deitals-product button {
-    font-size: 0.9rem;
-    padding: 0.8rem;
+    font-size: 0.85rem;
+    padding: 0.6rem;
+    width: 100%;
   }
+
+/* MOBILE 480px */
+@media screen and (max-width: 480px) {
+  .message-buy {
+    flex-direction: row; /* ícone ao lado esquerdo do texto */
+    align-items: center; /* centraliza verticalmente */
+    gap: 0.8rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .message-buy .icon {
+    font-size: 28px;
+    padding: 0.6rem;
+    border-radius: 0.9rem;
+    flex-shrink: 0; /* impede que o ícone encolha */
+  }
+
+  .message-buy h3 {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .message-buy span {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .message-buy .message-text {
+    display: flex;
+    flex-direction: column; /* mantém h3 e span empilhados */
+    justify-content: center;
+  }
+
 }
+  .section-botoes{
+    display: none;
+  }
+
+}
+
+
+/* ====== 375px (360–400px) ====== */
+
+@media screen and (max-width: 400px) and (min-width: 360px) {
+
+  .root-products {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+    padding: 0 10px;
+  }
+
+  .product {
+    padding: 0.55rem;
+  }
+
+  .product img {
+    height: 125px;
+    border-radius: 0.45rem;
+  }
+
+  .product h2 {
+    font-size: 0.90rem;
+    font-weight: 600;
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  .deitals-product {
+    margin-top: 0.35rem;
+    gap: 0.3rem; /* compacto sem esmagar */
+  }
+
+  .price-product {
+    margin: 0.2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+  }
+
+  .price-product h3 {
+    font-size: 1.02rem;
+    font-weight: 700;
+  }
+
+  .price-product .original-price {
+    font-size: 0.66rem;
+  }
+
+  .price-product p {
+    font-size: 0.70rem;
+  }
+
+  .deitals-product button {
+    font-size: 0.76rem;
+    padding: 0.45rem;
+    width: 100%;
+    border-radius: 0.85rem;
+  }
+
+  .discount-badge {
+    font-size: 0.58rem;
+    padding: 0.20rem 0.36rem;
+    top: 0.3rem;
+    right: 0.3rem;
+    border-radius: 7px;
+  }
+
+  .section-botoes{
+    display: none;
+  }
+  
+}
+
