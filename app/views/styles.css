@@ -633,6 +633,7 @@ button:active {
     padding: 0.6rem;
     width: 100%;
   }
+}
 
 /* MOBILE 480px */
 @media screen and (max-width: 480px) {
@@ -671,7 +672,7 @@ button:active {
     display: none;
   }
 
-}
+
 
 
 /* ====== 375px (360–400px) ====== */
