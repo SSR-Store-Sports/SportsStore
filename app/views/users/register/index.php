@@ -1,6 +1,8 @@
 <?php
 require 'config/database.php';
 
+$error = "";
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $userRegistered = [
         'name' => trim($_POST['name'] ?? ''),
@@ -51,7 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         exit();
     } catch (PDOException $e) {
         $db->rollback();
-        echo "Erro: " . $e->getMessage();
+        error_log("Erro de Registro no BD: " . $e->getMessage());
+        $error = "Ocorreu um erro no cadastro de usuário. Tente novamente mais tarde.";
     }
 }
 
@@ -135,6 +138,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         </div>
                     </div>
                 </form>
+
+                <?php if (isset($error) && !empty($error)): ?>
+                    <div class="error-container">
+                        <p class="error">Erro: <?= $error ?></p>
+                    </div>
+                <?php endif; ?>
 
                 <p class="login-link">Já possui uma conta? <a href="/auth/login">Fazer login</a></p>
             </div>

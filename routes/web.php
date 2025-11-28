@@ -158,6 +158,10 @@ $router->mount("/users", function () use ($router) {
   $router->get('/', function () {
     require 'app/views/users/configuration/index.php';
   });
+
+  $router->post('/', function () {
+    require 'app/views/users/configuration/index.php';
+  });
 });
 
 $router->set404(function () {

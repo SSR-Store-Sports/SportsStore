@@ -145,6 +145,19 @@ input:focus {
   margin-top: 2rem;
 }
 
+.error-container {
+    text-align: center;
+    margin-bottom: 1rem;
+    padding: 8px;
+}
+
+.error {
+    letter-spacing: 2px;
+    border-radius: 1rem;
+    border: 2px solid var(--border-color-pink);
+    color: var(--text-color-pink);
+}
+
 .btn-save {
   background: var(--bg-tertiary);;
   color: #fff;
