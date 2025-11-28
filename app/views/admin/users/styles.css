@@ -261,7 +261,6 @@
     color: white;
 }
 
-/* Modal */
 .modal {
     display: none;
     position: fixed;
@@ -319,6 +318,35 @@
 .modal-body p {
     margin-bottom: 20px;
     color: var(--text-color-gray);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 2rem 0;
+}
+
+.pagination-btn {
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--border-color-pink);
+  border-radius: 6px;
+  color: #e94ca0;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.pagination-btn:hover {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.pagination-btn.active {
+  background: var(--primary-color);
+  color: #fff;
+  pointer-events: none;
 }
 
 .form-group {

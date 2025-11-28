@@ -59,7 +59,6 @@ try {
     $stmt->execute();
 
     $dataUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo $dataUsers;
 } catch (Exception $e) {
     error_log("Erro na consulta de produtos: " . $e->getMessage());
     echo "Erro na consulta de usuários.";
@@ -80,11 +79,11 @@ try {
                     <i class="ph ph-magnifying-glass"></i>
                     <input type="text" placeholder="Buscar usuário..." id="searchUsers">
                 </div>
-                <select class="role-filter">
+                <!-- <select class="role-filter">
                     <option value="">Todos os Perfis</option>
                     <option value="user">Clientes</option>
                     <option value="admin">Administradores</option>
-                </select>
+                </select> -->
             </div>
         </div>
 
@@ -118,7 +117,7 @@ try {
             </div>
         </div>
 
-        <div class="users-table-container">
+        <!-- <div class="users-table-container">
             <table class="users-table">
                 <thead>
                     <tr>
@@ -143,7 +142,7 @@ try {
                                 </div>
                             </td>
                             <td><?= htmlspecialchars($user['email']) ?></td>
-                            <td><?= htmlspecialchars($user['telefone']) ?></td>
+                            <td><?= htmlspecialchars($user['phone']) ?></td>
                             <td><?= htmlspecialchars($user['cpf']) ?></td>
                             <td>
                                 <span class="role-badge <?= $user['role'] ?>">
@@ -171,7 +170,7 @@ try {
                     <?php endforeach; ?>
                 </tbody>
             </table>
-        </div>
+        </div> -->
 
         <div class="users-cards">
             <?php foreach ($dataUsers as $user): ?>
@@ -189,7 +188,7 @@ try {
                     <div class="user-card-details">
                         <div class="user-card-detail">
                             <span class="user-card-label">Telefone</span>
-                            <span class="user-card-value"><?= htmlspecialchars($user['telefone']) ?></span>
+                            <span class="user-card-value"><?= htmlspecialchars($user['phone']) ?></span>
                         </div>
                         <div class="user-card-detail">
                             <span class="user-card-label">CPF</span>
@@ -248,4 +247,20 @@ try {
             </div>
         </div>
     </div>
+
+    <div class="pagination">
+    <?php if ($valueFilters['pageCurrent'] > 1): ?>
+      <a href="?page=<?= $valueFilters['pageCurrent'] - 1 ?>" class="pagination-btn">← Anterior</a>
+    <?php endif; ?>
+
+    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+      <a href="?page=<?= $i ?>" class="pagination-btn <?= $i === $valueFilters['pageCurrent'] ? 'active' : '' ?>">
+        <?= $i ?>
+      </a>
+    <?php endfor; ?>
+
+    <?php if ($valueFilters['pageCurrent'] < $totalPages): ?>
+      <a href="?page=<?= $valueFilters['pageCurrent'] + 1 ?>" class="pagination-btn">Próximo →</a>
+    <?php endif; ?>
+  </div>
 </body>
