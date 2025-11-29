@@ -121,6 +121,7 @@
 
 .sidebar-nav {
   padding: 1.5rem 0;
+  overflow-y: auto;
 }
 
 .nav-section {
