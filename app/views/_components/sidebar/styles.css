@@ -33,7 +33,8 @@
   flex-direction: column;
   justify-content: space-between;
 
-  overflow-y: auto;
+  /* overflow-y: scroll !important;
+  overscroll-behavior: contain; */
   background-color: var(--bg-secondary-white);
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
   transition: left 0.3s ease;
@@ -121,6 +122,10 @@
 
 .sidebar-nav {
   padding: 1.5rem 0;
+  overflow-y: scroll !important;
+  overscroll-behavior: contain;
+  flex: 1;
+  touch-action: pan-y;
 }
 
 .nav-section {

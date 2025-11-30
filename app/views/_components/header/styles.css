@@ -3,6 +3,7 @@ header {
   top: 0;
 
   z-index: 100;
+  flex: 1;
 
   background-color: var(--bg-secondary-white);
   box-shadow: var(--shadow);
@@ -13,7 +14,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 0 auto;
 }
 

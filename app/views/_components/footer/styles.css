@@ -115,4 +115,17 @@ footer {
     grid-template-columns: 1fr;
     text-align: center;
   }
+
+  .footer-content .social-buttons {
+    display: flex;
+    flex-direction: row;
+
+    /* align-items: center; */
+    justify-content: center;
+  }
+
+  .footer-content p {
+    display: flex;
+    text-align: center;
+  }
 }

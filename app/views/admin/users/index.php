@@ -38,7 +38,7 @@ try {
         END) AS total_admins
     FROM
         tatifit_users;");
-    $countStmt->execute($params);
+    $countStmt->execute();
     $results = $countStmt->fetch(PDO::FETCH_ASSOC);
 
     $totalRegistros = $results['total'];
@@ -47,12 +47,8 @@ try {
 
     $totalPages = ceil($totalRegistros / $itemsPerPage);
 
-    $sql = "SELECT * FROM tatifit_users LIMIT :limit OFFSET :offset";
+    $sql = "SELECT id, name, email, phone, cpf, role FROM tatifit_users LIMIT :limit OFFSET :offset";
     $stmt = $db->prepare($sql);
-
-    foreach ($params as $key => $value) {
-        $stmt->bindValue($key, $value);
-    }
 
     $stmt->bindValue(':limit', $itemsPerPage, PDO::PARAM_INT);
     $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
@@ -62,8 +58,7 @@ try {
 } catch (Exception $e) {
     error_log("Erro na consulta de produtos: " . $e->getMessage());
     echo "Erro na consulta de usuários.";
-}
-;
+};
 
 ?>
 
@@ -78,6 +73,7 @@ try {
                 <div class="search-box">
                     <i class="ph ph-magnifying-glass"></i>
                     <input type="text" placeholder="Buscar usuário..." id="searchUsers">
+                    <button class="search-button">Pesquisar</button>
                 </div>
                 <!-- <select class="role-filter">
                     <option value="">Todos os Perfis</option>
@@ -117,7 +113,7 @@ try {
             </div>
         </div>
 
-        <!-- <div class="users-table-container">
+        <div class="users-table-container">
             <table class="users-table">
                 <thead>
                     <tr>
@@ -170,7 +166,7 @@ try {
                     <?php endforeach; ?>
                 </tbody>
             </table>
-        </div> -->
+        </div>
 
         <div class="users-cards">
             <?php foreach ($dataUsers as $user): ?>

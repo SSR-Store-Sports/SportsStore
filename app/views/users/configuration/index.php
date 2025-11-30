@@ -5,6 +5,15 @@ if (empty($_SESSION['email'])) {
   exit();
 }
 
+function checkFields($password, $passwordConfirm)
+{
+  if (empty($password) || empty($passwordConfirm)) {
+    echo "<script>alert('Preencha todos os campos para trocar a senha.');</script>";
+    echo "<script>window.location.href = '/users/';</script>";
+    exit();
+  }
+}
+
 require 'config/database.php';
 
 $userID = trim($_SESSION['user_id'] ?? '');
@@ -12,7 +21,7 @@ $message = "";
 
 if ($userID) {
   try {
-    $stmt = $db->prepare("SELECT * FROM tatifit_users WHERE id = :userID");
+    $stmt = $db->prepare("SELECT id, name, email, phone, cpf FROM tatifit_users WHERE id = :userID");
     $stmt->execute([':userID' => $userID]);
     $user = $stmt->fetch();
 
@@ -21,17 +30,17 @@ if ($userID) {
     } else {
       $error = 'Usuário não encontrado!';
     }
-
   } catch (PDOException $e) {
-    // Tratamento de erro robusto
     error_log("Erro de Obter Perfil de Usuário no BD: " . $e->getMessage());
     $error = "Ocorreu um erro ao tentar obter perfil de usuário. Tente novamente mais tarde.";
   }
 };
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['delete_account'])) {
   $password = trim($_POST['password'] ?? '');
   $passwordConfirm = trim($_POST['confirm-password'] ?? '');
+
+  checkFields($password, $passwordConfirm);
 
   if ($password === $passwordConfirm) {
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
@@ -48,7 +57,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   } else {
     $message = 'As senhas não coincidem!';
   }
-};
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_account'])) {
+  try {
+    $stmt = $db->prepare("DELETE FROM tatifit_users WHERE id = :userID");
+    $stmt->execute([':userID' => $userID]);
+
+    if ($stmt->rowCount() > 0) {
+      session_destroy();
+      echo "<script>alert('Conta apagada com sucesso!'); window.location.href = '/';</script>";
+      exit();
+    } else {
+      $message = 'Erro ao apagar conta.';
+    }
+  } catch (PDOException $e) {
+    error_log("Erro ao deletar usuário: " . $e->getMessage());
+    $message = "Ocorreu um erro ao tentar apagar a conta. Tente novamente mais tarde.";
+  }
+}
 
 ?>
 
@@ -66,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="profile">
           <!-- <img src="/public/images/user-default.png" alt="Usuário" class="avatar"> -->
           <div class="profile-info">
-            <h2><?= htmlspecialchars($_response['name'] ?? 'Usuário') ?></h2>
+            <h2><?= htmlspecialchars($response['name'] ?? 'Usuário') ?></h2>
             <p><?= htmlspecialchars($response['email'] ?? 'email@exemplo.com') ?></p>
           </div>
         </div>
@@ -83,6 +110,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form method="POST" class="form">
           <h3>Informações Pessoais</h3>
 
+          <div class="form-group">
+            <label for="name">Identificação: </label>
+            <p><?= htmlspecialchars($response['id'] ?? '') ?></p>
+          </div>
+
           <div class="form-row">
             <div class="form-group">
               <label for="name">Nome completo</label>
@@ -93,9 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <label for="email">E-mail</label>
               <input disabled type="email" id="email" name="email" value="<?= htmlspecialchars($response['email'] ?? '') ?>">
             </div>
-          </div>
 
-          <div class="form-row">
             <div class="form-group">
               <label for="telefone">Telefone</label>
               <input disabled type="text" id="telefone" name="telefone" value="<?= htmlspecialchars($response['phone'] ?? '') ?>">
@@ -111,27 +141,60 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <div class="form-row">
             <div class="form-group">
               <label for="password">Nova senha</label>
-              <input type="password" id="password" name="password">
+              <input type="password" id="password" name="password" minlength="6" maxlength="50">
             </div>
 
             <div class="form-group">
               <label for="confirm-password">Confirmar senha</label>
-              <input type="password" id="confirm-password" name="confirm-password">
+              <input type="password" id="confirm-password" name="confirm-password" minlength="6" maxlength="50">
             </div>
           </div>
 
-          <div class="form-actions">
-            <?php if (isset($message) && !empty($message)): ?>
-              <div class="error-container">
-                <p class="error"><?= $message ?></p>
-              </div>
-            <?php endif; ?>
+          <?php if (isset($message) && !empty($message)): ?>
+            <div class="error-container">
+              <p class="error"><?= $message ?></p>
+            </div>
+          <?php endif; ?>
 
+          <div class="form-actions">
             <button type="submit" class="btn-save">Salvar Alterações</button>
+            <button type="button" class="btn-delete" onclick="openModal()">Apagar Conta</button>
             <a href="/auth/logout" class="btn-logout">Sair da Conta</a>
           </div>
         </form>
       </main>
     </div>
   </section>
+
+  <!-- Modal de Confirmação -->
+  <div id="deleteModal" class="modal">
+    <div class="modal-content">
+      <h3><i class="ph ph-warning"></i> Confirmar Exclusão</h3>
+      <p>Tem certeza que deseja apagar sua conta?<br><strong>Esta ação é permanente e não pode ser desfeita.</strong><br>Todos os seus dados serão perdidos.</p>
+      <div class="modal-actions">
+        <form method="POST" style="display: inline;">
+          <input type="hidden" name="delete_account" value="1">
+          <button type="submit" class="btn-confirm">Sim, Apagar</button>
+        </form>
+        <button type="button" class="btn-cancel" onclick="closeModal()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById('deleteModal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('deleteModal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('deleteModal');
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+  </script>
 </body>
