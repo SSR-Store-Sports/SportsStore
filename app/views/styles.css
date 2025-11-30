@@ -46,7 +46,7 @@
 .imgs-carrossel {
   display: flex;
   width: 100%;
-  height: 400px;
+  height: 542px;
   overflow: hidden;
   position: relative;
   transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -64,10 +64,10 @@
 
 /* Imagens dentro de um slide padrão */
 .slide img {
-    width: 100%;
-    height: 100%;
-    /* object-fit: cover; */ /* desativado */
-    transition: transform 0.3s ease;
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
 /* Hover suave nas imagens */
@@ -366,12 +366,15 @@
 }
 
 .root-products {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
-  padding: 0 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  display: flex;
+    grid-template-columns: minmax(280px, 1fr);
+    gap: 1rem;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .product {
@@ -506,7 +509,7 @@ button:active {
   }
 
   .root-products {
-    max-width: 1400px;
+    /* max-width: 1400px; */
     gap: 1.5rem;     /* mais espaço entre cards */
     padding: 0 40px; /* maior respiro lateral */
   }
@@ -572,6 +575,7 @@ button:active {
 
 @media screen and (max-width: 768px) {
   .root-products {
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.2rem;
     padding: 0 20px;
   }
@@ -671,12 +675,6 @@ button:active {
   }
 
 }
-  .section-botoes{
-    display: none;
-  }
-
-
-
 
 /* ====== 375px (360–400px) ====== */
 
@@ -742,10 +740,6 @@ button:active {
     top: 0.3rem;
     right: 0.3rem;
     border-radius: 7px;
-  }
-
-  .section-botoes{
-    display: none;
   }
   
 }
