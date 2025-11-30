@@ -1,7 +1,7 @@
 .users-main {
     padding: 40px 20px;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    /* min-height: 100vh; */
+    /* background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); */
 }
 
 .users-header {
@@ -35,6 +35,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    gap: 8px;
 }
 
 .search-box i {
@@ -56,6 +57,20 @@
 .search-box input:focus {
     outline: none;
     border-color: var(--primary-color);
+}
+
+.search-box button {
+    padding: 10px 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 142px;
+    transition: 0.4s ease;
+}
+
+.search-box button:hover {
+    color: var(--text-color-white);
+    background-color: var(--primary-color);
 }
 
 .role-filter {
