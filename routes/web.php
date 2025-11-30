@@ -7,6 +7,7 @@ $router = new Router(); // instaciando class Router para utilizar seus métodos 
 // importação global (todas as páginas)
 include 'app/views/_components/header/index.php'; // importando o header
 include 'app/views/_components/sidebar/index.php'; // importando a sidebar
+require 'app/middleware/AdminMiddleware.php';
 
 /*
   ROTAS DE LOGIN E REGISTRO
@@ -106,7 +107,6 @@ $router->get('/privacidade', function () {
 /*
   ROTAS DE ADMINISTRAÇÃO
 */
-
 $router->mount("/admin", function () use ($router) {
   $router->get('/', function () {
     require 'app/views/admin/index.php';
