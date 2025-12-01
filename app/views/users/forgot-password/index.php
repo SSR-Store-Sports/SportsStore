@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if ($user) {
             } else {
             }
-            
+
         } catch (PDOException $e) {
             error_log("Erro ao processar recuperação de senha: " . $e->getMessage());
             $error = "Ocorreu um erro no servidor. Tente novamente mais tarde.";
@@ -46,16 +46,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                     <?php if (isset($error) && !empty($error)): ?>
                         <div class="error-container">
-                            <p class="error"><?=$error ?></p>
+                            <p class="error"><?= $error ?></p>
                         </div>
                     <?php endif; ?>
-                    
+
                     <?php if (isset($success) && !empty($success)): ?>
                         <div class="success-container">
-                            <p class="success"><?=$success ?></p>
+                            <p class="success"><?= $success ?></p>
                         </div>
                     <?php endif; ?>
-                    
+
                     <button type="submit" class="btn-login">Enviar Link</button>
                 </form>
 

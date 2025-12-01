@@ -3,13 +3,13 @@ require 'config/database.php';
 
 // Verificar se ID do produto foi fornecido
 if (!isset($_GET['id']) || empty($_GET['id'])) {
-    echo "<script>alert('Produto não encontrado.'); window.location.href = '/produtos';</script>";
-    exit();
+  echo "<script>alert('Produto não encontrado.'); window.location.href = '/produtos';</script>";
+  exit();
 }
 
-$productId = (int)$_GET['id'];
+$productId = (int) $_GET['id'];
 
-// Buscar produto com categoria
+// produtos com categoria
 $stmt = $db->prepare("
     SELECT p.*, c.name as category_name 
     FROM tatifit_products p 
@@ -20,8 +20,8 @@ $stmt->execute([':id' => $productId]);
 $product = $stmt->fetch();
 
 if (!$product) {
-    echo "<script>alert('Produto não encontrado.'); window.location.href = '/produtos';</script>";
-    exit();
+  echo "<script>alert('Produto não encontrado.'); window.location.href = '/produtos';</script>";
+  exit();
 }
 
 // Buscar opções de estoque (tamanhos disponíveis) - assumindo que color não existe na tabela atual
@@ -54,9 +54,11 @@ $relatedProducts = $relatedStmt->fetchAll();
   <main class="product-selected-main">
     <div class="product-container">
       <div class="product-image">
-        <img src="<?= htmlspecialchars($product['url_image'] ?? '/public/images/product.jpg') ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+        <img src="<?= htmlspecialchars($product['url_image'] ?? '/public/images/product.jpg') ?>"
+          alt="<?= htmlspecialchars($product['name']) ?>">
         <div class="image-gallery">
-          <img src="<?= htmlspecialchars($product['url_image'] ?? '/public/images/product.jpg') ?>" alt="Imagem 1" class="thumb active">
+          <img src="<?= htmlspecialchars($product['url_image'] ?? '/public/images/product.jpg') ?>" alt="Imagem 1"
+            class="thumb active">
         </div>
       </div>
 
@@ -65,14 +67,15 @@ $relatedProducts = $relatedStmt->fetchAll();
           <h1><?= htmlspecialchars($product['name']) ?></h1>
           <div class="product-rating">
             <div class="stars">
-              <?php 
-                $rating = $product['rating'] ?? 0;
-                for ($i = 1; $i <= 5; $i++) {
-                  echo $i <= $rating ? '<i class="ph ph-star-fill"></i>' : '<i class="ph ph-star"></i>';
-                }
+              <?php
+              $rating = $product['rating'] ?? 0;
+              for ($i = 1; $i <= 5; $i++) {
+                echo $i <= $rating ? '<i class="ph ph-star-fill"></i>' : '<i class="ph ph-star"></i>';
+              }
               ?>
             </div>
-            <span>(<?= number_format($product['rating'] ?? 0, 1) ?>) <?= $product['rating_count'] ?? 0 ?> avaliações</span>
+            <span>(<?= number_format($product['rating'] ?? 0, 1) ?>) <?= $product['rating_count'] ?? 0 ?>
+              avaliações</span>
           </div>
         </div>
 
@@ -94,7 +97,8 @@ $relatedProducts = $relatedStmt->fetchAll();
         <div class="product-description">
           <h3>Descrição</h3>
           <div class="description-content">
-            <p class="description-text"><?= htmlspecialchars($product['description'] ?? 'Produto de alta qualidade da nossa coleção.') ?></p>
+            <p class="description-text">
+              <?= htmlspecialchars($product['description'] ?? 'Produto de alta qualidade da nossa coleção.') ?></p>
             <?php if (strlen($product['description'] ?? '') > 150): ?>
               <button type="button" class="btn-toggle-description">Ver mais</button>
             <?php endif; ?>
@@ -106,28 +110,30 @@ $relatedProducts = $relatedStmt->fetchAll();
 
         <form id="productForm" class="product-form">
           <?php if (!empty($colors)): ?>
-          <div class="color-selection">
-            <h3>Cor</h3>
-            <div class="color-options">
-              <?php foreach ($colors as $index => $color): ?>
-                <input type="radio" id="color<?= $index ?>" name="color" value="<?= htmlspecialchars($color) ?>" <?= $index === 0 ? 'required' : '' ?>>
-                <label for="color<?= $index ?>" class="color-option" title="<?= htmlspecialchars($color) ?>"><?= htmlspecialchars($color) ?></label>
-              <?php endforeach; ?>
+            <div class="color-selection">
+              <h3>Cor</h3>
+              <div class="color-options">
+                <?php foreach ($colors as $index => $color): ?>
+                  <input type="radio" id="color<?= $index ?>" name="color" value="<?= htmlspecialchars($color) ?>"
+                    <?= $index === 0 ? 'required' : '' ?>>
+                  <label for="color<?= $index ?>" class="color-option"
+                    title="<?= htmlspecialchars($color) ?>"><?= htmlspecialchars($color) ?></label>
+                <?php endforeach; ?>
+              </div>
             </div>
-          </div>
           <?php endif; ?>
 
           <?php if (!empty($sizes)): ?>
-          <div class="size-selection">
-            <h3>Tamanho</h3>
-            <div class="size-options">
-              <?php foreach ($sizes as $index => $size): ?>
-                <input type="radio" id="size<?= $size ?>" name="size" value="<?= htmlspecialchars($size) ?>" <?= $index === 0 ? 'required' : '' ?>>
-                <label for="size<?= $size ?>" class="size-option"><?= htmlspecialchars($size) ?></label>
-              <?php endforeach; ?>
+            <div class="size-selection">
+              <h3>Tamanho</h3>
+              <div class="size-options">
+                <?php foreach ($sizes as $index => $size): ?>
+                  <input type="radio" id="size<?= $size ?>" name="size" value="<?= htmlspecialchars($size) ?>" <?= $index === 0 ? 'required' : '' ?>>
+                  <label for="size<?= $size ?>" class="size-option"><?= htmlspecialchars($size) ?></label>
+                <?php endforeach; ?>
+              </div>
+              <a href="/guia-tamanhos" class="size-guide"><i class="ph ph-ruler"></i> Guia de tamanhos</a>
             </div>
-            <a href="/guia-tamanhos" class="size-guide"><i class="ph ph-ruler"></i> Guia de tamanhos</a>
-          </div>
           <?php endif; ?>
 
           <div class="quantity-selection">
@@ -170,42 +176,43 @@ $relatedProducts = $relatedStmt->fetchAll();
     </div>
 
     <?php if (!empty($relatedProducts)): ?>
-    <section class="related-products">
-      <div class="related-header">
-        <h2>Produtos Relacionados</h2>
-        <p>Você também pode gostar</p>
-      </div>
-      
-      <div class="products-grid">
-        <?php foreach ($relatedProducts as $relatedProduct): ?>
-        <div class="product-card">
-          <a href="/produto?id=<?= $relatedProduct['id'] ?>" class="product-link">
-            <div class="product-image-container">
-              <img src="<?= htmlspecialchars($relatedProduct['url_image'] ?? '/public/images/product.jpg') ?>" alt="<?= htmlspecialchars($relatedProduct['name']) ?>">
-            </div>
-            <div class="product-info-card">
-              <h3><?= htmlspecialchars($relatedProduct['name']) ?></h3>
-              <div class="product-rating-small">
-                <?php 
-                  $rating = $relatedProduct['rating'] ?? 0;
-                  for ($i = 1; $i <= 5; $i++) {
-                    echo $i <= $rating ? '<i class="ph ph-star-fill"></i>' : '<i class="ph ph-star"></i>';
-                  }
-                ?>
-                <span>(<?= number_format($relatedProduct['rating'] ?? 0, 1) ?>)</span>
-              </div>
-              <div class="product-price-card">
-                <span class="price-current">R$ <?= number_format($relatedProduct['price'], 2, ',', '.') ?></span>
-                <?php if (!empty($relatedProduct['old_price'])): ?>
-                  <span class="price-old">R$ <?= number_format($relatedProduct['old_price'], 2, ',', '.') ?></span>
-                <?php endif; ?>
-              </div>
-            </div>
-          </a>
+      <section class="related-products">
+        <div class="related-header">
+          <h2>Produtos Relacionados</h2>
+          <p>Você também pode gostar</p>
         </div>
-        <?php endforeach; ?>
-      </div>
-    </section>
+
+        <div class="products-grid">
+          <?php foreach ($relatedProducts as $relatedProduct): ?>
+            <div class="product-card">
+              <a href="/produto?id=<?= $relatedProduct['id'] ?>" class="product-link">
+                <div class="product-image-container">
+                  <img src="<?= htmlspecialchars($relatedProduct['url_image'] ?? '/public/images/product.jpg') ?>"
+                    alt="<?= htmlspecialchars($relatedProduct['name']) ?>">
+                </div>
+                <div class="product-info-card">
+                  <h3><?= htmlspecialchars($relatedProduct['name']) ?></h3>
+                  <div class="product-rating-small">
+                    <?php
+                    $rating = $relatedProduct['rating'] ?? 0;
+                    for ($i = 1; $i <= 5; $i++) {
+                      echo $i <= $rating ? '<i class="ph ph-star-fill"></i>' : '<i class="ph ph-star"></i>';
+                    }
+                    ?>
+                    <span>(<?= number_format($relatedProduct['rating'] ?? 0, 1) ?>)</span>
+                  </div>
+                  <div class="product-price-card">
+                    <span class="price-current">R$ <?= number_format($relatedProduct['price'], 2, ',', '.') ?></span>
+                    <?php if (!empty($relatedProduct['old_price'])): ?>
+                      <span class="price-old">R$ <?= number_format($relatedProduct['old_price'], 2, ',', '.') ?></span>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              </a>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      </section>
     <?php endif; ?>
   </main>
 

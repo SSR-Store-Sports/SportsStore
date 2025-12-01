@@ -5,18 +5,21 @@
 
     <h1>Termos de Uso — SportsStore</h1>
     <br>
-    <p>Bem-vindo à SportsStore! Ao utilizar nossa plataforma, você concorda com os seguintes termos e condições de uso.</p>
+    <p>Bem-vindo à SportsStore! Ao utilizar nossa plataforma, você concorda com os seguintes termos e condições de uso.
+    </p>
     <br>
     <h2>1. Aceitação dos Termos</h2>
     <br>
-    <p>Ao acessar e usar a SportsStore, você aceita integralmente estes Termos de Uso. Se não concordar, não utilize nossos serviços.</p>
+    <p>Ao acessar e usar a SportsStore, você aceita integralmente estes Termos de Uso. Se não concordar, não utilize
+      nossos serviços.</p>
     <br>
 
     <h2>2. Cadastro e Conta do Usuário</h2>
     <br>
     <h3>2.1. Informações Obrigatórias</h3>
     <br>
-    <p>Para realizar compras, você deve fornecer: nome completo, CPF, e-mail, telefone, data de nascimento, CEP e complemento do endereço.</p>
+    <p>Para realizar compras, você deve fornecer: nome completo, CPF, e-mail, telefone, data de nascimento, CEP e
+      complemento do endereço.</p>
     <br>
     <h3>2.2. Responsabilidades</h3>
     <br>
@@ -38,7 +41,8 @@
     <br>
     <h3>4.1. Carrinho de Compras</h3>
     <br>
-    <p>Limite máximo de 20 itens por usuário no carrinho. Usuários não logados podem adicionar produtos direcionando para login.</p>
+    <p>Limite máximo de 20 itens por usuário no carrinho. Usuários não logados podem adicionar produtos direcionando
+      para login.</p>
     <br>
     <h3>4.2. Formas de Pagamento</h3>
     <br>
@@ -61,7 +65,8 @@
 
     <h2>6. Trocas e Devoluções</h2>
     <br>
-    <p>Você tem até 30 dias para solicitar troca ou devolução. Produtos devem estar em perfeito estado, com etiquetas e embalagem original.</p>
+    <p>Você tem até 30 dias para solicitar troca ou devolução. Produtos devem estar em perfeito estado, com etiquetas e
+      embalagem original.</p>
     <br>
 
     <h2>7. Política de Uso</h2>
@@ -87,12 +92,14 @@
 
     <h2>9. Segurança</h2>
     <br>
-    <p>Utilizamos criptografia de dados, autenticação segura e sistemas antifraude para proteger suas informações e transações.</p>
+    <p>Utilizamos criptografia de dados, autenticação segura e sistemas antifraude para proteger suas informações e
+      transações.</p>
     <br>
 
     <h2>10. Alterações nos Termos</h2>
     <br>
-    <p>Reservamo-nos o direito de alterar estes termos a qualquer momento. Alterações entram em vigor imediatamente após publicação.</p>
+    <p>Reservamo-nos o direito de alterar estes termos a qualquer momento. Alterações entram em vigor imediatamente após
+      publicação.</p>
     <br>
     <p><strong>Última atualização: Janeiro de 2025</strong></p>
     <br>
