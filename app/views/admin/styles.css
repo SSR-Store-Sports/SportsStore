@@ -84,6 +84,14 @@
     background: linear-gradient(135deg, #fd7e14, #e83e8c);
 }
 
+.card-icon.categories {
+    background: linear-gradient(135deg, #6f42c1, #e83e8c);
+}
+
+.card-icon.stock {
+    background: linear-gradient(135deg, #17a2b8, #6610f2);
+}
+
 .card-header h3 {
     font-size: 20px;
     font-weight: 600;

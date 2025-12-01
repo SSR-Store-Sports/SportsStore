@@ -7,13 +7,19 @@ if ($_SESSION['role'] === "user") {
 }
 
 // Buscar estoque com informações do produto
-$stocks = $db->query("
+$query = $db->query("
     SELECT s.*, p.name as product_name, sup.name as supplier_name 
     FROM tatifit_stocks s 
     JOIN tatifit_products p ON s.products_id = p.id 
     LEFT JOIN tatifit_suppliers sup ON s.suppliers_id = sup.id 
-    ORDER BY p.name, s.size, s.color
-")->fetchAll();
+    ORDER BY p.name, s.size
+");
+
+if ($query === false) {
+    die('Erro na consulta SQL');
+}
+
+$stocks = $query->fetchAll();
 ?>
 
 <link rel="stylesheet" href="/app/views/admin/products/styles.css">
@@ -34,21 +40,25 @@ $stocks = $db->query("
             <tr>
               <th>Produto</th>
               <th>Tamanho</th>
-              <th>Cor</th>
               <th>Quantidade</th>
               <th>Fornecedor</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
             <?php foreach ($stocks as $stock): ?>
               <tr>
                 <td><?= htmlspecialchars($stock['product_name']) ?></td>
-                <td><?= htmlspecialchars($stock['size']) ?></td>
-                <td><?= htmlspecialchars($stock['color']) ?></td>
+                <td><span class="size-badge"><?= htmlspecialchars($stock['size']) ?></span></td>
                 <td class="quantity <?= $stock['stock_quantity'] < 10 ? 'low' : '' ?>">
-                  <?= $stock['stock_quantity'] ?>
+                  <?= $stock['stock_quantity'] ?> unidades
                 </td>
                 <td><?= htmlspecialchars($stock['supplier_name'] ?? 'N/A') ?></td>
+                <td>
+                  <button class="btn-edit-stock" onclick="editStock(<?= $stock['id'] ?>)">
+                    <i class="ph ph-pencil"></i>
+                  </button>
+                </td>
               </tr>
             <?php endforeach; ?>
           </tbody>
@@ -88,5 +98,44 @@ $stocks = $db->query("
       color: #c62828;
       font-weight: bold;
     }
+    
+    .size-badge {
+      background: var(--primary-color);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .btn-edit-stock {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .btn-edit-stock:hover {
+      background: #218838;
+    }
+    
+    @media (max-width: 768px) {
+      .stock-table {
+        font-size: 0.9rem;
+      }
+      
+      th, td {
+        padding: 0.5rem;
+      }
+    }
   </style>
+  <script>
+    function editStock(id) {
+      // Redirecionar para página de edição de estoque quando implementada
+      alert('Função de edição de estoque será implementada em breve.');
+    }
+  </script>
 </body>
