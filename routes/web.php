@@ -120,6 +120,20 @@ $router->mount("/admin", function () use ($router) {
     $router->post('/cadastrar', function () {
       require 'app/views/admin/products/index.php';
     });
+
+    $router->get('/listar', function () {
+      require 'app/views/admin/products/list.php';
+    });
+
+    $router->get('/editar', function () {
+      require 'app/views/admin/products/edit.php';
+    });
+
+    $router->post('/editar', function () {
+      require 'app/views/admin/products/edit.php';
+    });
+
+
   });
 
   $router->mount("/fornecedores", function () use ($router) {
@@ -129,6 +143,10 @@ $router->mount("/admin", function () use ($router) {
 
     $router->post('/cadastrar', function () {
       require 'app/views/admin/supplier/index.php';
+    });
+
+    $router->get('/listar', function () {
+      require 'app/views/admin/supplier/list.php';
     });
   });
 
@@ -147,8 +165,36 @@ $router->mount("/admin", function () use ($router) {
       require 'app/views/admin/users/index.php';
     });
 
-    $router->post('/relatorios', function () {
-      require 'app/views/admin/users/index.php';
+    $router->get('/relatorios', function () {
+      require 'app/views/admin/users/reports.php';
+    });
+  });
+
+  $router->mount("/categorias", function () use ($router) {
+    $router->get('/cadastrar', function () {
+      require 'app/views/admin/categories/index.php';
+    });
+
+    $router->post('/cadastrar', function () {
+      require 'app/views/admin/categories/index.php';
+    });
+
+    $router->get('/listar', function () {
+      require 'app/views/admin/categories/list.php';
+    });
+  });
+
+  $router->mount("/estoque", function () use ($router) {
+    $router->get('/cadastrar', function () {
+      require 'app/views/admin/stock/index.php';
+    });
+
+    $router->post('/cadastrar', function () {
+      require 'app/views/admin/stock/index.php';
+    });
+
+    $router->get('/listar', function () {
+      require 'app/views/admin/stock/list.php';
     });
   });
 
