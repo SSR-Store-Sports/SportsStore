@@ -68,4 +68,25 @@ document.addEventListener('DOMContentLoaded', function() {
         // Redirecionar para checkout
         window.location.href = '/carrinho';
     });
+
+    // Controle de expandir/recolher descrição
+    const toggleBtn = document.querySelector('.btn-toggle-description');
+    const descriptionText = document.querySelector('.description-text');
+    
+    if (toggleBtn && descriptionText) {
+        // Inicializar como colapsado
+        descriptionText.classList.add('collapsed');
+        
+        toggleBtn.addEventListener('click', function() {
+            if (descriptionText.classList.contains('collapsed')) {
+                descriptionText.classList.remove('collapsed');
+                descriptionText.classList.add('expanded');
+                this.textContent = 'Ver menos';
+            } else {
+                descriptionText.classList.add('collapsed');
+                descriptionText.classList.remove('expanded');
+                this.textContent = 'Ver mais';
+            }
+        });
+    }
 });
