@@ -153,13 +153,12 @@ try {
         </div>
         <?php endforeach; ?>
       <?php else: ?>
-        <div>
-          <div>
-            <h1>Parece que não há nenhum pedido cadastrado!</h1>
-            <i class="ph ph-smiley-sad"></i>
+        <div class="empty-state">
+          <div class="empty-state-content">
+            <i class="ph ph-smiley-sad empty-icon"></i>
+            <h1 class="empty-title">Parece que não há nenhum produto cadastrado!</h1>
+            <p class="empty-message">Tente novamente mais tarde.</p>
           </div>
-
-          <p>Tente novamente mais tarde.</p>
         </div>
       <?php endif; ?>
     </div>

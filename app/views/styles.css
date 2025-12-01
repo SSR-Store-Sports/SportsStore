@@ -757,3 +757,71 @@ button:active {
   
 }
 
+/* =========================================================
+   ESTADO VAZIO (quando não há produtos)
+   ========================================================= */
+
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  width: 100%;
+  padding: 2rem;
+}
+
+.empty-state-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  max-width: 400px;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  color: var(--text-color-gray);
+  opacity: 0.7;
+  animation: gentleBounce 2s ease-in-out infinite;
+}
+
+.empty-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-color-black);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.empty-message {
+  font-size: 1rem;
+  color: var(--text-color-gray);
+  margin: 0;
+  opacity: 0.8;
+}
+
+@keyframes gentleBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Mobile responsivo */
+@media (max-width: 480px) {
+  .empty-state {
+    min-height: 200px;
+    padding: 1rem;
+  }
+  
+  .empty-icon {
+    font-size: 3rem;
+  }
+  
+  .empty-title {
+    font-size: 1.2rem;
+  }
+  
+  .empty-message {
+    font-size: 0.9rem;
+  }
+}

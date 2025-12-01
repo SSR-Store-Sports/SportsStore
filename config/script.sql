@@ -8,7 +8,7 @@ CREATE TABLE tatifit_users (
     email VARCHAR(80) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL, 
     phone VARCHAR(20) NOT NULL,
-    cpf VARCHAR(11) UNIQUE NOT NULL, 
+    cpf VARCHAR(14) UNIQUE NOT NULL, 
     role ENUM('user', 'admin') DEFAULT 'user'
 );
 
@@ -128,14 +128,11 @@ CREATE TABLE tatifit_payments (
     FOREIGN KEY (order_id) REFERENCES tatifit_orders (id)
 );
 
--- INSERTIONS (Adaptadas)
 INSERT INTO tatifit_users (name, email, password, phone, cpf, role) VALUES
-('Mariana Santos', 'mariana.santos@example.com', '$2y$10$QjJtW1M2VvB1zY8/j/f.Q.', '11988887777', '12345678901', 'user'), -- Exemplo de hash (PHP: password_hash('senha123', PASSWORD_BCRYPT))
-('Thiago Ramos', 'thiago.ramos@example.com', '$2y$10$QjJtW1M2VvB1zY8/j/f.Q.', '41955554444', '45678901234', 'admin');
+('admin', 'tatifitwearadm@gmail.com', '$2y$10$zZ9ELGb.O4tSLfkVXhgYDeKa.VxvezZwjbBrxuQvud.kYfqQd9n16', '11 94456-8825', '237.110.482-45', 'admin');
 
 INSERT INTO tatifit_users_address (type, cep, street, neighborhood, number, city, state, user_id) VALUES
-('Residencial', '01001000', 'Rua das Flores', 'Centro', '100', 'São Paulo', 'SP', 1),
-('Residencial', '80010000', 'Rua XV de Novembro', 'Centro', '400', 'Curitiba', 'PR', 2);
+('Residencial', '01001000', 'Rua das Flores', 'Centro', '100', 'São Paulo', 'SP', 1);
 
 INSERT INTO tatifit_categories (name) VALUES
 ('Conjuntos'),
@@ -145,29 +142,7 @@ INSERT INTO tatifit_categories (name) VALUES
 ('Jaquetas');
 
 INSERT INTO tatifit_suppliers (name, telephone, type) VALUES
-('FitWear Brasil', '11999990000', 'Roupas Esportivas');
-
-INSERT INTO tatifit_products
-(name, description, price, old_price, discount_percent, free_shipping, rating, rating_count, installments_info, is_new, status, url_image, category_id, author_id)
-VALUES
-('Conjunto Fitness Completo', 'Conjunto esportivo de alta compressão', 120.00, 160.00, 25, 1, 4.8, 203, '12x de R$ 10,00', 1, 'Ativo', '/img/produto1.png', 1, 2), -- category_id 1 (Conjuntos)
-('Camiseta Dry Fit', 'Camiseta leve e respirável', 99.90, 129.90, 23, 0, 4.6, 180, '10x de R$ 9,99', 0, 'Ativo', '/img/produto2.png', 2, 2); -- category_id 2 (Camisetas)
-
-INSERT INTO tatifit_stocks (size, stock_quantity, products_id, suppliers_id) VALUES
-('M', 30, 1, 1),
-('G',  25, 2, 1);
-
-INSERT INTO tatifit_orders (total_price, status, user_id) VALUES
-(120.00, 'Entregue', 1),
-(99.90, 'Pendente', 2);
-
-INSERT INTO tatifit_order_items (quantity, unit_price, order_id, stock_id) VALUES
-(1, 120.00, 1, 1),
-(1, 99.90, 2, 2);
-
-INSERT INTO tatifit_payments (transaction_code, status, payment_method, amount, order_id) VALUES
-('TXN20250001', 'Aprovado', 'Cartão de Crédito', 120.00, 1),
-('TXN20250002', 'Aguardando', 'Boleto', 99.90, 2);
+('Roupas & Esportes Brasil', '11999990000', 'Roupas Esportivas');
 
 SELECT * FROM tatifit_users;
 
@@ -179,7 +154,6 @@ SELECT
 FROM
     tatifit_products
 WHERE
-    -- Seleciona produtos que têm um preço original e um preço novo (com desconto)
     old_price IS NOT NULL
     AND price < old_price
     OR discount_percent > 0;
