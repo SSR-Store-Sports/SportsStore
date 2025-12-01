@@ -6,46 +6,69 @@ if ($_SESSION['role'] === "user") {
     exit();
 }
 
+$categories = $db->query("SELECT id, name FROM tatifit_categories ORDER BY name")->fetchAll();
+if (empty($categories)) {
+  $message = "⚠️ Você precisa cadastrar pelo menos uma categoria antes de adicionar produtos. <a href='/admin/categorias/cadastrar'>Cadastrar categoria</a>";
+}
+
 $message = "";
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($categories)) {
+  $uploadedImage = '';
+  
+  if (isset($_FILES['product_image']) && $_FILES['product_image']['error'] === UPLOAD_ERR_OK) {
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    $maxSize = 5 * 1024 * 1024; // 5MB
+    
+    if (!in_array($_FILES['product_image']['type'], $allowedTypes)) {
+      $message = "❌ Apenas arquivos JPG, JPEG e PNG são permitidos.";
+    } elseif ($_FILES['product_image']['size'] > $maxSize) {
+      $message = "❌ Arquivo muito grande. Máximo 5MB.";
+    } else {
+      $uploadDir = 'public/uploads/products/';
+      $fileName = uniqid() . '_' . basename($_FILES['product_image']['name']);
+      $uploadPath = $uploadDir . $fileName;
+      
+      if (move_uploaded_file($_FILES['product_image']['tmp_name'], $uploadPath)) {
+        $uploadedImage = '/public/uploads/products/' . $fileName;
+      } else {
+        $message = "❌ Erro ao fazer upload da imagem.";
+      }
+    }
+  } else {
+    $message = "❌ Imagem é obrigatória.";
+  }
+
   $productRegisterd = [
     'name' => trim($_POST['name'] ?? ''),
     'description' => trim($_POST['description'] ?? ''),
     'price' => trim($_POST['price'] ?? ''),
-    'old_price' => trim($_POST['old_price'] ?? ''),
-    'discount_percent' => trim($_POST['discount_percent'] ?? ''),
+    'category_id' => trim($_POST['category_id'] ?? ''),
     'free_shipping' => trim($_POST['free_shipping'] ?? ''),
-    'rating' => trim($_POST['rating'] ?? ''),
-    'rating_count' => trim($_POST['rating_count'] ?? ''),
     'installments_info' => trim($_POST['installments_info'] ?? ''),
     'is_new' => trim($_POST['is_new'] ?? ''),
-    'amount' => trim($_POST['amount'] ?? ''),
+
     'status' => trim($_POST['status'] ?? ''),
-    'url_image' => trim($_POST['url_image'] ?? ''),
+    'url_image' => $uploadedImage,
   ];
 
   try {
     $db->beginTransaction();
 
     $stmt = $db->prepare("INSERT INTO tatifit_products 
-    (name, description, price, old_price, discount_percent, free_shipping, rating, rating_count, installments_info, is_new, amount, status, url_image, author_id)
-    VALUES (:name, :description, :price, :old_price, :discount_percent, :free_shipping, :rating, :rating_count, :installments_info, :is_new, :amount, :status, :url_image, :author_id)
+    (name, description, price, free_shipping, installments_info, is_new, status, url_image, category_id, author_id)
+    VALUES (:name, :description, :price, :free_shipping, :installments_info, :is_new, :status, :url_image, :category_id, :author_id)
   ");
 
     $params = [
       ':name' => $productRegisterd['name'],
       ':description' => $productRegisterd['description'],
       ':price' => $productRegisterd['price'],
-      ':old_price' => $productRegisterd['old_price'],
-      ':discount_percent' => $productRegisterd['discount_percent'],
       ':free_shipping' => $productRegisterd['free_shipping'] ? 1 : 0,
-      ':rating' => $productRegisterd['rating'],
-      ':rating_count' => $productRegisterd['rating_count'],
       ':installments_info' => $productRegisterd['installments_info'],
       ':is_new' => $productRegisterd['is_new'] ? 1 : 0,
-      ':amount' => $productRegisterd['amount'],
       ':status' => $productRegisterd['status'],
       ':url_image' => $productRegisterd['url_image'],
+      ':category_id' => $productRegisterd['category_id'],
       ':author_id' => $_SESSION['user_id'],
     ];
     
@@ -66,15 +89,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
   <main class="product-page">
     <div class="product-card">
+      <nav class="breadcrumb">
+        <span>Admin</span> > <span>Cadastro de Produto</span>
+      </nav>
+
       <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a>
       <h1>Cadastro de Produto</h1>
       <p>Adicione um novo item à loja com todas as informações necessárias.</p>
 
       <?php if ($message): ?>
-        <div class="alert success"><?= $message ?></div>
+        <div class="alert <?= strpos($message, '✅') !== false ? 'success' : 'error' ?>"><?= $message ?></div>
       <?php endif; ?>
 
-      <form action="" method="POST" class="product-form">
+      <form action="" method="POST" class="product-form" enctype="multipart/form-data">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Nome do Produto</label>
@@ -82,17 +109,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
 
           <div class="form-group">
+            <label for="category_id">Categoria</label>
+            <select name="category_id" required>
+              <option value="">Selecione uma categoria</option>
+              <?php foreach ($categories as $category): ?>
+                <option value="<?= $category['id'] ?>"><?= htmlspecialchars($category['name']) ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+        </div>
+
+        <div class="hr3"></div>
+
+        <div class="form-row">
+          <div class="form-group">
             <label for="description">Descrição</label>
             <textarea name="description" id="description" rows="3" placeholder="Descrição breve do produto"></textarea>
           </div>
         </div>
 
+        <div class="hr3"></div>
+
         <div class="form-row">
           <div class="form-group">
-            <label for="price">Preço Atual (R$)</label>
+            <label for="price">Preço (R$)</label>
             <input type="number" name="price" step="0.01" required>
           </div>
-          
+
+          <div class="form-group">
+            <label for="installments_info">Parcelamento</label>
+            <select name="installments_info">
+              <option value="À vista">À vista</option>
+              <option value="2x sem juros">2x sem juros</option>
+              <option value="3x sem juros">3x sem juros</option>
+              <option value="6x sem juros">6x sem juros</option>
+              <option value="10x sem juros">10x sem juros</option>
+              <option value="12x sem juros">12x sem juros</option>
+            </select>
+          </div>
+
           <div class="form-group">
             <label for="status">Status</label>
             <select name="status">
@@ -100,40 +155,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <option value="Inativo">Inativo</option>
             </select>
           </div>
-
-          <!-- <div class="form-group">
-            <label for="old_price">Preço Antigo (R$)</label>
-            <input type="number" name="old_price" step="0.01">
-          </div> -->
-          <!-- <div class="form-group">
-            <label for="discount_percent">Desconto (%)</label>
-            <input type="number" name="discount_percent" min="0" max="100">
-          </div> -->
         </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="amount">Estoque</label>
-            <input type="number" name="amount" min="0">
-          </div>
-
-          <div class="form-group">
-            <label for="installments_info">Parcelamento</label>
-            <input type="text" name="installments_info" placeholder="Ex: 12x de R$ 10,00 sem juros">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="rating">Avaliação Média</label>
-            <input type="number" name="rating" step="0.1" min="0" max="5">
-          </div>
-
-          <div class="form-group">
-            <label for="rating_count">Qtd. de Avaliações</label>
-            <input type="number" name="rating_count" min="0">
-          </div>
-        </div>
+        <div class="hr3"></div>
 
         <div class="form-row toggles">
           <label><input type="checkbox" name="free_shipping"> Frete Grátis</label>
@@ -142,9 +166,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="form-row image-section">
           <div class="form-group image-input">
-            <label for="url_image">URL da Imagem</label>
-            <input type="text" name="url_image" id="url_image" placeholder="https://exemplo.com/imagem.jpg"
-              oninput="previewImage()">
+            <label>Imagem do Produto</label>
+            <div class="upload-area" onclick="document.getElementById('product_image').click()">
+              <i class="ph ph-upload"></i>
+              <p>Clique aqui para fazer upload</p>
+              <span>PNG, JPG ou JPEG (máx. 5MB)</span>
+            </div>
+            <input type="file" name="product_image" id="product_image" accept="image/*" onchange="previewImage()" style="display: none;" required>
           </div>
           <div class="image-preview">
             <img id="preview" src="https://via.placeholder.com/250x250?text=Pré+visualização" alt="Pré-visualização">
@@ -160,8 +188,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <script>
     function previewImage() {
-      const url = document.getElementById('url_image').value;
-      document.getElementById('preview').src = url || 'https://via.placeholder.com/250x250?text=Pré+visualização';
+      const file = document.getElementById('product_image').files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('preview').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
     }
   </script>
 </body>

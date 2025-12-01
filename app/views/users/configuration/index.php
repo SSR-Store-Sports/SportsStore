@@ -34,7 +34,8 @@ if ($userID) {
     error_log("Erro de Obter Perfil de Usuário no BD: " . $e->getMessage());
     $error = "Ocorreu um erro ao tentar obter perfil de usuário. Tente novamente mais tarde.";
   }
-};
+}
+;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['delete_account'])) {
   $password = trim($_POST['password'] ?? '');
@@ -118,17 +119,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_account'])) {
           <div class="form-row">
             <div class="form-group">
               <label for="name">Nome completo</label>
-              <input disabled type="text" id="name" name="name" value="<?= htmlspecialchars($response['name'] ?? '') ?>">
+              <input disabled type="text" id="name" name="name"
+                value="<?= htmlspecialchars($response['name'] ?? '') ?>">
             </div>
 
             <div class="form-group">
               <label for="email">E-mail</label>
-              <input disabled type="email" id="email" name="email" value="<?= htmlspecialchars($response['email'] ?? '') ?>">
+              <input disabled type="email" id="email" name="email"
+                value="<?= htmlspecialchars($response['email'] ?? '') ?>">
             </div>
 
             <div class="form-group">
               <label for="telefone">Telefone</label>
-              <input disabled type="text" id="telefone" name="telefone" value="<?= htmlspecialchars($response['phone'] ?? '') ?>">
+              <input disabled type="text" id="telefone" name="telefone"
+                value="<?= htmlspecialchars($response['phone'] ?? '') ?>">
             </div>
 
             <div class="form-group">
@@ -170,7 +174,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_account'])) {
   <div id="deleteModal" class="modal">
     <div class="modal-content">
       <h3><i class="ph ph-warning"></i> Confirmar Exclusão</h3>
-      <p>Tem certeza que deseja apagar sua conta?<br><strong>Esta ação é permanente e não pode ser desfeita.</strong><br>Todos os seus dados serão perdidos.</p>
+      <p>Tem certeza que deseja apagar sua conta?<br><strong>Esta ação é permanente e não pode ser
+          desfeita.</strong><br>Todos os seus dados serão perdidos.</p>
       <div class="modal-actions">
         <form method="POST" style="display: inline;">
           <input type="hidden" name="delete_account" value="1">
@@ -190,7 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_account'])) {
       document.getElementById('deleteModal').style.display = 'none';
     }
 
-    window.onclick = function(event) {
+    window.onclick = function (event) {
       const modal = document.getElementById('deleteModal');
       if (event.target == modal) {
         closeModal();

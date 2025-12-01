@@ -18,10 +18,16 @@
                 <p>Bem-vinda(o) à TatiFit!<br>
                 Agora você pode fazer login e começar suas compras</p>
 
-                <p>Em 5 minutos será redicionado automaticamente.</p>
+                <p>Em 5 segundos será redicionado automaticamente.</p>
                 
                 <a href="/auth/login" class="btn-login">Fazer Login</a>
             </div>
         </div>
     </main>
+
+    <script>
+        setTimeout(() => {
+            window.location.href = '/auth/login';
+        }, 5000);
+    </script>
 </body>

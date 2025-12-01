@@ -1,84 +1,140 @@
+<?php
+require 'config/database.php';
+
+// Verificar se ID do produto foi fornecido
+if (!isset($_GET['id']) || empty($_GET['id'])) {
+  echo "<script>alert('Produto não encontrado.'); window.location.href = '/produtos';</script>";
+  exit();
+}
+
+$productId = (int) $_GET['id'];
+
+// produtos com categoria
+$stmt = $db->prepare("
+    SELECT p.*, c.name as category_name 
+    FROM tatifit_products p 
+    LEFT JOIN tatifit_categories c ON p.category_id = c.id 
+    WHERE p.id = :id AND p.status = 'Ativo'
+");
+$stmt->execute([':id' => $productId]);
+$product = $stmt->fetch();
+
+if (!$product) {
+  echo "<script>alert('Produto não encontrado.'); window.location.href = '/produtos';</script>";
+  exit();
+}
+
+// Buscar opções de estoque (tamanhos disponíveis) - assumindo que color não existe na tabela atual
+$stockStmt = $db->prepare("SELECT DISTINCT size, stock_quantity FROM tatifit_stocks WHERE products_id = :id AND stock_quantity > 0");
+$stockStmt->execute([':id' => $productId]);
+$stockOptions = $stockStmt->fetchAll();
+
+// Agrupar por tamanho
+$sizes = array_unique(array_column($stockOptions, 'size'));
+$colors = []; // Cores não implementadas ainda
+
+// Buscar produtos relacionados (primeiro da mesma categoria, depois outros)
+$relatedStmt = $db->prepare("
+    SELECT p.*, c.name as category_name 
+    FROM tatifit_products p 
+    LEFT JOIN tatifit_categories c ON p.category_id = c.id 
+    WHERE p.id != :current_id
+    ORDER BY 
+        CASE WHEN p.category_id = :category_id THEN 0 ELSE 1 END,
+        RAND() 
+    LIMIT 4
+");
+$relatedStmt->execute([':category_id' => $product['category_id'], ':current_id' => $productId]);
+$relatedProducts = $relatedStmt->fetchAll();
+?>
+
 <link rel="stylesheet" href="/app/views/products/product-selected/styles.css" />
 
 <body>
   <main class="product-selected-main">
     <div class="product-container">
       <div class="product-image">
-        <img src="/public/images/product.jpg" alt="Top Fitness">
+        <img src="<?= htmlspecialchars($product['url_image'] ?? '/public/images/product.jpg') ?>"
+          alt="<?= htmlspecialchars($product['name']) ?>">
         <div class="image-gallery">
-          <img src="/public/images/product.jpg" alt="Imagem 1" class="thumb active">
-          <img src="/public/images/product.jpg" alt="Imagem 2" class="thumb">
-          <img src="/public/images/product.jpg" alt="Imagem 3" class="thumb">
+          <img src="<?= htmlspecialchars($product['url_image'] ?? '/public/images/product.jpg') ?>" alt="Imagem 1"
+            class="thumb active">
         </div>
       </div>
 
       <div class="product-details">
         <div class="product-header">
-          <h1>Top Fitness Premium</h1>
+          <h1><?= htmlspecialchars($product['name']) ?></h1>
           <div class="product-rating">
             <div class="stars">
-              <i class="ph ph-star-fill"></i>
-              <i class="ph ph-star-fill"></i>
-              <i class="ph ph-star-fill"></i>
-              <i class="ph ph-star-fill"></i>
-              <i class="ph ph-star"></i>
+              <?php
+              $rating = $product['rating'] ?? 0;
+              for ($i = 1; $i <= 5; $i++) {
+                echo $i <= $rating ? '<i class="ph ph-star-fill"></i>' : '<i class="ph ph-star"></i>';
+              }
+              ?>
             </div>
-            <span>(4.2) 127 avaliações</span>
+            <span>(<?= number_format($product['rating'] ?? 0, 1) ?>) <?= $product['rating_count'] ?? 0 ?>
+              avaliações</span>
           </div>
         </div>
 
         <div class="price-section">
           <div class="price">
-            <span class="current-price">R$ 89,90</span>
-            <span class="old-price">R$ 120,00</span>
+            <span class="current-price">R$ <?= number_format($product['price'], 2, ',', '.') ?></span>
+            <?php if (!empty($product['old_price'])): ?>
+              <span class="old-price">R$ <?= number_format($product['old_price'], 2, ',', '.') ?></span>
+            <?php endif; ?>
           </div>
-          <div class="installments">
-            <i class="ph ph-credit-card"></i>
-            <span>ou 3x de R$ 29,97 sem juros</span>
-          </div>
+          <?php if (!empty($product['installments_info'])): ?>
+            <div class="installments">
+              <i class="ph ph-credit-card"></i>
+              <span><?= htmlspecialchars($product['installments_info']) ?></span>
+            </div>
+          <?php endif; ?>
         </div>
 
         <div class="product-description">
           <h3>Descrição</h3>
-          <p>Top fitness de alta qualidade, confeccionado com tecido respirável e tecnologia dry-fit. Ideal para treinos
-            intensos e atividades esportivas. Oferece máximo conforto e liberdade de movimento.</p>
+          <div class="description-content">
+            <p class="description-text">
+              <?= htmlspecialchars($product['description'] ?? 'Produto de alta qualidade da nossa coleção.') ?></p>
+            <?php if (strlen($product['description'] ?? '') > 150): ?>
+              <button type="button" class="btn-toggle-description">Ver mais</button>
+            <?php endif; ?>
+          </div>
+          <?php if (!empty($product['category_name'])): ?>
+            <p class="category-info"><strong>Categoria:</strong> <?= htmlspecialchars($product['category_name']) ?></p>
+          <?php endif; ?>
         </div>
 
         <form id="productForm" class="product-form">
-          <div class="color-selection">
-            <h3>Cor</h3>
-            <div class="color-options">
-              <input type="radio" id="color1" name="color" value="rosa" required>
-              <label for="color1" class="color-option" style="background-color: #e91e63;"></label>
-
-              <input type="radio" id="color2" name="color" value="preto">
-              <label for="color2" class="color-option" style="background-color: #000;"></label>
-
-              <input type="radio" id="color3" name="color" value="branco">
-              <label for="color3" class="color-option" style="background-color: #fff; border: 2px solid #ddd;"></label>
-
-              <input type="radio" id="color4" name="color" value="azul">
-              <label for="color4" class="color-option" style="background-color: #2196f3;"></label>
+          <?php if (!empty($colors)): ?>
+            <div class="color-selection">
+              <h3>Cor</h3>
+              <div class="color-options">
+                <?php foreach ($colors as $index => $color): ?>
+                  <input type="radio" id="color<?= $index ?>" name="color" value="<?= htmlspecialchars($color) ?>"
+                    <?= $index === 0 ? 'required' : '' ?>>
+                  <label for="color<?= $index ?>" class="color-option"
+                    title="<?= htmlspecialchars($color) ?>"><?= htmlspecialchars($color) ?></label>
+                <?php endforeach; ?>
+              </div>
             </div>
-          </div>
+          <?php endif; ?>
 
-          <div class="size-selection">
-            <h3>Tamanho</h3>
-            <div class="size-options">
-              <input type="radio" id="sizeP" name="size" value="P" required>
-              <label for="sizeP" class="size-option">P</label>
-
-              <input type="radio" id="sizeM" name="size" value="M">
-              <label for="sizeM" class="size-option">M</label>
-
-              <input type="radio" id="sizeG" name="size" value="G">
-              <label for="sizeG" class="size-option">G</label>
-
-              <input type="radio" id="sizeGG" name="size" value="GG">
-              <label for="sizeGG" class="size-option">GG</label>
+          <?php if (!empty($sizes)): ?>
+            <div class="size-selection">
+              <h3>Tamanho</h3>
+              <div class="size-options">
+                <?php foreach ($sizes as $index => $size): ?>
+                  <input type="radio" id="size<?= $size ?>" name="size" value="<?= htmlspecialchars($size) ?>" <?= $index === 0 ? 'required' : '' ?>>
+                  <label for="size<?= $size ?>" class="size-option"><?= htmlspecialchars($size) ?></label>
+                <?php endforeach; ?>
+              </div>
+              <a href="/guia-tamanhos" class="size-guide"><i class="ph ph-ruler"></i> Guia de tamanhos</a>
             </div>
-            <a href="#" class="size-guide"><i class="ph ph-ruler"></i> Guia de tamanhos</a>
-          </div>
+          <?php endif; ?>
 
           <div class="quantity-selection">
             <h3>Quantidade</h3>
@@ -91,10 +147,10 @@
           </div>
 
           <div class="action-buttons">
-            <button type="submit" class="btn-add-cart">
+            <a href="/carrinho?produto=<?= $product['id'] ?>" class="btn-add-cart">
               <i class="ph ph-shopping-cart"></i>
               Adicionar ao Carrinho
-            </button>
+            </a>
             <button type="button" class="btn-buy-now">
               <i class="ph ph-lightning"></i>
               Comprar Agora
@@ -118,6 +174,46 @@
         </div>
       </div>
     </div>
+
+    <?php if (!empty($relatedProducts)): ?>
+      <section class="related-products">
+        <div class="related-header">
+          <h2>Produtos Relacionados</h2>
+          <p>Você também pode gostar</p>
+        </div>
+
+        <div class="products-grid">
+          <?php foreach ($relatedProducts as $relatedProduct): ?>
+            <div class="product-card">
+              <a href="/produto?id=<?= $relatedProduct['id'] ?>" class="product-link">
+                <div class="product-image-container">
+                  <img src="<?= htmlspecialchars($relatedProduct['url_image'] ?? '/public/images/product.jpg') ?>"
+                    alt="<?= htmlspecialchars($relatedProduct['name']) ?>">
+                </div>
+                <div class="product-info-card">
+                  <h3><?= htmlspecialchars($relatedProduct['name']) ?></h3>
+                  <div class="product-rating-small">
+                    <?php
+                    $rating = $relatedProduct['rating'] ?? 0;
+                    for ($i = 1; $i <= 5; $i++) {
+                      echo $i <= $rating ? '<i class="ph ph-star-fill"></i>' : '<i class="ph ph-star"></i>';
+                    }
+                    ?>
+                    <span>(<?= number_format($relatedProduct['rating'] ?? 0, 1) ?>)</span>
+                  </div>
+                  <div class="product-price-card">
+                    <span class="price-current">R$ <?= number_format($relatedProduct['price'], 2, ',', '.') ?></span>
+                    <?php if (!empty($relatedProduct['old_price'])): ?>
+                      <span class="price-old">R$ <?= number_format($relatedProduct['old_price'], 2, ',', '.') ?></span>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              </a>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      </section>
+    <?php endif; ?>
   </main>
 
   <script src="/public/js/product-selected.js"></script>

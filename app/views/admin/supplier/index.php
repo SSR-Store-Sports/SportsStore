@@ -6,6 +6,28 @@ if ($_SESSION['role'] === "user") {
     exit();
 }
 
+$message = "";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $supplierData = [
+    'name' => trim($_POST['name'] ?? ''),
+    'telephone' => trim($_POST['telephone'] ?? ''),
+    'type' => trim($_POST['type'] ?? ''),
+  ];
+
+  try {
+    $stmt = $db->prepare("INSERT INTO tatifit_suppliers (name, telephone, type) VALUES (:name, :telephone, :type)");
+    $stmt->execute($supplierData);
+    $message = "✅ Fornecedor cadastrado com sucesso!";
+  } catch (Exception $e) {
+    $message = "❌ Erro: " . $e->getMessage();
+  }
+}
+
+// Buscar fornecedores
+$suppliers = $db->query("SELECT s.*, COUNT(p.id) as products_count FROM tatifit_suppliers s LEFT JOIN tatifit_stocks st ON s.id = st.suppliers_id LEFT JOIN tatifit_products p ON st.products_id = p.id GROUP BY s.id ORDER BY s.name")->fetchAll();
+$totalSuppliers = count($suppliers);
+$activeSuppliers = $totalSuppliers; // Assumindo todos ativos por enquanto
+
 ?>
 
 <link rel="stylesheet" href="/app/views/admin/supplier/styles.css">
@@ -112,7 +134,7 @@ if ($_SESSION['role'] === "user") {
                     <i class="ph ph-x"></i>
                 </button>
             </div>
-            <form class="supplier-form">
+            <form class="supplier-form" method="POST">
                 <div class="form-group">
                     <label>Nome do Fornecedor</label>
                     <input type="text" name="name" required>
@@ -129,6 +151,9 @@ if ($_SESSION['role'] === "user") {
                     <button type="button" class="btn-cancel">Cancelar</button>
                     <button type="submit" class="btn-save">Salvar</button>
                 </div>
+                <?php if ($message): ?>
+                    <div class="alert <?= strpos($message, '✅') !== false ? 'success' : 'error' ?>"><?= $message ?></div>
+                <?php endif; ?>
             </form>
         </div>
     </div>

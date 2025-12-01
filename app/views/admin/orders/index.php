@@ -6,6 +6,28 @@ if ($_SESSION['role'] === "user") {
     exit();
 }
 
+// Buscar pedidos com informações do usuário
+$orders = $db->query("
+    SELECT o.id, o.total_price as price, o.status, o.date_creation, u.name, u.email 
+    FROM tatifit_orders o 
+    JOIN tatifit_users u ON o.user_id = u.id 
+    ORDER BY o.date_creation DESC
+")->fetchAll();
+
+// Estatísticas por status
+$stats = [
+    'Pendente' => 0,
+    'Em Processamento' => 0,
+    'Enviado' => 0,
+    'Entregue' => 0
+];
+
+foreach ($orders as $order) {
+    if (isset($stats[$order['status']])) {
+        $stats[$order['status']]++;
+    }
+}
+
 ?>
 
 <link rel="stylesheet" href="/app/views/admin/orders/styles.css">
@@ -13,6 +35,9 @@ if ($_SESSION['role'] === "user") {
 
 <body>
     <main class="orders-main">
+        <nav class="">
+            <a href="/admin">Admin</a> > <span>Gerenciar Pedidos</span>
+        </nav>
         <div class="orders-header">
             <h1><i class="ph ph-shopping-bag"></i> Gerenciar Pedidos</h1>
             <div class="header-actions">
@@ -22,11 +47,11 @@ if ($_SESSION['role'] === "user") {
                 </div>
                 <select class="status-filter">
                     <option value="">Todos os Status</option>
-                    <option value="pendente">Pendente</option>
-                    <option value="processando">Processando</option>
-                    <option value="enviado">Enviado</option>
-                    <option value="entregue">Entregue</option>
-                    <option value="cancelado">Cancelado</option>
+                    <option value="Pendente">Pendente</option>
+                    <option value="Em Processamento">Em Processamento</option>
+                    <option value="Enviado">Enviado</option>
+                    <option value="Entregue">Entregue</option>
+                    <option value="Cancelado">Cancelado</option>
                 </select>
             </div>
         </div>
@@ -37,7 +62,7 @@ if ($_SESSION['role'] === "user") {
                     <i class="ph ph-clock"></i>
                 </div>
                 <div class="stat-info">
-                    <span class="stat-number"><?= $stats['pendente'] ?></span>
+                    <span class="stat-number"><?= $stats['Pendente'] ?></span>
                     <span class="stat-label">Pendentes</span>
                 </div>
             </div>
@@ -46,7 +71,7 @@ if ($_SESSION['role'] === "user") {
                     <i class="ph ph-gear"></i>
                 </div>
                 <div class="stat-info">
-                    <span class="stat-number"><?= $stats['processando'] ?></span>
+                    <span class="stat-number"><?= $stats['Em Processamento'] ?></span>
                     <span class="stat-label">Processando</span>
                 </div>
             </div>
@@ -55,7 +80,7 @@ if ($_SESSION['role'] === "user") {
                     <i class="ph ph-truck"></i>
                 </div>
                 <div class="stat-info">
-                    <span class="stat-number"><?= $stats['enviado'] ?></span>
+                    <span class="stat-number"><?= $stats['Enviado'] ?></span>
                     <span class="stat-label">Enviados</span>
                 </div>
             </div>
@@ -64,7 +89,7 @@ if ($_SESSION['role'] === "user") {
                     <i class="ph ph-check-circle"></i>
                 </div>
                 <div class="stat-info">
-                    <span class="stat-number"><?= $stats['entregue'] ?></span>
+                    <span class="stat-number"><?= $stats['Entregue'] ?></span>
                     <span class="stat-label">Entregues</span>
                 </div>
             </div>

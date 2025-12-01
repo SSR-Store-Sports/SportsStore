@@ -35,14 +35,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         ]);
 
         $lastUserId = $db->lastInsertId();
-        $sqlOnlyAddress = 'INSERT INTO tatifit_users_address (type, cep, street, neighborhood, number, city, state, user_id) VALUES (:type, :cep, :street, :neighborhood, :number, :city, :state, :user_id)';
+        $sqlOnlyAddress = 'INSERT INTO tatifit_users_address (cep, street, number, type, recipient_name, contact_phone, neighborhood, city, state, user_id) VALUES (:cep, :street, :number, :type, :recipient_name, :contact_phone, :neighborhood, :city, :state, :user_id)';
         $stmtAddress = $db->prepare($sqlOnlyAddress);
         $stmtAddress->execute([
-            ':type' => 'Residencial',
             ':cep' => $userRegistered['cep'],
             ':street' => $userRegistered['street'],
+            ':number' => $userRegistered['number'] ?: null,
+            ':type' => $userRegistered['type'] ?: 'Casa',
+            ':recipient_name' => $userRegistered['name'],
+            ':contact_phone' => $userRegistered['phone'],
             ':neighborhood' => $userRegistered['neighborhood'],
-            ':number' => $userRegistered['number'],
             ':city' => $userRegistered['city'],
             ':state' => $userRegistered['state'],
             ':user_id' => $lastUserId,
@@ -103,11 +105,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                     <div id="step2" class="form-step">
                         <div class="form-group">
-                            <input type="text" id="type" name="type" placeholder="Tipo" required>
+                            <input type="text" id="cep" name="cep" placeholder="Ex.: 0541000" required>
+                            <!-- <label for="">Não sei meu CEP</label> -->
                         </div>
+
                         <div class="form-group">
-                            <input type="text" id="cep" name="cep" placeholder="CEP" required>
+                            <select id="type" name="type" required>
+                                <option value="">Tipo de Endereço</option>
+                                <option value="Casa">Casa</option>
+                                <option value="Trabalho">Trabalho</option>
+                                <option value="Outro">Outro</option>
+                            </select>
                         </div>
+
                         <div class="form-group">
                             <input type="text" id="street" name="street" placeholder="Rua" required>
                         </div>
