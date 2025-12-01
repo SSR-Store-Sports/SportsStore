@@ -30,9 +30,9 @@ if ($_SESSION['role'] === "user") {
                             <i class="ph ph-plus"></i>
                             <span>Cadastrar Produto</span>
                         </a>
-                        <a href="/admin/estoque" class="btn-action secondary">
-                            <i class="ph ph-warehouse"></i>
-                            <span>Gerenciar Estoque</span>
+                        <a href="/admin/produtos/listar" class="btn-action secondary">
+                            <i class="ph ph-list"></i>
+                            <span>Listar Produtos</span>
                         </a>
                     </div>
                 </div>
@@ -51,9 +51,9 @@ if ($_SESSION['role'] === "user") {
                             <i class="ph ph-plus"></i>
                             <span>Cadastrar Fornecedor</span>
                         </a>
-                        <a href="/admin/fornecedores" class="btn-action secondary">
+                        <a href="/admin/fornecedores/listar" class="btn-action secondary">
                             <i class="ph ph-list"></i>
-                            <span>Lista de Fornecedores</span>
+                            <span>Listar Fornecedores</span>
                         </a>
                     </div>
                 </div>
@@ -96,6 +96,48 @@ if ($_SESSION['role'] === "user") {
                         <a href="/admin/usuarios/relatorios" class="btn-action secondary">
                             <i class="ph ph-chart-bar"></i>
                             <span>Relatórios</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header">
+                    <div class="card-icon categories">
+                        <i class="ph ph-tag"></i>
+                    </div>
+                    <h3>Categorias</h3>
+                </div>
+                <div class="card-content">
+                    <div class="card-actions">
+                        <a href="/admin/categorias/cadastrar" class="btn-action primary">
+                            <i class="ph ph-plus"></i>
+                            <span>Cadastrar Categoria</span>
+                        </a>
+                        <a href="/admin/categorias/listar" class="btn-action secondary">
+                            <i class="ph ph-list"></i>
+                            <span>Listar Categorias</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header">
+                    <div class="card-icon stock">
+                        <i class="ph ph-warehouse"></i>
+                    </div>
+                    <h3>Estoque</h3>
+                </div>
+                <div class="card-content">
+                    <div class="card-actions">
+                        <a href="/admin/estoque/cadastrar" class="btn-action primary">
+                            <i class="ph ph-plus"></i>
+                            <span>Cadastrar Estoque</span>
+                        </a>
+                        <a href="/admin/estoque/listar" class="btn-action secondary">
+                            <i class="ph ph-list"></i>
+                            <span>Listar Estoque</span>
                         </a>
                     </div>
                 </div>

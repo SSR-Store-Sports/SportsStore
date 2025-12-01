@@ -1,78 +1,53 @@
 <?php
+require 'config/database.php';
 
-$dataOfferProducts = [
-  [
-    "id" => 1,
-    "name" => "Top Fitness Feminino",
-    "price" => 45.90,
-    "originalPrice" => 59.90,
-    "discount" => 23,
-    "installments" => "3X de R$ 15,30",
-    "image" => "/public/images/product.jpg",
-    "category" => "Tops",
-    "stock" => 15
-  ],
-  [
-    "id" => 2,
-    "name" => "Conjunto Fitness",
-    "price" => 89.90,
-    "originalPrice" => 120.00,
-    "discount" => 25,
-    "installments" => "4X de R$ 22,48",
-    "image" => "/public/images/conjunto-fit.jpg",
-    "category" => "Conjuntos",
-    "stock" => 8
-  ],
-  [
-    "id" => 3,
-    "name" => "Shorts Fitness",
-    "price" => 35.90,
-    "originalPrice" => 49.90,
-    "discount" => 28,
-    "installments" => "2X de R$ 17,95",
-    "image" => "/public/images/shorts-fit.jpg",
-    "category" => "Shorts",
-    "stock" => 22
-  ],
-  [
-    "id" => 4,
-    "name" => "Legging Premium",
-    "price" => 69.90,
-    "originalPrice" => 89.90,
-    "discount" => 22,
-    "installments" => "3X de R$ 23,30",
-    "image" => "/public/images/product.jpg",
-    "category" => "Leggings",
-    "stock" => 12
-  ],
-  [
-    "id" => 5,
-    "name" => "Top Esportivo Pro",
-    "price" => 55.90,
-    "originalPrice" => 75.90,
-    "discount" => 26,
-    "installments" => "3X de R$ 18,63",
-    "image" => "/public/images/product.jpg",
-    "category" => "Tops",
-    "stock" => 18
-  ]
-];
-
-// $stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id");
-// $stmt->bindParam(':id', $userId); // Assuming $userId is defined
-// $stmt->execute();
-// $user = $stmt->fetch(); // Fetches a single row
-// print_r($user);
-
-// Exemplo de consulta segura
-// $stmt = $db->prepare("SELECT * FROM tatifit_products");
-// $stmt->execute();
-
-// $dataOfferProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// foreach ($dataOfferProducts as $user) {
-//   echo "User: " . $user['name'] . "<br>";
-// }
+try {
+  $stmt = $db->prepare("
+    SELECT 
+      id,
+      name,
+      price,
+      old_price,
+      discount_percent,
+      installments_info,
+      url_image,
+      status
+    FROM tatifit_products 
+    WHERE status = 'Ativo' 
+      AND (
+        (old_price IS NOT NULL AND price < old_price) 
+        OR discount_percent > 0
+      )
+    ORDER BY discount_percent DESC, price ASC
+    LIMIT 6
+  ");
+  
+  $stmt->execute();
+  $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  
+  $dataOfferProducts = [];
+  foreach ($products as $product) {
+    $discount = $product['discount_percent'] ?? 0;
+    $originalPrice = $product['old_price'] ?? $product['price'];
+    
+    if ($discount == 0 && $product['old_price'] > 0) {
+      $discount = round((($originalPrice - $product['price']) / $originalPrice) * 100);
+    }
+    
+    $dataOfferProducts[] = [
+      'id' => $product['id'],
+      'name' => $product['name'],
+      'price' => number_format($product['price'], 2, '.', ''),
+      'originalPrice' => number_format($originalPrice, 2, '.', ''),
+      'discount' => $discount,
+      'installments' => $product['installments_info'] ?? 'À vista',
+      'image' => $product['url_image'] ?? '/public/images/product.jpg'
+    ];
+  }
+} catch (Exception $e) {
+  error_log("Erro ao buscar ofertas: " . $e->getMessage());
+  $dataOfferProducts = [];
+}
 
 ?>
 
@@ -106,9 +81,6 @@ $dataOfferProducts = [
     <i class="ph ph-arrow-right icon"></i>
   </button>
 </section>
-
-
-
   <div class="message-payment">
     <div class="group-payment">
       <p><i class="ph ph-truck"></i> Frete <span>grátis</span> para todo Brasil</p>
@@ -137,11 +109,15 @@ $dataOfferProducts = [
   <section class="products">
     <section class="section-botoes">
       <a href="/produtos"><button class="btn">Todos os Produtos</button></a>
-      <button class="btn">Tops</button>
-      <button class="btn">Calças</button>
-      <button class="btn">Shorts</button>
-      <button class="btn">Conjuntos</button>
-      <button class="btn">Acessórios</button>
+      <?php
+      // Buscar categorias do banco
+      $categoriesStmt = $db->query("SELECT id, name FROM tatifit_categories ORDER BY name");
+      $categories = $categoriesStmt->fetchAll();
+      
+      foreach ($categories as $category) {
+        echo "<a href='/produtos?categoria={$category['id']}'><button class='btn'>" . htmlspecialchars($category['name']) . "</button></a>";
+      }
+      ?>
     </section>
 
     <div class="root-header">
@@ -153,23 +129,26 @@ $dataOfferProducts = [
       <?php if ($dataOfferProducts): ?>
         <?php foreach ($dataOfferProducts as $product): ?>
         <div class="product" data-id="<?= $product['id'] ?>">
-          <div class="discount-badge"><?= $product['discount'] ?>% OFF</div>
+          <?php if ($product['discount'] > 0): ?>
+            <div class="discount-badge"><?= $product['discount'] ?>% OFF</div>
+          <?php endif; ?>
 
-          <img src="<?= $product['image'] ?>" alt="<?= $product['name'] ?>" />
+          <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" />
 
           <div class="deitals-product">
-            <h2><?= $product['name'] ?></h2>
+            <h2><?= htmlspecialchars($product['name']) ?></h2>
 
             <div class="price-product">
-              <span class="original-price">R$ <?= $product['originalPrice'] ?>
-              </span>
-              <h3>R$ <?= $product['price'] ?></h3>
-              <p>ou <?= $product['installments'] ?></p>
+              <?php if ($product['originalPrice'] != $product['price']): ?>
+                <span class="original-price">R$ <?= number_format($product['originalPrice'], 2, ',', '.') ?></span>
+              <?php endif; ?>
+              <h3>R$ <?= number_format($product['price'], 2, ',', '.') ?></h3>
+              <p><?= htmlspecialchars($product['installments']) ?></p>
             </div>
 
-            <button class="add-to-cart" data-product-id="<?= $product['id'] ?>">
+            <a href="/carrinho?produto=<?= $product['id'] ?>" class="add-to-cart">
               Adicionar ao carrinho
-            </button>
+            </a>
           </div>
         </div>
         <?php endforeach; ?>

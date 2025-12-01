@@ -40,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $error = 'Credênciais inválidas!';
         }
     } catch (PDOException $e) {
-        // Tratamento de erro robusto
         error_log("Erro de Autenticação no BD: " . $e->getMessage());
         $error = "Ocorreu um erro no servidor. Tente novamente mais tarde.";
     }

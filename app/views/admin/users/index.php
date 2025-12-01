@@ -47,7 +47,11 @@ try {
 
     $totalPages = ceil($totalRegistros / $itemsPerPage);
 
-    $sql = "SELECT id, name, email, phone, cpf, role FROM tatifit_users LIMIT :limit OFFSET :offset";
+    $sql = "SELECT u.id, u.name, u.email, u.phone, u.cpf, u.role, COUNT(o.id) as orders_count 
+            FROM tatifit_users u 
+            LEFT JOIN tatifit_orders o ON u.id = o.user_id 
+            GROUP BY u.id 
+            LIMIT :limit OFFSET :offset";
     $stmt = $db->prepare($sql);
 
     $stmt->bindValue(':limit', $itemsPerPage, PDO::PARAM_INT);

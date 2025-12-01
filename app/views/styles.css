@@ -378,6 +378,7 @@
 }
 
 .product {
+  width: 342px;
   padding: 1rem;
   border-radius: 0.75rem;
   border: none !important;
@@ -428,6 +429,7 @@
 }
 
 .product h2 {
+  flex: 1;
   text-align: center;
   margin-bottom: 10px;
 }
@@ -442,6 +444,7 @@
   gap: 0.8rem;
   margin-top: 0.5rem;
   text-align: center;
+  flex: 1;
 }
 
 .deitals-product h2 {
@@ -478,16 +481,22 @@
   color: var(--text-color-gray-dark);
 }
 
-.deitals-product button {
+.deitals-product button,
+.deitals-product .add-to-cart {
+  display: block;
   padding: 0.55rem;
-  /* border: 2px solid var(--border-color-pink); */
   background-color: var(--bg-tertiary);
   color: var(--text-color-white);
   border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  cursor: pointer;
   transition: background-color 0.5s ease-in-out;
 }
 
-.deitals-product button:hover {
+.deitals-product button:hover,
+.deitals-product .add-to-cart:hover {
   background-color: var(--bg-tertiary);
   color: var(--text-color-white);
 }
@@ -546,6 +555,7 @@ button:active {
 
   /* Títulos mais elegantes no desktop */
   .product h2 {
+    flex: 1;
     font-size: 1.15rem;
     margin-bottom: 0.6rem;
   }
@@ -589,6 +599,7 @@ button:active {
   }
 
   .product h2 {
+    flex: 1;
     font-size: 1rem;
     line-height: 1.25;
   }
@@ -624,6 +635,7 @@ button:active {
   }
 
   .product h2 {
+    flex: 1;
     text-align: center;
   }
 
@@ -696,6 +708,7 @@ button:active {
   }
 
   .product h2 {
+    flex: 1;
     font-size: 0.90rem;
     font-weight: 600;
     line-height: 1.15;

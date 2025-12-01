@@ -37,7 +37,7 @@ if (!empty($valueFilters['searchProduct'])) {
 if (!empty($valueFilters['searchCategorie'])) {
   $_SESSION['searchCategorie'] = $valueFilters['searchCategorie'];
 
-  $whereParts[] = "categoria = :categoria";
+  $whereParts[] = "category_id = :categoria";
   $params[':categoria'] = $valueFilters['searchCategorie'];
 }
 
@@ -74,12 +74,17 @@ try {
 
 <body>
 <section class="section-botoes">
-  <a href="/produtos" class="btn">Todos</a>
-  <a href="/produtos?categoria=Top" class="btn">Tops</a>
-  <a href="/produtos?categoria=Calça" class="btn">Calças</a>
-  <a href="/produtos?categoria=Short" class="btn">Shorts</a>
-  <a href="/produtos?categoria=Conjunto" class="btn">Conjuntos</a>
-  <a href="/produtos?categoria=Acessório" class="btn">Acessórios</a>
+  <a href="/produtos" class="btn">Todos os Produtos</a>
+  <?php
+  // Buscar categorias do banco
+  $categoriesStmt = $db->query("SELECT id, name FROM tatifit_categories ORDER BY name");
+  $categories = $categoriesStmt->fetchAll();
+  
+  foreach ($categories as $category) {
+    $activeClass = (isset($_GET['categoria']) && $_GET['categoria'] == $category['id']) ? 'active' : '';
+    echo "<a href='/produtos?categoria={$category['id']}' class='btn $activeClass'>" . htmlspecialchars($category['name']) . "</a>";
+  }
+  ?>
 </section>
 
 <section class="section-cards">
@@ -140,7 +145,7 @@ try {
 
         <div class="product-actions">
           <a href="/produto?id=<?= $product['id'] ?>" class="product-button">Comprar</a>
-          <button class="btn-wishlist"><i class="ph ph-heart"></i></button>
+          <!-- <button class="btn-wishlist"><i class="ph ph-heart"></i></button> -->
         </div>
 
       </div>
