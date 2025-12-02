@@ -72,6 +72,14 @@ try {
 <body>
     <main class="users-main">
         <div class="users-header">
+            <nav class="breadcrumb">
+                <span><a href="/admin">Admin</a></span> > <span>Cadastro de Produto</span>
+            </nav>
+            <!-- <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a> -->
+        </div>
+
+
+        <div class="users-header">
             <h1><i class="ph ph-users"></i> Gerenciar Usuários</h1>
             <div class="header-actions">
                 <div class="search-box">

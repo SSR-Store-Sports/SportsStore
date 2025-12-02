@@ -237,8 +237,9 @@
 .group-payment {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 3rem;
-  animation: scroll 15s linear infinite;
+  animation: scroll 42s linear infinite;
   white-space: nowrap;
 }
 
@@ -258,7 +259,7 @@
 
 @keyframes scroll {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(-100%); }
 }
 
 .section-botoes {
@@ -301,18 +302,21 @@
 .message-buy {
   display: flex;
   text-align: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 1rem 0px;
+  overflow: hidden;
   color: var(--text-color-white);
   background-color: var(--bg-tertiary);
+  width: 100%;
 }
 
 .group-message {
   display: flex;
   align-items: center;
   gap: 3rem;
-  animation: scroll 15s linear infinite;
+  animation: scrollMessage 20s linear infinite;
   white-space: nowrap;
+  min-width: 100%;
 }
 
 .message-item {
@@ -341,9 +345,9 @@
   margin: 0;
 }
 
-@keyframes scroll {
+@keyframes scrollMessage {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(-100%); }
 }
 
 .products {
@@ -515,6 +519,47 @@
   background-color: var(--bg-tertiary);
   color: var(--text-color-white);
 }
+
+/* Botões diferenciados */
+.btn-buy {
+  background: linear-gradient(135deg, var(--text-color-pink), #c875a5);
+  color: white;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: block;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.btn-buy:hover {
+  background: linear-gradient(135deg, #c875a5, #b8689a);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(214, 126, 191, 0.4);
+  color: white;
+}
+
+.btn-add-cart {
+  background: transparent;
+  color: var(--text-color-pink);
+  padding: 0.8rem 1rem;
+  border: 2px solid var(--text-color-pink);
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: block;
+  text-align: center;
+}
+
+.btn-add-cart:hover {
+  background: var(--text-color-pink);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(214, 126, 191, 0.3);
+}
 button:active {
   transform: scale(0.96);
 }
@@ -588,6 +633,11 @@ button:active {
 
   .deitals-product button:hover {
     transform: translateY(-2px);
+  }
+
+  .btn-buy, .btn-add-cart {
+    padding: 0.9rem 1.2rem;
+    font-size: 0.95rem;
   }
 
   
@@ -666,6 +716,11 @@ button:active {
     font-size: 0.85rem;
     padding: 0.6rem;
     width: 100%;
+  }
+
+  .btn-buy, .btn-add-cart {
+    font-size: 0.85rem;
+    padding: 0.7rem;
   }
 }
 
@@ -751,6 +806,11 @@ button:active {
     padding: 0.45rem;
     width: 100%;
     border-radius: 0.85rem;
+  }
+
+  .btn-buy, .btn-add-cart {
+    font-size: 0.76rem;
+    padding: 0.5rem;
   }
 
   .discount-badge {

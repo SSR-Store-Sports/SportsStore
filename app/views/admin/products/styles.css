@@ -1,9 +1,22 @@
 .product-page {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 2rem;
+  gap: 1rem;
   color: var(--text-color-gray);
   /* background: linear-gradient(1deg, var(--primary-color), #efa3cf); */
+}
+
+.products-header {
+  display: flex;
+  /* justify-content: space-between; */
+  justify-items: center;
+  align-items: center;
+  border-radius: 16px;
+  padding: 8px;
+  background-color: var(--bg-secondary-white);
+  box-shadow: var(--shadow);
 }
 
 .product-card {
@@ -11,11 +24,11 @@
   background: #fff;
   border-radius: 12px;
   padding: 2.5rem 3rem;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .breadcrumb {
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   font-size: 0.9rem;
   color: #666;
 }
@@ -49,7 +62,7 @@
   gap: 0.50rem;
 }
 
-.product-card > p {
+.product-card>p {
   color: var(--text-color-pink);
   margin-bottom: 2rem;
 }
@@ -82,7 +95,7 @@
 
 .hr3 {
   border: 0;
-  border-top: 1px solid #CCC; 
+  border-top: 1px solid #CCC;
 }
 
 .form-row {
@@ -192,16 +205,6 @@ input:focus, textarea:focus, select:focus {
   background: #c83f8d;
 }
 
-/* Estilos para lista de produtos */
-.products-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #e9ecef;
-}
-
 .products-count span {
   color: #6c757d;
   font-size: 0.9rem;
@@ -236,14 +239,14 @@ input:focus, textarea:focus, select:focus {
   background: white;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   border: 1px solid #f1f3f4;
 }
 
 .product-item:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .product-image {
@@ -264,7 +267,7 @@ input:focus, textarea:focus, select:focus {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -390,16 +393,16 @@ input:focus, textarea:focus, select:focus {
     gap: 1rem;
     align-items: stretch;
   }
-  
+
   .btn-add-product {
     justify-content: center;
   }
-  
+
   .products-grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1rem;
   }
-  
+
   .product-card {
     padding: 1.5rem;
   }

@@ -23,7 +23,7 @@ $offset = calcPagination($valueFilters['pageCurrent'], $itemsPerPage);
 
 $whereParts = [];
 $params = [];
-$whereSQL = "";
+$whereSQL = "WHERE status = 'Ativo'";
 
 // pesquisa por nome
 if (!empty($valueFilters['searchProduct'])) {
@@ -42,7 +42,7 @@ if (!empty($valueFilters['searchCategorie'])) {
 }
 
 if (count($whereParts) > 0) {
-  $whereSQL = "WHERE " . implode(" AND ", $whereParts);
+  $whereSQL = " AND " . implode(" AND ", $whereParts);
 }
 
 try {

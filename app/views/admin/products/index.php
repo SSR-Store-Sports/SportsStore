@@ -2,8 +2,8 @@
 require 'config/database.php';
 
 if ($_SESSION['role'] === "user") {
-    echo "<script>window.location.href = '/';</script>";
-    exit();
+  echo "<script>window.location.href = '/';</script>";
+  exit();
 }
 
 $categories = $db->query("SELECT id, name FROM tatifit_categories ORDER BY name")->fetchAll();
@@ -14,11 +14,11 @@ if (empty($categories)) {
 $message = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($categories)) {
   $uploadedImage = '';
-  
+
   if (isset($_FILES['product_image']) && $_FILES['product_image']['error'] === UPLOAD_ERR_OK) {
     $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
     $maxSize = 5 * 1024 * 1024; // 5MB
-    
+
     if (!in_array($_FILES['product_image']['type'], $allowedTypes)) {
       $message = "❌ Apenas arquivos JPG, JPEG e PNG são permitidos.";
     } elseif ($_FILES['product_image']['size'] > $maxSize) {
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($categories)) {
       $uploadDir = 'public/uploads/products/';
       $fileName = uniqid() . '_' . basename($_FILES['product_image']['name']);
       $uploadPath = $uploadDir . $fileName;
-      
+
       if (move_uploaded_file($_FILES['product_image']['tmp_name'], $uploadPath)) {
         $uploadedImage = '/public/uploads/products/' . $fileName;
       } else {
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($categories)) {
       ':category_id' => $productRegisterd['category_id'],
       ':author_id' => $_SESSION['user_id'],
     ];
-    
+
     $result = $stmt->execute($params);
 
     $db->commit();
@@ -88,12 +88,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($categories)) {
 
 <body>
   <main class="product-page">
-    <div class="product-card">
+    <div class="products-header">
       <nav class="breadcrumb">
-        <span>Admin</span> > <span>Cadastro de Produto</span>
+        <span><a href="/admin">Admin</a></span> > <span>Cadastro de Produto</span>
       </nav>
+      <!-- <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a> -->
+    </div>
 
-      <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a>
+    <div class="product-card">
       <h1>Cadastro de Produto</h1>
       <p>Adicione um novo item à loja com todas as informações necessárias.</p>
 

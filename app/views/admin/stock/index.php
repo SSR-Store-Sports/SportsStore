@@ -2,8 +2,8 @@
 require 'config/database.php';
 
 if ($_SESSION['role'] === "user") {
-    echo "<script>window.location.href = '/';</script>";
-    exit();
+  echo "<script>window.location.href = '/';</script>";
+  exit();
 }
 
 $message = "";
@@ -34,12 +34,18 @@ if (empty($products)) {
 }
 ?>
 
-<link rel="stylesheet" href="/app/views/admin/products/styles.css">
+<link rel="stylesheet" href="/app/views/admin/stock/styles.css">
 
 <body>
   <main class="product-page">
+    <div class="stocks-header">
+      <nav class="breadcrumb">
+        <span><a href="/admin">Admin</a></span> > <span>Cadastro de Produto</span>
+      </nav>
+      <!-- <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a> -->
+    </div>
+
     <div class="product-card">
-      <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a>
       <h1>Cadastro de Estoque</h1>
       <p>Adicione variações de estoque para os produtos.</p>
 

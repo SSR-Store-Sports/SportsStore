@@ -11,6 +11,10 @@
     margin-bottom: 32px;
     flex-wrap: wrap;
     gap: 20px;
+    border-radius: 16px;
+    padding: 8px;
+    background-color: var(--bg-secondary-white);
+    box-shadow: var(--shadow);
 }
 
 .supplier-header h1 {
@@ -23,6 +27,19 @@
 
 .supplier-header h1 i {
     color: var(--primary-color);
+}
+
+.supplier-header a {
+    color: var(--text-color-pink);
+}
+
+.supplier-header a:hover {
+    color: #d6499b;
+}
+
+.breadcrumb {
+    font-size: 0.9rem;
+    color: #666;
 }
 
 .header-actions {
@@ -81,6 +98,10 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     margin-bottom: 32px;
+    border-radius: 16px;
+    padding: 8px;
+    background-color: var(--bg-secondary-white);
+    box-shadow: var(--shadow);
 }
 
 .stat-card {

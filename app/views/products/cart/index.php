@@ -7,9 +7,9 @@ require 'config/database.php';
 //     exit();
 // }
 
-$userId = $_SESSION['user_id'];
+// $userId = $_SESSION['user_id'];
 
-// Usar sessão simples para carrinho temporário
+// Iniciliza array de carrinho se estiver vazio
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }

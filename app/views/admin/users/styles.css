@@ -6,6 +6,32 @@
 
 .users-header {
     display: flex;
+    /* justify-content: space-between; */
+    justify-items: center;
+    align-items: center;
+    border-radius: 16px;
+    padding: 8px;
+    background-color: var(--bg-secondary-white);
+    box-shadow: var(--shadow);
+}
+
+.breadcrumb {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.breadcrumb a {
+  color: var(--text-color-pink);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+
+.users-header {
+    display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 32px;

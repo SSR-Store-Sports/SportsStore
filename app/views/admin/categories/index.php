@@ -27,10 +27,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $categories = $db->query("SELECT * FROM tatifit_categories ORDER BY name")->fetchAll();
 ?>
 
-<link rel="stylesheet" href="/app/views/admin/products/styles.css">
+<link rel="stylesheet" href="/app/views/admin/categories/styles.css">
 
 <body>
   <main class="product-page">
+    <div class="categories-header">
+            <nav class="breadcrumb">
+                <span><a href="/admin">Admin</a></span> > <span>Cadastro de Produto</span>
+            </nav>
+            <!-- <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a> -->
+        </div>
+
+
     <div class="product-card">
       <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a>
       <h1>Cadastro de Categoria</h1>
