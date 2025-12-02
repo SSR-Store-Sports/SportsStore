@@ -4,6 +4,10 @@ require 'config/database.php';
 $error = "";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    
+    // A validação dos termos de uso será feita no JavaScript.
+    // O PHP só processa se o JS permitir o submit.
+    
     $userRegistered = [
         'name' => trim($_POST['name'] ?? ''),
         'email' => trim($_POST['email'] ?? ''),
@@ -105,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                     <div id="step2" class="form-step">
                         <div class="form-group">
-                            <input type="text" id="cep" name="cep" placeholder="Ex.: 0541000" required>
+                            <input type="text" id="cep" name="cep" placeholder=" CEP" required>
                             <!-- <label for="">Não sei meu CEP</label> -->
                         </div>
 
@@ -135,11 +139,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         </div>
                         <div class="form-group checkbox-group">
                             <label class="checkbox-label">
-                                <input type="checkbox" id="terms" name="terms" required>
+                                <input type="checkbox" id="terms" name="terms">
                                 <span class="checkmark"></span>
                                 Aceito os <a href="/termos" target="_blank">termos de serviço</a> e <a
                                     href="/privacidade" target="_blank">política de privacidade</a>
                             </label>
+                            <!-- NOVO ELEMENTO DE ERRO CUSTOMIZADO -->
+                            <div id="terms-error-message" style="display: none; color: red; margin-top: 5px;">
+                                Você deve aceitar os termos de serviço para continuar.
+                            </div>
                         </div>
                         <div class="form-actions">
                             <button type="button" id="prevStep" class="btn-back"><i

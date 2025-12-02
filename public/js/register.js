@@ -38,13 +38,19 @@ document.addEventListener('DOMContentLoaded', function() {
         step1.classList.add('active');
     });
 
-    // Validar termos antes de submeter
+    // Validação customizada dos termos antes de submeter
     document.getElementById('registerForm').addEventListener('submit', function(e) {
         const termsCheckbox = document.getElementById('terms');
+        const termsError = document.getElementById('terms-error-message'); // Elemento de erro
+
         if (!termsCheckbox.checked) {
             e.preventDefault();
-            alert('Você deve aceitar os termos de serviço para continuar.');
+            // Exibe a mensagem de erro customizada
+            termsError.style.display = 'block';
             termsCheckbox.focus();
+        } else {
+            // Esconde a mensagem se estiver marcado
+            termsError.style.display = 'none';
         }
     });
 });
