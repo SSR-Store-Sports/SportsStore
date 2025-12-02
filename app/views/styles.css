@@ -302,33 +302,48 @@
   display: flex;
   text-align: center;
   justify-content: center;
-
   padding: 1rem 0px;
-  gap: 2rem;
-
   color: var(--text-color-white);
   background-color: var(--bg-tertiary);
 }
 
-.message-buy .icon {
+.group-message {
   display: flex;
-  font-size: 38px;
-
   align-items: center;
-  padding: 1rem;
+  gap: 3rem;
+  animation: scroll 15s linear infinite;
+  white-space: nowrap;
+}
 
+.message-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 2rem;
+  flex-shrink: 0;
+}
+
+.message-buy .icon {
+  font-size: 38px;
+  padding: 1rem;
   border-radius: 1.2rem;
   border: 2px solid var(--border-color-white);
-
   box-shadow: var(--shadow);
 }
 
 .message-buy h3 {
   font-size: 24px;
+  margin: 0;
 }
 
 .message-buy span {
   font-size: 18px;
+  margin: 0;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .products {
@@ -654,38 +669,29 @@ button:active {
   }
 }
 
-/* MOBILE 480px */
 @media screen and (max-width: 480px) {
   .message-buy {
-    flex-direction: row; /* ícone ao lado esquerdo do texto */
-    align-items: center; /* centraliza verticalmente */
+    padding: 0.6rem 0;
+  }
+
+  .message-item {
     gap: 0.8rem;
-    padding: 0.6rem 0.8rem;
+    padding: 0 1rem;
   }
 
   .message-buy .icon {
     font-size: 28px;
     padding: 0.6rem;
     border-radius: 0.9rem;
-    flex-shrink: 0; /* impede que o ícone encolha */
   }
 
   .message-buy h3 {
     font-size: 18px;
-    margin: 0;
   }
 
   .message-buy span {
     font-size: 14px;
-    margin: 0;
   }
-
-  .message-buy .message-text {
-    display: flex;
-    flex-direction: column; /* mantém h3 e span empilhados */
-    justify-content: center;
-  }
-
 }
 
 /* ====== 375px (360–400px) ====== */

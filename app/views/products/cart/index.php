@@ -2,10 +2,10 @@
 require 'config/database.php';
 
 // Verificar se usuário está logado
-if (empty($_SESSION['user_id'])) {
-    echo "<script>alert('Você precisa estar logado para acessar o carrinho.'); window.location.href = '/auth/login';</script>";
-    exit();
-}
+// if (empty($_SESSION['user_id'])) {
+//     echo "<script>alert('Você precisa estar logado para acessar o carrinho.'); window.location.href = '/auth/login';</script>";
+//     exit();
+// }
 
 $userId = $_SESSION['user_id'];
 

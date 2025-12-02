@@ -165,11 +165,22 @@ try {
   </section>
 
   <div class="message-buy">
-    <i class="ph ph-truck icon"></i>
+    <div class="group-message">
+      <div class="message-item">
+        <i class="ph ph-truck icon"></i>
+        <div>
+          <h3>Retire Diretamente na Loja</h3>
+          <span>Compre seu produto online e retire na loja</span>
+        </div>
+      </div>
 
-    <div>
-      <h3>Retire Diretamente na Loja</h3>
-      <span>Compre seu produto online e retire na loja</span>
+      <div class="message-item">
+        <i class="ph ph-shopping-bag-open icon"></i>
+        <div>
+          <h3>Preço justo e que cabe no seu bolso</h3>
+          <span>Compre agora, e não perca a oportunidade!</span>
+        </div>
+      </div>
     </div>
   </div>
 
