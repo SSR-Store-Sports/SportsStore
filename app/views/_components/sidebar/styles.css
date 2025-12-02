@@ -181,6 +181,7 @@
   }
   
   .sidebar-header {
+    background-color: var(--bg-tertiary);
     padding: 1rem;
   }
   
