@@ -233,6 +233,7 @@ try {
     // Inicializa
     updateSlide();
 
+    
     document.addEventListener("DOMContentLoaded", function () {
     const products = document.querySelectorAll(".product");
 
