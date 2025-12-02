@@ -103,6 +103,7 @@ footer {
 }
 
 .footer-bottom a {
+  color: var(--text-color-gray-100);
   font-size: 12px;
 }
 
