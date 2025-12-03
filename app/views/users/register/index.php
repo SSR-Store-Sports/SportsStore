@@ -4,10 +4,6 @@ require 'config/database.php';
 $error = "";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    
-    // A validação dos termos de uso será feita no JavaScript.
-    // O PHP só processa se o JS permitir o submit.
-    
     $userRegistered = [
         'name' => trim($_POST['name'] ?? ''),
         'email' => trim($_POST['email'] ?? ''),
