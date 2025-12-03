@@ -128,28 +128,34 @@ try {
     <div class="root-products">
       <?php if ($dataOfferProducts): ?>
         <?php foreach ($dataOfferProducts as $product): ?>
+
           <div class="product" data-id="<?= $product['id'] ?>">
-            <?php if ($product['discount'] > 0): ?>
-              <div class="discount-badge"><?= $product['discount'] ?>% OFF</div>
-            <?php endif; ?>
+            <a href="/produto?id=<?= $product['id'] ?>">
+              <?php if ($product['discount'] > 0): ?>
+                <div class="discount-badge"><?= $product['discount'] ?>% OFF</div>
+              <?php endif; ?>
 
-            <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" />
+              <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" />
 
-            <div class="deitals-product">
-              <h2><?= htmlspecialchars($product['name']) ?></h2>
+              <div class="deitals-product">
+                <h2><?= htmlspecialchars($product['name']) ?></h2>
 
-              <div class="price-product">
-                <?php if ($product['originalPrice'] != $product['price']): ?>
-                  <span class="original-price">R$ <?= number_format($product['originalPrice'], 2, ',', '.') ?></span>
-                <?php endif; ?>
-                <h3>R$ <?= number_format($product['price'], 2, ',', '.') ?></h3>
-                <p><?= htmlspecialchars($product['installments']) ?></p>
+                <div class="price-product">
+                  <?php if ($product['originalPrice'] != $product['price']): ?>
+                    <span class="original-price">R$ <?= number_format($product['originalPrice'], 2, ',', '.') ?></span>
+                  <?php endif; ?>
+                  <h3>R$ <?= number_format($product['price'], 2, ',', '.') ?></h3>
+                  <p><?= htmlspecialchars($product['installments']) ?></p>
+                </div>
+
+                <a href="/produto?id=<?= $product['id'] ?>" class="btn-buy">
+                  Comprar
+                </a>
+                <a href="/carrinho?produto=<?= $product['id'] ?>" class="btn-add-cart">
+                  Adicionar ao carrinho
+                </a>
               </div>
-
-              <a href="/carrinho?produto=<?= $product['id'] ?>" class="add-to-cart">
-                Adicionar ao carrinho
-              </a>
-            </div>
+            </a>
           </div>
         <?php endforeach; ?>
       <?php else: ?>
@@ -165,11 +171,71 @@ try {
   </section>
 
   <div class="message-buy">
-    <i class="ph ph-truck icon"></i>
+    <div class="group-message">
 
-    <div>
-      <h3>Retire Diretamente na Loja</h3>
-      <span>Compre seu produto online e retire na loja</span>
+      <div class="message-item">
+        <i class="ph ph-truck icon"></i>
+        <div>
+          <h3>Retire Diretamente na Loja</h3>
+          <span>Compre seu produto online e retire na loja</span>
+        </div>
+      </div>
+
+      <div class="message-item">
+        <i class="ph ph-credit-card icon"></i>
+        <div>
+          <h3>Pagamento Seguro</h3>
+          <span>Suas informações estão protegidas</span>
+        </div>
+      </div>
+
+      <div class="message-item">
+        <i class="ph ph-shopping-bag-open icon"></i>
+        <div>
+          <h3>Preço justo e que cabe no seu bolso</h3>
+          <span>Compre agora, e não perca a oportunidade!</span>
+        </div>
+      </div>
+
+      <div class="message-item">
+        <i class="ph ph-clock icon"></i>
+        <div>
+          <h3>Entrega Rápida</h3>
+          <span>Receba em até 48 horas</span>
+        </div>
+      </div>
+
+      <div class="message-item">
+        <i class="ph ph-truck icon"></i>
+        <div>
+          <h3>Retire Diretamente na Loja</h3>
+          <span>Compre seu produto online e retire na loja</span>
+        </div>
+      </div>
+
+      <div class="message-item">
+        <i class="ph ph-credit-card icon"></i>
+        <div>
+          <h3>Pagamento Seguro</h3>
+          <span>Suas informações estão protegidas</span>
+        </div>
+      </div>
+
+      <div class="message-item">
+        <i class="ph ph-shopping-bag-open icon"></i>
+        <div>
+          <h3>Preço justo e que cabe no seu bolso</h3>
+          <span>Compre agora, e não perca a oportunidade!</span>
+        </div>
+      </div>
+
+      <div class="message-item">
+        <i class="ph ph-clock icon"></i>
+        <div>
+          <h3>Entrega Rápida</h3>
+          <span>Receba em até 48 horas</span>
+        </div>
+      </div>
     </div>
   </div>
 

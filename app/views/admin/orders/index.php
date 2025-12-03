@@ -35,9 +35,13 @@ foreach ($orders as $order) {
 
 <body>
     <main class="orders-main">
-        <nav class="">
-            <a href="/admin">Admin</a> > <span>Gerenciar Pedidos</span>
-        </nav>
+        <div class="orders-header">
+            <nav class="breadcrumb">
+                <span><a href="/admin">Admin</a></span> > <span>Cadastro de Produto</span>
+            </nav>
+            <!-- <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a> -->
+        </div>
+
         <div class="orders-header">
             <h1><i class="ph ph-shopping-bag"></i> Gerenciar Pedidos</h1>
             <div class="header-actions">
@@ -109,35 +113,35 @@ foreach ($orders as $order) {
                 </thead>
                 <tbody>
                     <?php foreach ($orders as $order): ?>
-                    <tr>
-                        <td class="order-id">#<?= str_pad($order['id'], 4, '0', STR_PAD_LEFT) ?></td>
-                        <td>
-                            <div class="customer-info">
-                                <strong><?= htmlspecialchars($order['name']) ?></strong>
-                                <span><?= htmlspecialchars($order['email']) ?></span>
-                            </div>
-                        </td>
-                        <td><?= date('d/m/Y H:i', strtotime($order['date_creation'])) ?></td>
-                        <td class="order-value">R$ <?= number_format($order['price'], 2, ',', '.') ?></td>
-                        <td>
-                            <span class="status-badge <?= $order['status'] ?>">
-                                <?= ucfirst($order['status']) ?>
-                            </span>
-                        </td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-view" title="Ver detalhes">
-                                    <i class="ph ph-eye"></i>
-                                </button>
-                                <button class="btn-edit" title="Editar status">
-                                    <i class="ph ph-pencil"></i>
-                                </button>
-                                <button class="btn-print" title="Imprimir">
-                                    <i class="ph ph-printer"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="order-id">#<?= str_pad($order['id'], 4, '0', STR_PAD_LEFT) ?></td>
+                            <td>
+                                <div class="customer-info">
+                                    <strong><?= htmlspecialchars($order['name']) ?></strong>
+                                    <span><?= htmlspecialchars($order['email']) ?></span>
+                                </div>
+                            </td>
+                            <td><?= date('d/m/Y H:i', strtotime($order['date_creation'])) ?></td>
+                            <td class="order-value">R$ <?= number_format($order['price'], 2, ',', '.') ?></td>
+                            <td>
+                                <span class="status-badge <?= $order['status'] ?>">
+                                    <?= ucfirst($order['status']) ?>
+                                </span>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-view" title="Ver detalhes">
+                                        <i class="ph ph-eye"></i>
+                                    </button>
+                                    <button class="btn-edit" title="Editar status">
+                                        <i class="ph ph-pencil"></i>
+                                    </button>
+                                    <button class="btn-print" title="Imprimir">
+                                        <i class="ph ph-printer"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>

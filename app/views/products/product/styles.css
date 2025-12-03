@@ -114,6 +114,10 @@
   text-align: left;
 }
 
+.product-info .product-button {
+  flex: 1;
+}
+
 .product-title-rating {
   display: flex;
   flex-direction: column;
