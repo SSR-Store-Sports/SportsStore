@@ -240,10 +240,13 @@
     }
     
     .register-container {
+        /* width: 100%;
+        flex: 1; */
         padding: 16px;
     }
     
     .register-form {
-        max-width: 280px;
+        /* max-width: 280px; */
+        /* padding: 24px; */
     }
 }
