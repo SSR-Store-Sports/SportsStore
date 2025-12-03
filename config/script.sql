@@ -1,4 +1,4 @@
-CREATE DATABASE db_tatifitwear;
+#CREATE DATABASE db_tatifitwear;
 USE db_tatifitwear;
 
 CREATE TABLE tatifit_users (
@@ -143,17 +143,3 @@ INSERT INTO tatifit_categories (name) VALUES
 
 INSERT INTO tatifit_suppliers (name, telephone, type) VALUES
 ('Roupas & Esportes Brasil', '11999990000', 'Roupas Esportivas');
-
-SELECT * FROM tatifit_users;
-
-SELECT
-    name,
-    price,
-    old_price,
-    discount_percent
-FROM
-    tatifit_products
-WHERE
-    old_price IS NOT NULL
-    AND price < old_price
-    OR discount_percent > 0;

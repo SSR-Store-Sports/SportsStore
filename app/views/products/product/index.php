@@ -42,7 +42,7 @@ if (!empty($valueFilters['searchCategorie'])) {
 }
 
 if (count($whereParts) > 0) {
-  $whereSQL = " AND " . implode(" AND ", $whereParts);
+  $whereSQL .= " AND " . implode(" AND ", $whereParts);
 }
 
 try {
