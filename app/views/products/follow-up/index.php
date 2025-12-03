@@ -25,11 +25,11 @@
       <div class="number-orders">
         <p>Pedido: #001 - 07/07/2025</p>
 
-        <!-- Botão: Gerenciar pedido -->
+        <!-- Botão: Gerenciar pedido
         <button class="tracking-btn">
           <i class="ph ph-shopping-cart"></i>
           <span>Gerenciar Pedido</span>
-        </button>
+        </button>-->
 
         <!-- Botão: Ver detalhes -->
         <button class="tracking-btn">
@@ -72,11 +72,11 @@
       <div class="number-orders">
         <p>Pedido: #002 - 15/07/2025</p>
 
-        <!-- Botão: Gerenciar pedido -->
+        <!-- Botão: Gerenciar pedido 
         <button class="tracking-btn">
           <i class="ph ph-shopping-cart"></i>
           <span>Gerenciar Pedido</span>
-        </button>
+        </button>-->
 
         <!-- Botão: Ver detalhes -->
         <button class="tracking-btn">

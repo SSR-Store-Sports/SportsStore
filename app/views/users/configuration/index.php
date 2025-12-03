@@ -78,6 +78,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_account'])) {
   }
 }
 
+function maskCpfLast2($cpf) {
+    $cpf = preg_replace('/\D/', '', $cpf); // remove não numéricos
+    $last2 = substr($cpf, -2); // pega os 2 últimos dígitos
+    return "***.***.***-" . $last2;
+}
+
 ?>
 
 <link rel="stylesheet" href="/app/views/users/configuration/styles.css">
@@ -136,8 +142,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_account'])) {
             </div>
 
             <div class="form-group">
-              <label for="cpf">CPF</label>
-              <input disabled type="text" id="cpf" name="cpf" value="<?= htmlspecialchars($response['cpf'] ?? '') ?>">
+                <label for="cpf">CPF</label>
+                <input disabled type="text" id="cpf" name="cpf" 
+                  value="<?= isset($response['cpf']) ? maskCpfLast2($response['cpf']) : '' ?>">
             </div>
           </div>
 

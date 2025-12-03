@@ -30,11 +30,12 @@
             <h2>Siga-nos</h2>
             <p>Acompanhe nossas novidades e promoções!</p>
             <div class="social-buttons">
-                <button aria-label="Facebook"><i class="ph ph-facebook-logo"></i></button>
-                <button aria-label="Instagram"><i class="ph ph-instagram-logo"></i></button>
-                <button aria-label="WhatsApp"><i class="ph ph-whatsapp-logo"></i></button>
-                <button aria-label="YouTube"><i class="ph ph-youtube-logo"></i></button>
+                <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+                <a href="https://www.instagram.com/tatifitmodas?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram" target="_blank"><i class="ph ph-instagram-logo"></i></a>
+                <a href="https://api.whatsapp.com/send/?phone=5511978936260&text&type=phone_number&app_absent=0&utm_source=ig" aria-label="WhatsApp"><i class="ph ph-whatsapp-logo"></i></a>
+                <a href="https://www.tiktok.com/@tatifitwear1?is_from_webapp=1&sender_device=pc" aria-label="TikTok"><i class="ph ph-tiktok-logo"></i></a>
             </div>
+
             <div class="links-info">
                 <p><strong>Links úteis:</strong></p>
                 <p><a href="/guia-tamanhos">Guia de tamanhos</a></p>
