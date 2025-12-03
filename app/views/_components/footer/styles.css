@@ -68,7 +68,7 @@ footer {
   margin: 1rem 0;
 }
 
-.social-buttons button {
+.social-buttons a {
   background-color: transparent;
   border: 2px solid var(--primary-color);
   border-radius: 50%;
@@ -80,7 +80,7 @@ footer {
   transition: all 0.3s ease;
 }
 
-.social-buttons button:hover {
+.social-buttons a:hover {
   background-color: var(--primary-color);
   transform: translateY(-2px);
 }
