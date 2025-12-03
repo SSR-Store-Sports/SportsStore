@@ -298,6 +298,28 @@ try {
 
     // Inicializa
     updateSlide();
+
+    
+    document.addEventListener("DOMContentLoaded", function () {
+    const products = document.querySelectorAll(".product");
+
+    products.forEach(product => {
+        const productId = product.getAttribute("data-id");
+        const addBtn = product.querySelector(".add-to-cart");
+
+        // Card inteiro clicável → /produto?id=ID
+        product.addEventListener("click", function () {
+            window.location.href = `/produto?id=${productId}`;
+        });
+
+        // Evita que o botão dispare o clique do card
+        addBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            window.location.href = `/carrinho`;
+        });
+    });
+});
+
   </script>
 
 

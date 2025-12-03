@@ -157,9 +157,6 @@ body {
    CABEÇALHO DA PÁGINA
 ============================== */
 .address-header {
-  position: sticky;
-  top: 0;
-  left: 0;
   width: 100%;
   backdrop-filter: blur(8px);
   box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 10px;
@@ -304,6 +301,7 @@ body {
   border-radius: 12px;
   padding: 18px;
   gap: 20px;
+  margin-bottom: 10px;
   background-color: var(--border-color-white);
   transition: all 0.25s ease-in-out;
   box-shadow: 0 1px 3px rgba(255, 192, 203, 0.4); /* sombra suave rosada */

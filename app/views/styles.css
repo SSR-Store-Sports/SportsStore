@@ -635,6 +635,14 @@ button:active {
     transform: translateY(-2px);
   }
 
+  .root-products .product {
+   cursor: pointer;
+  }
+
+  .root-products .product .add-to-cart {
+   cursor: pointer;       /* mantém o botão como clique */
+  }
+  
   .btn-buy, .btn-add-cart {
     padding: 0.9rem 1.2rem;
     font-size: 0.95rem;
