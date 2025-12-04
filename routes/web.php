@@ -68,6 +68,10 @@ $router->get('/carrinho', function () {
   require 'app/views/products/cart/index.php';
 });
 
+$router->post('/carrinho', function () {
+  require 'app/views/products/cart/index.php';
+});
+
 $router->get('/historico', function () {
   require 'app/views/products/history/index.php';
 });
@@ -78,6 +82,26 @@ $router->get('/acompanhamento', function () {
 
 $router->get('/endereco', function () {
   require 'app/views/users/address/index.php';
+});
+
+$router->post('/endereco', function () {
+  require 'app/views/users/address/index.php';
+});
+
+$router->get('/pagamento', function () {
+  require 'app/views/users/payment/index.php';
+});
+
+$router->post('/pagamento', function () {
+  require 'app/views/users/payment/index.php';
+});
+
+$router->get('/confirmacao', function () {
+  require 'app/views/users/payment-confirmed/index.php';
+});
+
+$router->post('/confirmacao', function () {
+  require 'app/views/users/payment-confirmed/index.php';
 });
 
 $router->get('/check', function () {
@@ -167,6 +191,14 @@ $router->mount("/admin", function () use ($router) {
 
     $router->get('/relatorios', function () {
       require 'app/views/admin/users/reports.php';
+    });
+
+    $router->post('/alterar-perfil', function () {
+      require 'app/views/admin/users/change-role.php';
+    });
+
+    $router->post('/desativar', function () {
+      require 'app/views/admin/users/deactivate.php';
     });
   });
 
