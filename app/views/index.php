@@ -137,10 +137,10 @@ try {
 
               <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" />
 
-              <div class="deitals-product">
+              <div class="deitals-product" style="height: 100%;">
                 <h2><?= htmlspecialchars($product['name']) ?></h2>
 
-                <div class="price-product">
+                <div class="price-product" style="flex: 1;">
                   <?php if ($product['originalPrice'] != $product['price']): ?>
                     <span class="original-price">R$ <?= number_format($product['originalPrice'], 2, ',', '.') ?></span>
                   <?php endif; ?>
@@ -162,7 +162,7 @@ try {
         <div class="empty-state">
           <div class="empty-state-content">
             <i class="ph ph-smiley-sad empty-icon"></i>
-            <h1 class="empty-title">Parece que não há nenhum produto cadastrado!</h1>
+            <h1 class="empty-title">Parece que não há nenhum produto em oferta!</h1>
             <p class="empty-message">Tente novamente mais tarde.</p>
           </div>
         </div>
@@ -299,27 +299,26 @@ try {
     // Inicializa
     updateSlide();
 
-    
-    document.addEventListener("DOMContentLoaded", function () {
-    const products = document.querySelectorAll(".product");
 
-    products.forEach(product => {
+    document.addEventListener("DOMContentLoaded", function() {
+      const products = document.querySelectorAll(".product");
+
+      products.forEach(product => {
         const productId = product.getAttribute("data-id");
         const addBtn = product.querySelector(".add-to-cart");
 
         // Card inteiro clicável → /produto?id=ID
-        product.addEventListener("click", function () {
-            window.location.href = `/produto?id=${productId}`;
+        product.addEventListener("click", function() {
+          window.location.href = `/produto?id=${productId}`;
         });
 
         // Evita que o botão dispare o clique do card
-        addBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            window.location.href = `/carrinho`;
+        addBtn.addEventListener("click", function(e) {
+          e.stopPropagation();
+          window.location.href = `/carrinho`;
         });
+      });
     });
-});
-
   </script>
 
 

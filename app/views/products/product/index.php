@@ -94,7 +94,7 @@ try {
     <div class="products-container">
       <?php foreach ($dataOfferProducts as $product): ?>
         <div class="product-card">
-          <!-- <a href="/produto?id=<?= $product['id'] ?>"> -->
+          <a href="/produto?id=<?= $product['id'] ?>">
 
             <?php if ($product['is_new'] == 1): ?>
               <div class="product-badge"><span class="badge-new">Lançamento</span></div>
@@ -153,7 +153,7 @@ try {
               </div>
 
             </div>
-          <!-- </a> -->
+          </a>
         </div>
       <?php endforeach; ?>
     </div>

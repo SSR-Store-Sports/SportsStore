@@ -1,10 +1,8 @@
-// Funcionalidade de busca
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchOrders');
     const statusFilter = document.querySelector('.status-filter');
     const tableRows = document.querySelectorAll('.orders-table tbody tr');
 
-    // Função de busca
     function filterOrders() {
         const searchTerm = searchInput.value.toLowerCase();
         const selectedStatus = statusFilter.value.toLowerCase();
@@ -50,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const newStatus = prompt(`Alterar status do pedido ${orderId}:\n\nStatus atual: ${currentStatus}\n\nNovo status:`, currentStatus);
             if (newStatus && newStatus !== currentStatus) {
-                // Aqui você faria a requisição AJAX para atualizar o status
                 alert(`Status do pedido ${orderId} alterado para: ${newStatus}`);
             }
         });

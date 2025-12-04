@@ -24,16 +24,13 @@ if (!$product) {
   exit();
 }
 
-// Buscar opções de estoque (tamanhos disponíveis) - assumindo que color não existe na tabela atual
 $stockStmt = $db->prepare("SELECT DISTINCT size, stock_quantity FROM tatifit_stocks WHERE products_id = :id AND stock_quantity > 0");
 $stockStmt->execute([':id' => $productId]);
 $stockOptions = $stockStmt->fetchAll();
 
-// Agrupar por tamanho
 $sizes = array_unique(array_column($stockOptions, 'size'));
-$colors = []; // Cores não implementadas ainda
+$colors = [];
 
-// Buscar produtos relacionados (primeiro da mesma categoria, depois outros)
 $relatedStmt = $db->prepare("
     SELECT p.*, c.name as category_name 
     FROM tatifit_products p 
@@ -151,10 +148,10 @@ $relatedProducts = $relatedStmt->fetchAll();
               <i class="ph ph-shopping-cart"></i>
               Adicionar ao Carrinho
             </a>
-            <button type="button" class="btn-buy-now">
+            <!-- <button type="button" class="btn-buy-now">
               <i class="ph ph-lightning"></i>
               Comprar Agora
-            </button>
+            </button> -->
           </div>
         </form>
 
