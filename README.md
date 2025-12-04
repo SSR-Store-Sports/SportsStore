@@ -21,16 +21,16 @@ Funcionalidade que o usuário interage de alguma forma.
 - [x] O usuário deve poder obter o seu perfil de um usuário logado;
 - [x] O usuário deve poder visualizar todos os produtos;
 - [x] O usuário deve poder buscar por produto(s);
-- [ ] O usuário deve poder selecionar um produto gerando o carrinho de compras;
-- [ ] O usuário deve poder finalizar a compra (gerar venda);
+- [x] O usuário deve poder selecionar um produto gerando o carrinho de compras;
+- [x] O usuário deve poder finalizar a compra (gerar venda);
 - [ ] x - O usuário deve ter uma lista de items favoritos;
-- [ ] O usuário deve poder visualizar o histórico de compras;
+- [x] O usuário deve poder visualizar o histórico de compras;
 - [ ] O funcionário/administrador deve poder cadastrar um fornecedor;
 - [x] O funcionário/administrador deve poder cadastrar um produto;
-- [ ] O funcionário/administrador deve poder gerenciar o estoque de produtos (atualizar stock).
-- [ ] O administrador pode desativar um usuário;
-- [ ] O administrador deve poder cadastrar um usuário como funcionário/administrador;
-- [ ] O administrador deve poder alterar a senha de um usuário;
+- [x] O funcionário/administrador deve poder gerenciar o estoque de produtos (atualizar stock).
+- [x] O administrador pode desativar um usuário;
+- [x] O administrador deve poder cadastrar um usuário como funcionário/administrador;
+- [x] O administrador deve poder alterar a senha de um usuário;
 
 ## RNFs (requisitos não-funcionais):
 Não funcionalidades, mais tratativas.
