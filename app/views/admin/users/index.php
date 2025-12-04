@@ -73,11 +73,10 @@ try {
     <main class="users-main">
         <div class="users-header">
             <nav class="breadcrumb">
-                <span><a href="/admin">Admin</a></span> > <span>Cadastro de Produto</span>
+                <span><a href="/admin">Admin</a></span> > <span>Usuários</span>
             </nav>
             <!-- <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a> -->
         </div>
-
 
         <div class="users-header">
             <h1><i class="ph ph-users"></i> Gerenciar Usuários</h1>
@@ -140,7 +139,7 @@ try {
                 </thead>
                 <tbody>
                     <?php foreach ($dataUsers as $user): ?>
-                        <tr data-role="<?= $user['role'] ?>">
+                        <tr data-role="<?= $user['role'] ?>" data-user-id="<?= $user['id'] ?>">
                             <td>
                                 <div class="user-info">
                                     <div class="user-avatar">
@@ -160,12 +159,12 @@ try {
                             <td class="orders-count"><?= $user['orders_count'] ?? 0 ?></td>
                             <td>
                                 <div class="action-buttons">
-                                    <button class="btn-view" title="Ver perfil">
+                                    <!-- <button class="btn-view" title="Ver perfil">
                                         <i class="ph ph-eye"></i>
-                                    </button>
-                                    <button class="btn-edit" title="Editar usuário">
+                                    </button> -->
+                                    <!-- <button class="btn-edit" title="Editar usuário">
                                         <i class="ph ph-pencil"></i>
-                                    </button>
+                                    </button> -->
                                     <button class="btn-role" title="Alterar perfil">
                                         <i class="ph ph-user-gear"></i>
                                     </button>
@@ -182,7 +181,7 @@ try {
 
         <div class="users-cards">
             <?php foreach ($dataUsers as $user): ?>
-                <div class="user-card" data-role="<?= $user['role'] ?>">
+                <div class="user-card" data-role="<?= $user['role'] ?>" data-user-id="<?= $user['id'] ?>">
                     <div class="user-card-header">
                         <div class="user-avatar">
                             <i class="ph ph-user-circle"></i>
@@ -212,12 +211,6 @@ try {
                             <span class="user-card-orders"><?= $user['orders_count'] ?? 0 ?> pedidos</span>
                         </div>
                         <div class="action-buttons">
-                            <button class="btn-view" title="Ver perfil">
-                                <i class="ph ph-eye"></i>
-                            </button>
-                            <button class="btn-edit" title="Editar usuário">
-                                <i class="ph ph-pencil"></i>
-                            </button>
                             <button class="btn-role" title="Alterar perfil">
                                 <i class="ph ph-user-gear"></i>
                             </button>

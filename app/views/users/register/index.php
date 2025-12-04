@@ -109,13 +109,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             <!-- <label for="">Não sei meu CEP</label> -->
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group select-group">
                             <select id="type" name="type" required>
                                 <option value="">Tipo de Endereço</option>
                                 <option value="Casa">Casa</option>
                                 <option value="Trabalho">Trabalho</option>
                                 <option value="Outro">Outro</option>
                             </select>
+                            <i class="ph ph-caret-down select-arrow"></i>
                         </div>
 
                         <div class="form-group">
@@ -140,8 +141,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                 Aceito os <a href="/termos" target="_blank">termos de serviço</a> e <a
                                     href="/privacidade" target="_blank">política de privacidade</a>
                             </label>
-                            <!-- NOVO ELEMENTO DE ERRO CUSTOMIZADO -->
-                            <div id="terms-error-message" style="display: none; color: red; margin-top: 5px;">
+                            
+                            <div id="terms-error-message" class="terms-error">
                                 Você deve aceitar os termos de serviço para continuar.
                             </div>
                         </div>

@@ -23,29 +23,27 @@ $address = $stmt->fetch();
 // Processar cadastro de novo endereço
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_address'])) {
   $addressData = [
-    'cep' => trim($_POST['cep'] ?? ''),
-    'street' => trim($_POST['street'] ?? ''),
-    'number' => trim($_POST['number'] ?? ''),
-    'complement' => trim($_POST['complement'] ?? ''),
-    'neighborhood' => trim($_POST['neighborhood'] ?? ''),
-    'city' => trim($_POST['city'] ?? ''),
-    'state' => trim($_POST['state'] ?? ''),
-    'recipient_name' => trim($_POST['recipient_name'] ?? ''),
-    'contact_phone' => trim($_POST['contact_phone'] ?? ''),
-    'type' => 'Casa'
+    ':cep' => trim($_POST['cep'] ?? ''),
+    ':street' => trim($_POST['street'] ?? ''),
+    ':number' => trim($_POST['number'] ?? '') ?: null,
+    ':complement' => trim($_POST['complement'] ?? '') ?: null,
+    ':neighborhood' => trim($_POST['neighborhood'] ?? ''),
+    ':city' => trim($_POST['city'] ?? ''),
+    ':state' => trim($_POST['state'] ?? ''),
+    ':recipient_name' => trim($_POST['recipient_name'] ?? ''),
+    ':contact_phone' => trim($_POST['contact_phone'] ?? ''),
+    ':type' => trim($_POST['type'] ?? 'Casa'),
+    ':user_id' => $userId
   ];
 
   try {
     if ($address) {
       // atualizar existente
-      $stmt = $db->prepare("UPDATE tatifit_users_address SET cep = :cep, street = :street, number = :number, complement = :complement, neighborhood = :neighborhood, city = :city, state = :state, recipient_name = :recipient_name, contact_phone = :contact_phone WHERE user_id = :user_id");
-      $addressData[':user_id'] = $userId;
+      $stmt = $db->prepare("UPDATE tatifit_users_address SET cep = :cep, street = :street, number = :number, complement = :complement, neighborhood = :neighborhood, city = :city, state = :state, recipient_name = :recipient_name, contact_phone = :contact_phone, type = :type WHERE user_id = :user_id");
       $stmt->execute($addressData);
     } else {
       // inserir endereço novo
       $stmt = $db->prepare("INSERT INTO tatifit_users_address (cep, street, number, complement, neighborhood, city, state, recipient_name, contact_phone, type, user_id) VALUES (:cep, :street, :number, :complement, :neighborhood, :city, :state, :recipient_name, :contact_phone, :type, :user_id)");
-      $addressData[':type'] = 'Casa';
-      $addressData[':user_id'] = $userId;
       $stmt->execute($addressData);
     }
     echo "<script>alert('✅ Endereço salvo com sucesso!'); window.location.href = '/endereco';</script>";
@@ -60,21 +58,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_address'])) {
 
 <body>
   <div class="address-header">
-    <h1>Endereço de entrega</h1>
+    <div class="header-content">
+      <h1><i class="ph ph-map-pin"></i> Endereço de entrega</h1>
+      <p>Confirme ou cadastre seu endereço para finalizar a compra</p>
+    </div>
 
     <div class="checkout-progress">
-      <ul>
-        <li class="active">Carrinho</li>
-        <li class="active current">Endereço</li>
-        <li>Pagamento</li>
-        <li>Confirmação</li>
-      </ul>
+      <div class="progress-step completed">
+        <div class="step-circle"><i class="ph ph-check"></i></div>
+        <span>Carrinho</span>
+      </div>
+      <div class="progress-line completed"></div>
+      <div class="progress-step active">
+        <div class="step-circle">2</div>
+        <span>Endereço</span>
+      </div>
+      <div class="progress-line"></div>
+      <div class="progress-step">
+        <div class="step-circle">3</div>
+        <span>Pagamento</span>
+      </div>
+      <div class="progress-line"></div>
+      <div class="progress-step">
+        <div class="step-circle">4</div>
+        <span>Confirmação</span>
+      </div>
     </div>
   </div>
+  
   <main class="address-main">
-    <!-- ===========================
-         SEÇÃO: RESUMO DO PEDIDO
-    ============================ -->
     <section class="address-content">
       <div class="address-items">
         <h2><i class="ph ph-package"></i>Resumo do pedido</h2>
@@ -104,22 +116,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_address'])) {
           <p>Total: <strong>R$ <?= number_format($totalPrice, 2, ',', '.') ?></strong></p>
         </div>
 
-        <!-- ===== Cupom de Desconto ===== -->
-        <div class="discount-code">
+        <!-- <div class="discount-code">
           <input type="text" placeholder="Digite seu cupom" />
           <button class="btn-apply-coupon">
             <span data-text="Aplicar Cupom">Aplicar Cupom</span>
             <div class="scan-line"></div>
           </button>
-        </div>
+        </div> -->
 
-        <!-- ===========================
-             SEÇÃO: ADICIONAR ENDEREÇO
-        ============================ -->
         <div class="add-address">
           <h2>Finalize seu pedido com o endereço perfeito!</h2>
 
-          <!-- Botão que exibe/esconde o formulário -->
           <button id="add-address-button" class="btn-add-address">
             <i class="ph ph-plus"></i>
           </button>
@@ -145,6 +152,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_address'])) {
               value="<?= htmlspecialchars($address['state'] ?? '') ?>" required />
             <input type="text" name="contact_phone" placeholder="Telefone"
               value="<?= htmlspecialchars($address['contact_phone'] ?? '') ?>" required />
+            <select name="type" required>
+              <option value="Casa" <?= ($address['type'] ?? '') === 'Casa' ? 'selected' : '' ?>>Casa</option>
+              <option value="Trabalho" <?= ($address['type'] ?? '') === 'Trabalho' ? 'selected' : '' ?>>Trabalho</option>
+              <option value="Outro" <?= ($address['type'] ?? '') === 'Outro' ? 'selected' : '' ?>>Outro</option>
+            </select>
 
             <input type="hidden" name="save_address" value="1">
             <button type="submit" class="btn-save-address">Salvar Endereço</button>
@@ -153,9 +165,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_address'])) {
       </div>
     </section>
 
-    <!-- ===========================
-         SEÇÃO: DETALHES DO ENDEREÇO
-    ============================ -->
     <section class="address-details">
       <div class="address-info-block">
         <h2 class="address-info-title">
@@ -178,15 +187,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_address'])) {
         </div>
 
         <!-- Novo botão de edição -->
-        <button class="btn-edit-address"><span>Editar Endereço</span></button>
+        <!-- <button class="btn-edit-address"><span>Editar Endereço</span></button> -->
 
-        <!-- Mapa ilustrativo -->
-        <div class="address-map">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3473.6088428075577!2d-46.69501382022828!3d-23.660689023892804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce50402ebbf84f%3A0xa5d75dec15d9823f!2sR.%20Arlindo%20Veiga%20dos%20Santos%20-%20Campo%20Grande%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004671-300!5e1!3m2!1spt-BR!2sbr!4v1762366036614!5m2!1spt-BR!2sbr"
-            width="100%" height="300" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+        <!-- Mapa -->
+        <div class="address-map" id="map">
+          <?php if ($address): ?>
+            <iframe width="100%" height="300" frameborder="0" style="border:0; border-radius: 12px;"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-46.7,-23.6,-46.6,-23.5&layer=mapnik&marker=-23.55,-46.65">
+            </iframe>
+          <?php else: ?>
+            <div class="map-placeholder">
+              <i class="ph ph-map-pin"></i>
+              <p>Cadastre um endereço para ver no mapa</p>
+            </div>
+          <?php endif; ?>
         </div>
 
         <button class="btn-confirm-address">Confirmar Endereço</button>
@@ -204,24 +218,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_address'])) {
        SCRIPT: INTERAÇÃO DO FORMULÁRIO
   ============================ -->
   <script>
-    const addButton = document.getElementById('add-address-button');
-    const form = document.getElementById('address-form');
-    const icon = addButton.querySelector('i');
+    document.addEventListener('DOMContentLoaded', function() {
+      const addButton = document.getElementById('add-address-button');
+      const form = document.getElementById('address-form');
+      const icon = addButton.querySelector('i');
+      const cepInput = document.querySelector('input[name="cep"]');
 
-    addButton.addEventListener('click', () => {
-      form.classList.toggle('show');
-      if (form.classList.contains('show')) {
-        icon.classList.replace('ph-plus', 'ph-x');
-      } else {
-        icon.classList.replace('ph-x', 'ph-plus');
+      addButton.addEventListener('click', () => {
+        form.classList.toggle('show');
+        icon.classList.toggle('ph-plus');
+        icon.classList.toggle('ph-x');
+      });
+
+      // Busca CEP automaticamente
+      if (cepInput) {
+        cepInput.addEventListener('blur', function() {
+          const cep = this.value.replace(/\D/g, '');
+          if (cep.length === 8) {
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+              .then(response => response.json())
+              .then(data => {
+                if (!data.erro) {
+                  document.querySelector('input[name="street"]').value = data.logradouro;
+                  document.querySelector('input[name="neighborhood"]').value = data.bairro;
+                  document.querySelector('input[name="city"]').value = data.localidade;
+                  document.querySelector('input[name="state"]').value = data.uf;
+                  updateMap(data);
+                }
+              })
+              .catch(() => console.log('Erro ao buscar CEP'));
+          }
+        });
       }
+
+      // Confirmar endereço
+      document.querySelector('.btn-confirm-address').addEventListener('click', function() {
+        <?php if ($address): ?>
+          window.location.href = '/pagamento';
+        <?php else: ?>
+          alert('Cadastre um endereço primeiro');
+          form.classList.add('show');
+        <?php endif; ?>
+      });
     });
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert("✅ Endereço cadastrado com sucesso!");
-      form.classList.remove('show');
-      icon.classList.replace('ph-x', 'ph-plus');
-    });
+    function updateMap(data) {
+      // Mapa estático do OpenStreetMap (gratuito)
+      const mapContainer = document.getElementById('map');
+      mapContainer.innerHTML = `
+        <iframe width="100%" height="300" frameborder="0" style="border:0; border-radius: 12px;"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-46.7,-23.6,-46.6,-23.5&layer=mapnik">
+        </iframe>
+        <div class="map-info">
+          <p><i class="ph ph-map-pin"></i> ${data.logradouro}, ${data.bairro} - ${data.localidade}/${data.uf}</p>
+        </div>
+      `;
+    }
   </script>
 </body>

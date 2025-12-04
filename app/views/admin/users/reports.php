@@ -36,7 +36,7 @@ $usersByMonth = $db->query("
   <main class="product-page">
     <div class="users-header">
       <nav class="breadcrumb">
-        <span><a href="/admin">Admin</a></span> > <span>Cadastro de Produto</span>
+        <span><a href="/admin">Admin</a></span> > <span>Relatório Usuários</span>
       </nav>
       <!-- <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a> -->
     </div>

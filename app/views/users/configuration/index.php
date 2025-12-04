@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_account'])) {
 function maskCpfLast2($cpf) {
     $cpf = preg_replace('/\D/', '', $cpf); // remove não numéricos
     $last2 = substr($cpf, -2); // pega os 2 últimos dígitos
-    return "***.***.***-" . $last2;
+    return "***-" . $last2;
 }
 
 ?>
