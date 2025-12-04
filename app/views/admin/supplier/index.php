@@ -37,7 +37,7 @@ $activeSuppliers = $totalSuppliers; // Assumindo todos ativos por enquanto
     <main class="supplier-main">
         <div class="supplier-header">
             <nav class="breadcrumb">
-                <span><a href="/admin">Admin</a></span> > <span>Cadastro de Produto</span>
+                <span><a href="/admin">Admin</a></span> > <span>Fornecedores</span>
             </nav>
             <!-- <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a> -->
         </div>

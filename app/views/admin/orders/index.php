@@ -37,7 +37,7 @@ foreach ($orders as $order) {
     <main class="orders-main">
         <div class="orders-header">
             <nav class="breadcrumb">
-                <span><a href="/admin">Admin</a></span> > <span>Cadastro de Produto</span>
+                <span><a href="/admin">Admin</a></span> > <span>Pedidos</span>
             </nav>
             <!-- <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a> -->
         </div>

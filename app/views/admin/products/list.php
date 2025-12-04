@@ -23,7 +23,7 @@ $products = $db->query("
       <nav class="breadcrumb">
         <a href="/admin">Admin</a> > <span>Lista de Produtos</span>
       </nav>
-      <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a>
+      <!-- <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a> -->
       <h1>Lista de Produtos</h1>
       <p>Gerencie todos os produtos cadastrados na loja.</p>
 

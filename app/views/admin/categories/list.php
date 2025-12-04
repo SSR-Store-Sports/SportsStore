@@ -24,7 +24,7 @@ $categories = $db->query("
       <nav class="breadcrumb">
         <a href="/admin">Admin</a> > <span>Lista de Categorias</span>
       </nav>
-      <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a>
+      <!-- <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a> -->
       <h1>Lista de Categorias</h1>
       <p>Todas as categorias cadastradas no sistema.</p>
 

@@ -40,7 +40,7 @@ if (empty($products)) {
   <main class="product-page">
     <div class="stocks-header">
       <nav class="breadcrumb">
-        <span><a href="/admin">Admin</a></span> > <span>Cadastro de Produto</span>
+        <span><a href="/admin">Admin</a></span> > <span>Estoque</span>
       </nav>
       <!-- <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a> -->
     </div>

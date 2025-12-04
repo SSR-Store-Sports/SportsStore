@@ -18,7 +18,7 @@ $suppliers = $db->query("SELECT * FROM tatifit_suppliers ORDER BY name")->fetchA
       <nav class="breadcrumb">
         <a href="/admin">Admin</a> > <span>Lista de Fornecedores</span>
       </nav>
-      <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a>
+      <!-- <a href="/admin" class="product-back-page"><i class="ph ph-arrow-left"></i>Voltar</a> -->
       <h1>Lista de Fornecedores</h1>
       <p>Todos os fornecedores cadastrados no sistema.</p>
 

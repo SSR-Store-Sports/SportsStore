@@ -37,7 +37,7 @@ $name_short = nameTreament($name);
           <li><a href="/auth/login"><i class="ph ph-sign-in"></i>Login</a></li>
           <li><a href="/auth/registro"><i class="ph ph-user-plus"></i>Cadastrar</a></li>
         <?php else: ?>
-          <li><a href="/historico"><i class="ph ph-clock-clockwise"></i>Histórico</a></li>
+          <!-- <li><a href="/historico"><i class="ph ph-clock-clockwise"></i>Histórico</a></li> -->
           <li><a href="/acompanhamento"><i class="ph ph-map-pin"></i>Acompanhamento</a></li>
           <li><a href="/users/"><i class="ph ph-gear"></i>Configurações</a></li>
           <li><a href="/auth/logout"><i class="ph ph-sign-out"></i>Sair</a></li>
