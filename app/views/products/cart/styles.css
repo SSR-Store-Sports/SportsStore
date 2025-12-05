@@ -31,6 +31,8 @@
   display: grid;
   grid-template-columns: 1fr 350px;
   gap: 32px;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--bg-quaternary);
 }
 
 .cart-items {
@@ -54,7 +56,7 @@
   margin-top: 8px;
   width: 18px;
   height: 18px;
-  accent-color: var(--primary-color);
+  accent-color: #f044c3;
 }
 
 .item-image {

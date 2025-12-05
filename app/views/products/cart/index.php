@@ -1,22 +1,15 @@
 <?php
 require 'config/database.php';
 
-// Verificar se usuário está logado
-// if (empty($_SESSION['user_id'])) {
-//     echo "<script>alert('Você precisa estar logado para acessar o carrinho.'); window.location.href = '/auth/login';</script>";
-//     exit();
-// }
-
-// $userId = $_SESSION['user_id'];
-
-// Iniciliza array de carrinho se estiver vazio
+// estabelece carrinho se estiver vazio
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-// Adicionar produto ao carrinho
+// adicionar produto ao carrinho
 if (isset($_GET['produto'])) {
     $productId = (int)$_GET['produto'];
+    $quantity = isset($_GET['quantidade']) ? (int)$_GET['quantidade'] : 1;
 
     // Verificar se produto existe
     $stmt = $db->prepare("SELECT id, name, price, url_image FROM tatifit_products WHERE id = :id AND status = 'Ativo'");
@@ -26,14 +19,14 @@ if (isset($_GET['produto'])) {
     if ($product) {
         // Adicionar à sessão
         if (isset($_SESSION['cart'][$productId])) {
-            $_SESSION['cart'][$productId]['quantity']++;
+            $_SESSION['cart'][$productId]['quantity'] += $quantity;
         } else {
             $_SESSION['cart'][$productId] = [
                 'id' => $product['id'],
                 'name' => $product['name'],
                 'price' => $product['price'],
                 'image' => $product['url_image'],
-                'quantity' => 1
+                'quantity' => $quantity
             ];
         }
     }
@@ -42,7 +35,7 @@ if (isset($_GET['produto'])) {
     exit();
 }
 
-// Remover produto do carrinho
+// remover produto do carrinho
 if (isset($_POST['remove_product'])) {
     $productId = (int)$_POST['product_id'];
     unset($_SESSION['cart'][$productId]);
@@ -50,7 +43,7 @@ if (isset($_POST['remove_product'])) {
     exit();
 }
 
-// Atualizar quantidade
+// atualizar quantidade
 if (isset($_POST['update_quantity'])) {
     $productId = (int)$_POST['product_id'];
     $quantity = (int)$_POST['quantity'];
@@ -62,17 +55,53 @@ if (isset($_POST['update_quantity'])) {
     exit();
 }
 
-// Buscar itens do carrinho
+// processar checkout com produtos selecionados
+if (isset($_POST['proceed_checkout'])) {
+    $selectedItems = explode(',', $_POST['selected_items']);
+    $checkoutCart = [];
+    
+    foreach ($selectedItems as $productId) {
+        if (isset($_SESSION['cart'][$productId])) {
+            $checkoutCart[$productId] = $_SESSION['cart'][$productId];
+        }
+    }
+    
+    $_SESSION['checkout_cart'] = $checkoutCart;
+    echo "<script>window.location.href = '/endereco';</script>";
+    exit();
+}
+
+// buscar itens do carrinho
 $cartItems = $_SESSION['cart'] ?? [];
 
-// Calcular totais
+// calcular totais
 $totalItems = 0;
 $totalPrice = 0;
 
+// percorre items para realizar o cálculo
 foreach ($cartItems as $item) {
     $totalItems += $item['quantity'];
     $totalPrice += $item['price'] * $item['quantity'];
 }
+
+// $userID = trim($_SESSION['user_id'] ?? '');
+
+// if ($userID) {
+//   try {
+//     $stmt = $db->prepare("SELECT id, name, email, phone, cpf FROM tatifit_users WHERE id = :userID");
+//     $stmt->execute([':userID' => $userID]);
+//     $user = $stmt->fetch();
+
+//     if ($user) {
+//       $response = $user;
+//     } else {
+//       $error = 'Usuário não encontrado!';
+//     }
+//   } catch (PDOException $e) {
+//     error_log("Erro de Obter Perfil de Usuário no BD: " . $e->getMessage());
+//     $error = "Ocorreu um erro ao tentar obter perfil de usuário. Tente novamente mais tarde.";
+//   }
+// }
 ?>
 
 <link rel="stylesheet" href="/app/views/products/cart/styles.css">
@@ -82,6 +111,8 @@ foreach ($cartItems as $item) {
         <h1><i class="ph ph-shopping-cart"></i> Carrinho de compras</h1>
         <span class="cart-count"><?= $totalItems ?> produto(s)</span>
     </div>
+
+    <!-- <h3>Suas compras, <?=$response['name'] ?></h3> -->
 
     <div class="cart-content">
         <div class="cart-items">
@@ -156,10 +187,10 @@ foreach ($cartItems as $item) {
                         <p>em até <strong>12x de R$ <?= number_format($totalPrice / 12, 2, ',', '.') ?></strong> sem juros</p>
                     </div>
                 <?php endif; ?>
-                <a href="/endereco" class="checkout-btn">
+                <button onclick="proceedToCheckout()" class="checkout-btn">
                     <i class="ph ph-credit-card"></i>
                     Finalizar compra
-                </a>
+                </button>
                 <div class="security-info">
                     <i class="ph ph-shield-check"></i>
                     <span>Compra 100% segura</span>
@@ -207,6 +238,33 @@ foreach ($cartItems as $item) {
         <input type="hidden" name="quantity" value="${quantity}">
         <input type="hidden" name="update_quantity" value="1">
     `;
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    function proceedToCheckout() {
+        const selectedItems = [];
+        const checkboxes = document.querySelectorAll('.item-checkbox:checked');
+        
+        if (checkboxes.length === 0) {
+            alert('Selecione pelo menos um produto para finalizar a compra.');
+            return;
+        }
+        
+        checkboxes.forEach(checkbox => {
+            const cartItem = checkbox.closest('.cart-item');
+            const productId = cartItem.querySelector('input[name="product_id"]').value;
+            selectedItems.push(productId);
+        });
+        
+        // Enviar produtos selecionados via POST
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/carrinho';
+        form.innerHTML = `
+            <input type="hidden" name="selected_items" value="${selectedItems.join(',')}">
+            <input type="hidden" name="proceed_checkout" value="1">
+        `;
         document.body.appendChild(form);
         form.submit();
     }

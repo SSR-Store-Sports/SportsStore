@@ -90,3 +90,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Função para adicionar ao carrinho com quantidade
+function addToCart() {
+    const quantity = document.getElementById('quantity').value;
+    const productId = new URLSearchParams(window.location.search).get('id');
+    
+    if (productId && quantity) {
+        window.location.href = `/carrinho?produto=${productId}&quantidade=${quantity}`;
+    }
+}

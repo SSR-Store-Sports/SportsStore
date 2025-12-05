@@ -43,6 +43,7 @@ $relatedStmt = $db->prepare("
 ");
 $relatedStmt->execute([':category_id' => $product['category_id'], ':current_id' => $productId]);
 $relatedProducts = $relatedStmt->fetchAll();
+
 ?>
 
 <link rel="stylesheet" href="/app/views/products/product-selected/styles.css" />
@@ -140,14 +141,14 @@ $relatedProducts = $relatedStmt->fetchAll();
               <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
               <button type="button" class="qty-btn" id="increaseQty"><i class="ph ph-plus"></i></button>
             </div>
-            <span class="stock-info"><i class="ph ph-check-circle"></i> 15 unidades em estoque</span>
+            <span class="stock-info"><i class="ph ph-check-circle"></i>Disponível em estoque</span>
           </div>
 
           <div class="action-buttons">
-            <a href="/carrinho?produto=<?= $product['id'] ?>" class="btn-add-cart">
+            <button type="button" class="btn-add-cart" onclick="addToCart()">
               <i class="ph ph-shopping-cart"></i>
               Adicionar ao Carrinho
-            </a>
+            </button>
             <!-- <button type="button" class="btn-buy-now">
               <i class="ph ph-lightning"></i>
               Comprar Agora
