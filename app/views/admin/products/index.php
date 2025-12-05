@@ -1,7 +1,8 @@
 <?php
 require 'config/database.php';
 
-if ($_SESSION['role'] === "user") {
+// verifica se permissão do usuário é diferente de admin
+if ($_SESSION['role'] !== "admin") {
   echo "<script>window.location.href = '/';</script>";
   exit();
 }

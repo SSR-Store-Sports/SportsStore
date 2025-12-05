@@ -3,9 +3,10 @@ require 'config/database.php';
 
 header('Content-Type: application/json');
 
+// verifica se permissão do usuário é diferente de admin
 if ($_SESSION['role'] !== "admin") {
-    echo json_encode(['success' => false, 'message' => 'Acesso negado']);
-    exit();
+  echo "<script>window.location.href = '/';</script>";
+  exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
