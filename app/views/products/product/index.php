@@ -92,70 +92,78 @@ try {
     <h1>Todos os Produtos</h1>
 
     <div class="products-container">
-      <?php foreach ($dataOfferProducts as $product): ?>
-        <div class="product-card">
-          <a href="/produto?id=<?= $product['id'] ?>">
+      <?php if ($dataOfferProducts): ?>
+        <?php foreach ($dataOfferProducts as $product): ?>
+          <div class="product-card">
+            <a href="/produto?id=<?= $product['id'] ?>">
 
-            <?php if ($product['is_new'] == 1): ?>
-              <div class="product-badge"><span class="badge-new">Lançamento</span></div>
-            <?php endif; ?>
-
-            <div class="product-image">
-              <img src="<?= htmlspecialchars($product['url_image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
-            </div>
-
-            <div class="product-info">
-
-              <?php if (isset($product['discount_percent'])): ?>
-                <div class="product-block">
-                  <div class="product-discount"><?= $product['discount_percent'] ?>% OFF</div>
-                </div>
+              <?php if ($product['is_new'] == 1): ?>
+                <div class="product-badge"><span class="badge-new">Lançamento</span></div>
               <?php endif; ?>
 
-              <div class="product-title-rating">
-                <h3 class="product-title"><?= htmlspecialchars($product['name']) ?></h3>
-
-                <div class="product-rating">
-                  <?php
-                  $stars = str_repeat('<i class="ph-fill ph-star" style="color:#FFD700;"></i>', floor($product['rating']));
-                  $stars .= str_repeat('<i class="ph ph-star" style="color:#ccc;"></i>', 5 - floor($product['rating']));
-                  ?>
-                  <span class="stars"><?= $stars ?></span>
-                  <span class="rating-count">(<?= (int)$product['rating_count'] ?>)</span>
-                </div>
+              <div class="product-image">
+                <img src="<?= htmlspecialchars($product['url_image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
               </div>
 
-              <?php if ($product['free_shipping']): ?>
-                <div class="product-block">
-                  <div class="free-shipping">Frete Grátis</div>
-                </div>
-              <?php endif; ?>
+              <div class="product-info">
 
-              <div>
-                <?php if (!empty($product['old_price'])): ?>
-                  <span class="product-old-price">
-                    R$ <?= number_format($product['old_price'], 2, ',', '.') ?>
-                  </span>
+                <?php if (isset($product['discount_percent'])): ?>
+                  <div class="product-block">
+                    <div class="product-discount"><?= $product['discount_percent'] ?>% OFF</div>
+                  </div>
                 <?php endif; ?>
 
-                <span class="product-price">
-                  R$ <?= number_format($product['price'], 2, ',', '.') ?>
-                </span>
+                <div class="product-title-rating">
+                  <h3 class="product-title"><?= htmlspecialchars($product['name']) ?></h3>
+
+                  <div class="product-rating">
+                    <?php
+                    $stars = str_repeat('<i class="ph-fill ph-star" style="color:#FFD700;"></i>', floor($product['rating']));
+                    $stars .= str_repeat('<i class="ph ph-star" style="color:#ccc;"></i>', 5 - floor($product['rating']));
+                    ?>
+                    <span class="stars"><?= $stars ?></span>
+                    <span class="rating-count">(<?= (int)$product['rating_count'] ?>)</span>
+                  </div>
+                </div>
+
+                <?php if ($product['free_shipping']): ?>
+                  <div class="product-block">
+                    <div class="free-shipping">Frete Grátis</div>
+                  </div>
+                <?php endif; ?>
+
+                <div>
+                  <?php if (!empty($product['old_price'])): ?>
+                    <span class="product-old-price">
+                      R$ <?= number_format($product['old_price'], 2, ',', '.') ?>
+                    </span>
+                  <?php endif; ?>
+
+                  <span class="product-price">
+                    R$ <?= number_format($product['price'], 2, ',', '.') ?>
+                  </span>
+                </div>
+
+                <?php if (!empty($product['installments_info'])): ?>
+                  <p class="product-installments"><?= htmlspecialchars($product['installments_info']) ?></p>
+                <?php endif; ?>
+
+                <div class="product-actions">
+                  <a href="/produto?id=<?= $product['id'] ?>" class="product-button">Comprar</a>
+                  <!-- <button class="btn-wishlist"><i class="ph ph-heart"></i></button> -->
+                </div>
+
               </div>
-
-              <?php if (!empty($product['installments_info'])): ?>
-                <p class="product-installments"><?= htmlspecialchars($product['installments_info']) ?></p>
-              <?php endif; ?>
-
-              <div class="product-actions">
-                <a href="/produto?id=<?= $product['id'] ?>" class="product-button">Comprar</a>
-                <!-- <button class="btn-wishlist"><i class="ph ph-heart"></i></button> -->
-              </div>
-
-            </div>
-          </a>
+            </a>
+          </div>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <div class="empty-state">
+          <i class="ph ph-package"></i>
+          <h3>Nenhum produto encontrado</h3>
+          <p>Tente ajustar os filtros ou <a href="/produtos">ver todos os produtos</a></p>
         </div>
-      <?php endforeach; ?>
+      <?php endif; ?>
     </div>
 
     <div class="pagination">
