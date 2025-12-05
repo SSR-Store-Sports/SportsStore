@@ -8,17 +8,17 @@ if ($_SESSION['role'] !== "admin") {
 }
 
 $message = "";
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($products)) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $stockData = [
     'size' => trim($_POST['size'] ?? ''),
-    'color' => trim($_POST['color'] ?? ''),
     'stock_quantity' => trim($_POST['stock_quantity'] ?? ''),
+    'amount_request' => trim($_POST['amount_request'] ?? ''),
     'products_id' => trim($_POST['products_id'] ?? ''),
     'suppliers_id' => trim($_POST['suppliers_id'] ?? '') ?: null,
   ];
 
   try {
-    $stmt = $db->prepare("INSERT INTO tatifit_stocks (size, color, stock_quantity, products_id, suppliers_id) VALUES (:size, :color, :stock_quantity, :products_id, :suppliers_id)");
+    $stmt = $db->prepare("INSERT INTO tatifit_stocks (size, stock_quantity, amount_request, products_id, suppliers_id) VALUES (:size, :stock_quantity, :amount_request, :products_id, :suppliers_id)");
     $stmt->execute($stockData);
     $message = "✅ Estoque cadastrado com sucesso!";
   } catch (Exception $e) {
@@ -90,19 +90,12 @@ if (empty($products)) {
           </div>
 
           <div class="form-group">
-            <label for="color">Cor</label>
-            <select name="color" required>
-              <option value="Vermelho">Vermelho</option>
-              <option value="Azul">Azul</option>
-              <option value="Preto">Preto</option>
-              <option value="Branco">Branco</option>
-              <option value="Verde">Verde</option>
-              <option value="Laranja">Laranja</option>
-            </select>
+            <label for="amount_request">Quantidade Solicitada</label>
+            <input type="number" name="amount_request" min="0" required>
           </div>
 
           <div class="form-group">
-            <label for="stock_quantity">Quantidade</label>
+            <label for="stock_quantity">Quantidade Entregue</label>
             <input type="number" name="stock_quantity" min="0" required>
           </div>
         </div>
