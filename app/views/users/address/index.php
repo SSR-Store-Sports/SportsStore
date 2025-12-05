@@ -8,11 +8,15 @@ if (empty($_SESSION['user_id'])) {
 
 $userId = $_SESSION['user_id'];
 
-// itens do carrinho da sessão
-$cartItems = $_SESSION['cart'] ?? [];
+$cartItems = $_SESSION['checkout_cart'] ?? [];
 $totalPrice = 0;
 foreach ($cartItems as $item) {
   $totalPrice += $item['price'] * $item['quantity'];
+}
+
+if (empty($cartItems)) {
+  echo "<script>alert('Nenhum produto selecionado para checkout.'); window.location.href = '/carrinho';</script>";
+  exit();
 }
 
 // endereço do usuário
@@ -20,7 +24,6 @@ $stmt = $db->prepare("SELECT * FROM tatifit_users_address WHERE user_id = :user_
 $stmt->execute([':user_id' => $userId]);
 $address = $stmt->fetch();
 
-// Processar cadastro de novo endereço
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_address'])) {
   $addressData = [
     ':cep' => trim($_POST['cep'] ?? ''),
@@ -91,23 +94,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_address'])) {
       <div class="address-items">
         <h2><i class="ph ph-package"></i>Resumo do pedido</h2>
 
-        <?php if (empty($cartItems)): ?>
-          <p>Carrinho vazio</p>
-        <?php else: ?>
-          <?php foreach ($cartItems as $item): ?>
-            <div class="item">
-              <div class="item-image">
-                <img src="<?= htmlspecialchars($item['image'] ?? '/public/images/product.jpg') ?>"
-                  alt="<?= htmlspecialchars($item['name']) ?>">
-              </div>
-              <div class="item-details">
-                <h3><?= htmlspecialchars($item['name']) ?></h3>
-                <p class="item-size">Qtd: <?= $item['quantity'] ?></p>
-                <div class="price-current">R$ <?= number_format($item['price'], 2, ',', '.') ?></div>
-              </div>
+        <div class="checkout-items">
+          <?php if (empty($cartItems)): ?>
+            <div class="empty-checkout">
+              <i class="ph ph-shopping-cart"></i>
+              <h3>Nenhum produto selecionado</h3>
+              <p>Volte ao carrinho e selecione os produtos desejados</p>
+              <a href="/carrinho" class="btn-back-cart">Voltar ao Carrinho</a>
             </div>
-          <?php endforeach; ?>
-        <?php endif; ?>
+          <?php else: ?>
+            <?php foreach ($cartItems as $item): ?>
+              <div class="checkout-item">
+                <div class="item-image">
+                  <img src="<?= htmlspecialchars($item['image'] ?? '/public/images/product.jpg') ?>"
+                    alt="<?= htmlspecialchars($item['name']) ?>">
+                </div>
+                <div class="item-info">
+                  <h4><?= htmlspecialchars($item['name']) ?></h4>
+                  <div class="item-meta">
+                    <span class="quantity">Qtd: <?= $item['quantity'] ?></span>
+                    <span class="price">R$ <?= number_format($item['price'], 2, ',', '.') ?></span>
+                  </div>
+                  <div class="item-total">Total: R$ <?= number_format($item['price'] * $item['quantity'], 2, ',', '.') ?></div>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          <?php endif; ?>
+        </div>
 
         <div class="order-summary">
           <p>Subtotal: <strong>R$ <?= number_format($totalPrice, 2, ',', '.') ?></strong></p>

@@ -1,161 +1,14 @@
-/* =====================================================
-   SUMÁRIO
-   -----------------------------------------------------
-   1. Estilos Gerais e Layout Base
-   2. Cabeçalho e Barra de Progresso
-   3. Conteúdo Principal (Itens do Pedido)
-   4. Cupom de Desconto
-   5. Endereço e Mapa
-   6. Botões e Selos de Segurança
-   7. Formulário de Cadastro
-   8. Responsividade
-   ===================================================== */
-
-
-/* ==============================
-   ESTILOS GERAIS
-============================== */
-body {
-  color: black;
-}
-
 .address-main {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  max-width: 1800px;
+  max-width: 1600px;
   margin: 0 auto 120px auto;
   gap: 50px;
   padding: 0 20px;
 }
 
-.address-content {
-  background-color: var(--border-color-white);
-  box-shadow: rgba(255, 192, 203, 0.3) 0px 1px 4px;
-  border: 1px solid var(--border-color-pink);
-  padding: 32px;
-  border-radius: 16px;
-  flex: 1.2;
-}
-
-.address-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 6px;
-  background: var(--border-color-white);
-  border: 1px solid var(--border-color-pink);
-  padding: 32px;
-  border-radius: 16px;
-  flex: 1.3;
-  gap: 20px;
-}
-
-/* ============================
-   📱 RESPONSIVIDADE MOBILE
-   ============================ */
-@media (max-width: 1024px) {
-  .address-main {
-    flex-direction: column; /* empilha as sections */
-    gap: 30px; /* reduz o espaço entre elas */
-    padding: 0 16px;
-    margin-bottom: 60px;
-  }
-
-  .address-content,
-  .address-details {
-    flex: 1 1 100%;
-    width: 100%;
-  }
-
-  .address-content,
-  .address-details {
-    padding: 24px; /* um pouco menos pra caber melhor */
-  }
-}
-
-@media (max-width: 600px) {
-  .address-main {
-    padding: 0 12px;
-    gap: 20px;
-  }
-
-  .address-content,
-  .address-details {
-    padding: 20px;
-    border-radius: 12px;
-  }
-
-  .address-content h2,
-  .address-details h2 {
-    font-size: 1.1rem;
-  }
-}
-
-.discount-code {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  width: 100%;
-}
-
-.discount-code input {
-  flex: 1;
-  padding: 12px 14px;
-  border: 1px solid var(--border-color-pink);
-  border-radius: 8px;
-  font-size: 1rem;
-  outline: none;
-  box-sizing: border-box;
-}
-
-.btn-apply-coupon {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #fff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 16px;
-  background: rgba(255, 0, 150, 0.15);
-  border: 2px solid rgba(255, 0, 150, 0.5);
-  border-radius: 8px;
-  transition: 0.3s;
-  white-space: nowrap;
-  flex-shrink: 0; /* evita encolher demais */
-}
-
-/* =============================
-   📱 MOBILE (375px)
-   ============================= */
-@media (max-width: 480px) {
-  .discount-code {
-    flex-direction: column; /* empilha input e botão */
-    align-items: stretch;
-    gap: 12px;
-    width: 100%;
-  }
-
-  .discount-code input,
-  .btn-apply-coupon {
-    width: 100%; /* ocupam toda a largura */
-  }
-
-  .btn-apply-coupon {
-    padding: 14px;
-    font-size: 0.9rem;
-    border-radius: 10px;
-    text-align: center;
-  }
-}
-
-
-/* ==============================
-   CABEÇALHO DA PÁGINA
-============================== */
 .address-header {
   width: 100%;
   background: linear-gradient(135deg, var(--bg-secondary-white) 0%, rgba(214, 126, 191, 0.05) 100%);
@@ -192,10 +45,6 @@ body {
   opacity: 0.8;
 }
 
-
-/* ==============================
- BARRA DE PROGRESSO
-============================== */
 .checkout-progress {
   display: flex;
   align-items: center;
@@ -260,30 +109,12 @@ body {
   50% { transform: scale(1.1); }
 }
 
-
-/* ==============================
-   CONTEÚDO PRINCIPAL
-============================== */
-.address-main{
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: auto;
-  max-width: 1200px;
-  margin-bottom: 120px;
-}
-
-
-/* ==============================
-   BLOCO: RESUMO DO PEDIDO
-============================== */
 .address-content {
-  background-color: var(--border-color-white);
+  background: linear-gradient(135deg, var(--bg-secondary-white) 0%, rgba(214, 126, 191, 0.05) 100%);
   box-shadow: rgba(255, 192, 203, 0.3) 0px 1px 4px;
-  border: 1px solid var(--border-color-pink);
   padding: 32px;
   border-radius: 16px;
-  flex: 1.2; /* cresce mais */
+  flex: 1.2;
 }
 
 .address-items h2 {
@@ -293,311 +124,158 @@ body {
   align-items: center;
   font-size: 1.6rem;
   font-weight: 600;
-   margin-bottom: 20px;
+  margin-bottom: 20px;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--bg-quaternary);
 }
 
-.item {
-  display: flex;
-  justify-content: space-between;
-  align-items: normal;
-  border: 1px solid var(--border-color-pink);
+.checkout-items {
+  margin-bottom: 2rem;
+}
+
+.empty-checkout {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: #666;
+  background: var(--bg-secondary-white);
   border-radius: 12px;
-  padding: 18px;
-  gap: 20px;
-  margin-bottom: 10px;
-  background-color: var(--border-color-white);
-  transition: all 0.25s ease-in-out;
-  box-shadow: 0 1px 3px rgba(255, 192, 203, 0.4); /* sombra suave rosada */
+  border: 2px dashed var(--bg-quaternary);
 }
 
-.item:hover {
-  transform: translateY(-3px); /* sobe menos */
-  box-shadow: 0 3px 6px rgba(255, 192, 203, 0.6); /* sombra sutil e leve */
-  border-color: var(--border-color-pink);
+.empty-checkout i {
+  font-size: 4rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
 }
 
-.item-image{
-  display: flex;
-  justify-content: flex-start;
-  width: 170px;
-  height: 170px;
-  border: 16px;
-}
-
-.item-details {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  position: relative;
-  gap: 10px;
-}
-
-.item-details h3 {
-  font-size: 1.1rem;
-  color: var(--text-color-dark);
-  font-weight: 600;
-}
-
-.item-details p {
+.empty-checkout h3 {
+  margin: 1rem 0 0.5rem 0;
   color: var(--text-color-gray);
-  font-size: 0.95rem;
+  font-size: 1.5rem;
 }
 
-.price-current {
-  position: static;
-  align-self: flex-end;
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: var(--border-color-pink);
-  margin-top: 4px;
+.empty-checkout p {
+  margin-bottom: 2rem;
+  font-size: 1rem;
 }
 
-
-/* ================================
-   Seção: Resumo do Pedido
-   Descrição: Define o estilo da área que exibe subtotal, frete e total da compra.
-   ================================ */
-
-.order-summary {
-  margin-top: 20px; /* Espaçamento superior para separar dos itens anteriores */
-  border-top: 1px solid var(--bg-quaternary); /* Linha sutil no topo para dividir seções */
-  padding-top: 16px; /* Espaço interno acima dos elementos */
-  font-size: 1rem; /* Tamanho base da fonte */
-  color: var(--text-color-dark); /* Cor padrão do texto */
-  display: flex; /* Ativa o modelo flexível */
-  flex-direction: column; /* Organiza os parágrafos verticalmente */
-  gap: 6px; /* Espaço entre cada linha de informação */
-}
-
-.order-summary p {
-  display: flex; /* Mantém o nome e o valor na mesma linha */
-  justify-content: space-between; /* Distribui o texto nas extremidades esquerda e direita */
-  margin-bottom: 4px; /* Espaçamento inferior entre linhas */
-  line-height: 1.4; /* Melhora a legibilidade */
-}
-
-/* Estilo para os spans dentro dos parágrafos (como nomes de campo ou valores) */
-.order-summary p span {
-  font-weight: 500; /* Peso médio para destaque leve */
-  color: var(--text-color-dark); /* Mantém a cor padrão */
-}
-
-/* Linha específica para o total final */
-.order-summary p.total {
-  font-weight: 600; /* Destaca o total em negrito */
-  color: var(--icon-primary); /* Usa cor de destaque principal */
-  font-size: 1.05rem; /* Um pouco maior que o texto comum */
-  margin-top: 6px; /* Espaço extra acima do total */
-}
-
-/* Linha divisória entre subtotal/frete e total */
-.order-summary hr {
-  border: none; /* Remove o estilo padrão */
-  border-top: 1px dashed var(--border-color-pink); /* Linha tracejada sutil */
-  margin: 10px 0; /* Espaçamento vertical */
-  opacity: 0.6; /* Reduz a opacidade para visual mais suave */
-}
-
-
-/* ======================================
-   Seção: Cupom de Desconto
-   Descrição: Estiliza o campo e o botão para aplicação de cupons.
-   ====================================== */
-
-.discount-code {
-  display: flex; /* Organiza o input e o botão lado a lado */
-  align-items: center; /* Centraliza verticalmente */
-  gap: 10px; /* Espaço entre o campo e o botão */
-  margin-top: 20px; /* Espaço acima da seção */
-  width: 100%; /* Ocupa toda a largura disponível */
-}
-
-/* Campo de texto do cupom */
-.discount-code input[type="text"] {
-  flex: 1; /* Faz o input ocupar todo o espaço restante */
-  padding: 10px 14px; /* Espaçamento interno confortável */
-  border: 1px solid var(--border-color-pink); /* Borda sutil com cor de destaque */
-  border-radius: 8px; /* Cantos arredondados */
-  font-size: 0.95rem; /* Tamanho equilibrado do texto */
-  outline: none; /* Remove o contorno padrão */
-  color: var(--text-color-dark); /* Cor do texto */
-  background-color: var(--bg-primary); /* Fundo neutro */
-  transition: border-color 0.3s ease; /* Suaviza o hover */
-}
-
-/* Efeito ao focar no campo */
-.discount-code input[type="text"]:focus {
-  border-color: var(--icon-primary); /* Destaca a borda ao focar */
-}
-
-/* Botão de aplicar cupom */
-.discount-code {
-  display: flex;
-  gap: 8px; /* espaço entre input e botão */
-}
-
-.discount-code input[type="text"] {
-  flex: 1;
-  padding: 10px 14px;
-  border: 1px solid var(--border-color-pink);
+.btn-back-cart {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: var(--primary-color);
+  color: white;
+  text-decoration: none;
   border-radius: 8px;
-  font-size: 0.95rem;
-  outline: none;
-  color: var(--text-color-dark);
-  background-color: var(--bg-primary);
-  transition: border-color 0.3s ease;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
-/* Botão padrão */
-.btn-apply-coupon {
-  position: relative;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #fff;
-  cursor: pointer;
-  backdrop-filter: blur(4px);
+.btn-back-cart:hover {
+  background: #c875a5;
+  transform: translateY(-2px);
+}
+
+.checkout-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 10px 14px;
-  background: rgba(255, 0, 150, 0.1);
-  border: 2px solid rgba(255, 0, 150, 0.5);
-  border-radius: 8px;
-  overflow: hidden;
-  transition: 0.3s;
-  width: fit-content;
-  max-width: 100%;
-  text-align: center;
-}
-
-.btn-apply-coupon span {
-  position: relative;
-  z-index: 1;
-  text-shadow: 0 0 8px rgba(255, 0, 150, 0.7);
-}
-
-.btn-apply-coupon span::before,
-.btn-apply-coupon span::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  opacity: 0;
-  filter: blur(1px);
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--bg-quaternary);
+  margin-bottom: 1rem;
   transition: all 0.3s ease;
 }
 
-.btn-apply-coupon span::before {
-  top: -2px;
-  color: #ff69b4;
-  transform: translateX(0);
-  animation: glitch 2s infinite;
+.checkout-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(214, 126, 191, 0.15);
 }
 
-.btn-apply-coupon span::after {
-  bottom: -2px;
-  color: #ff1493;
-  transform: translateX(0);
-  animation: glitch 2s infinite reverse;
-}
-
-.btn-apply-coupon .scan-line {
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(to right, transparent, rgba(255,0,150,0.8), transparent);
-  top: 0;
-  animation: scan 2s linear infinite;
-  filter: blur(1px);
-  pointer-events: none;
-}
-
-@keyframes glitch {
-  0%, 100% { transform: translateX(0); opacity: 0.3; }
-  20% { transform: translateX(-5px); opacity: 0.5; }
-  40% { transform: translateX(5px); opacity: 0.7; }
-  60% { transform: translateX(-3px); opacity: 0.5; }
-  80% { transform: translateX(3px); opacity: 0.3; }
-}
-
-@keyframes scan {
-  0% { top: -10%; }
-  100% { top: 110%; }
-}
-
-
-/* ==============================
-   ADICIONAR ENDEREÇO
-============================== */
-
-.add-address {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
-  margin-top: 30px;
-}
-
-.add-address p {
-  font-size: 1rem;
-  color: var(--text-color-gray);
-}
-
-.btn-add-address {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--border-color-pink);
+.checkout-item .item-image {
   width: 80px;
   height: 80px;
-  border-radius: 50%;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.checkout-item .item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-info h4 {
+  font-size: 1.1rem;
+  color: var(--text-color-gray);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.item-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.item-meta .quantity {
+  color: var(--text-color-gray);
+  font-size: 0.9rem;
+}
+
+.item-meta .price {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.item-total {
+  font-weight: 700;
+  color: var(--text-color-gray);
+  font-size: 1rem;
+}
+
+.order-summary {
+  margin-top: 20px;
+  border-top: 1px solid var(--bg-quaternary);
+  padding-top: 16px;
+  font-size: 1rem;
+  color: var(--text-color-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.order-summary p {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.order-summary hr {
   border: none;
-  cursor: pointer;
-  transition: all 0.25s ease-in-out;
-  box-shadow: 0 2px 6px rgba(255, 105, 180, 0.3);
+  border-top: 1px dashed var(--border-color-pink);
+  margin: 10px 0;
+  opacity: 0.6;
 }
-
-/* Efeito hover */
-.btn-add-address:hover {
-  background-color: #ff79b0;
-  box-shadow: 0 6px 14px rgba(255, 105, 180, 0.4);
-  transform: translateY(-3px);
-}
-
-/* Ícone dentro do botão */
-.btn-add-address i {
-  font-size: 34px;
-  color: var(--border-color-white);
-  transition: transform 0.25s ease;
-}
-
-.btn-add-address:hover i {
-  transform: rotate(90deg);
-}
-
-
-/* ==============================
-   DETALHES DO ENDEREÇO
-============================== */
 
 .address-details {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 6px;
-  background: var(--border-color-white);
-  border: 1px solid var(--border-color-pink);
+  background: linear-gradient(135deg, var(--bg-secondary-white) 0%, rgba(214, 126, 191, 0.05) 100%);
   padding: 32px;
   border-radius: 16px;
-  flex: 1.3; /* cresce ainda mais */
+  flex: 1.3;
   gap: 20px;
 }
 
-
-/* Título da seção */
 .address-details h2 {
   color: var(--text-color-gray);
   font-size: 1.6rem;
@@ -610,9 +288,8 @@ body {
   border-bottom: 1px solid var(--bg-quaternary);
 }
 
-/* Informações de endereço */
 .delivery-address {
-  background-color: var(--bg-primary); /* Fundo neutro */
+  background-color: var(--bg-primary);
   padding: 16px;
   border-radius: 12px;
   border: 1px solid var(--bg-quaternary);
@@ -626,50 +303,11 @@ body {
   gap: 4px;
 }
 
-/* Ícone forte (ex: "Rua:") */
 .delivery-address strong {
-  color: var(--icon-primary); /* Cor de destaque */
-  min-width: 80px; /* Garante alinhamento visual */
-}
-
-/* Botão de editar endereço */
-.btn-edit-address {
-  position: relative;
-  background-color: transparent;
   color: var(--icon-primary);
-  font-weight: 600;
-  cursor: pointer;
-  align-self: flex-start;
-  border: 1px solid var(--border-color-pink);
-  padding: 10px 18px;
-  margin: 15px;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: all 0.3s ease;
+  min-width: 80px;
 }
 
-.btn-edit-address::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(var(--border-color-pink) 0 0) no-repeat calc(200% - var(--p, 0%)) 100% / 200% var(--p, 0.2em);
-  transition: 0.3s var(--t, 0s), background-position 0.3s calc(0.3s - var(--t, 0s));
-  z-index: 0; /* gradiente atrás do texto */
-}
-
-.btn-edit-address:hover::before {
-  --p: 100%;
-  --t: 0.3s;
-}
-
-.btn-edit-address span {
-  position: relative;
-  z-index: 1; /* texto acima do gradiente */
-  color: var(--icon-primary);
-}
-
-/* Bloco do mapa ilustrativo */
-/* Spinner simples para o mapa */
 .address-map {
   position: relative;
   width: 100%;
@@ -681,68 +319,28 @@ body {
   border: 2px solid rgba(214, 126, 191, 0.2);
 }
 
-#map-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
+.map-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  background: var(--bg-primary-gray);
+  border-radius: 12px;
+  color: var(--text-color-gray);
 }
 
-#map {
-  width: 100%;
-  height: 100%;
+.map-placeholder i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
 }
 
-.map-overlay {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 10;
+.map-placeholder p {
+  font-size: 1rem;
+  text-align: center;
 }
 
-.map-search-btn {
-  background: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-}
-
-.map-search-btn:hover {
-  background: #c875a5;
-  transform: translateY(-2px);
-}
-
-/* Botão de confirmação do endereço */
-.btn-confirm-address {
-  background-color: var(--icon-primary);
-  color: var(--text-color-light);
-  border: none;
-  border-radius: 10px;
-  padding: 12px 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-top: 8px;
-}
-
-/* Efeitos visuais no hover e clique */
-.btn-confirm-address:hover {
-  background-color: var(--icon-primary-hover);
-  transform: scale(1.03);
-}
-
-.btn-confirm-address:active {
-  transform: scale(0.97);
-}
-
-
-/* ==============================
-   BOTÃO CONFIRMAR ENDEREÇO
-============================== */
 .btn-confirm-address {
   display: flex;
   justify-content: center;
@@ -769,92 +367,65 @@ body {
 
 .trust-badges {
   display: flex;
-  justify-content: center; /* centraliza */
+  justify-content: center;
   align-items: center;
-  gap: 20px; /* espaço entre os selos */
-  margin-top: 30px; /* distância do botão */
+  gap: 20px;
+  margin-top: 30px;
 }
 
 .trust-badges img {
-  height: 40px; /* tamanho uniforme */
+  height: 40px;
   object-fit: contain;
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-.trust-badges img:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2);
-}
-.trust-badges img {
-  box-shadow: 0 2px 6px rgba(255, 192, 203, 0.4); /* glow rosa suave */
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 6px rgba(255, 192, 203, 0.4);
   border-radius: 6px;
   padding: 4px;
   background: rgba(255, 255, 255, 0.05);
 }
-.trust-badges img {
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeInUp 0.6s forwards;
-  animation-delay: 0.2s; /* cada selo pode ter delay incremental */
+
+.trust-badges img:hover {
+  transform: scale(1.1);
 }
 
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.map-placeholder {
+.add-address {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 300px;
-  background: var(--bg-primary-gray);
-  border-radius: 12px;
-  color: var(--text-color-gray);
-}
-
-.map-placeholder i {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  color: var(--primary-color);
-}
-
-.map-placeholder p {
-  font-size: 1rem;
   text-align: center;
+  gap: 10px;
+  margin-top: 30px;
 }
 
-.map-info {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  right: 10px;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 8px 12px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.map-info p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--text-color-gray);
+.btn-add-address {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 8px;
+  background-color: var(--border-color-pink);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 2px 6px rgba(255, 105, 180, 0.3);
 }
 
-.map-info i {
-  color: var(--primary-color);
+.btn-add-address:hover {
+  background-color: #ff79b0;
+  box-shadow: 0 6px 14px rgba(255, 105, 180, 0.4);
+  transform: translateY(-3px);
 }
 
+.btn-add-address i {
+  font-size: 34px;
+  color: var(--border-color-white);
+  transition: transform 0.25s ease;
+}
 
-/* ==============================
-   FORMULÁRIO DE CADASTRO
-   ============================== */
-/* Formulário oculto inicialmente */
+.btn-add-address:hover i {
+  transform: rotate(90deg);
+}
+
 .address-form {
   display: none;
   flex-direction: column;
@@ -865,8 +436,8 @@ body {
   transition: all 0.5s ease;
 }
 
-/* Campos de input do formulário */
-.address-form input {
+.address-form input,
+.address-form select {
   padding: 12px 16px;
   border: 2px solid var(--bg-quaternary);
   border-radius: 8px;
@@ -882,53 +453,12 @@ body {
   outline: none;
 }
 
-.address-form select {
-  padding: 12px 16px;
-  border: 2px solid var(--bg-quaternary);
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  background: var(--bg-secondary-white);
-  cursor: pointer;
-}
-
-/* Exibe formulário com transição suave */
 .address-form.show {
   display: flex;
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Animação escalonada de entrada dos campos */
-.address-form.show input {
-  animation: fadeInStairs 0.5s ease forwards;
-}
-
-/* Keyframes da animação */
-@keyframes fadeInStairs {
-  0% {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Delays de animação para cada campo (efeito escadinha) */
-.address-form.show input:nth-child(1) { animation-delay: 0.1s; }
-.address-form.show input:nth-child(2) { animation-delay: 0.2s; }
-.address-form.show input:nth-child(3) { animation-delay: 0.3s; }
-.address-form.show input:nth-child(4) { animation-delay: 0.4s; }
-.address-form.show input:nth-child(5) { animation-delay: 0.5s; }
-.address-form.show input:nth-child(6) { animation-delay: 0.6s; }
-.address-form.show input:nth-child(7) { animation-delay: 0.7s; }
-.address-form.show input:nth-child(8) { animation-delay: 0.8s; }
-.address-form.show input:nth-child(9) { animation-delay: 0.9s; }
-.address-form.show input:nth-child(10) { animation-delay: 1s; }
-
-/* Botão "Salvar Endereço" */
 .btn-save-address {
   display: flex;
   justify-content: center;
@@ -947,15 +477,184 @@ body {
   box-shadow: 0px 4px 10px rgba(255, 105, 180, 0.3);
 }
 
-/* Hover no botão de salvar */
 .btn-save-address:hover {
   background-color: #ff79b0;
   transform: translateY(-3px);
   box-shadow: 0px 6px 14px rgba(255, 105, 180, 0.4);
 }
 
-/* Ícone do botão salvar */
-.btn-save-address i {
-  margin-right: 8px;
-  font-size: 20px;
+@media (max-width: 1024px) {
+  .address-main {
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 16px;
+    margin-bottom: 60px;
+  }
+
+  .address-content,
+  .address-details {
+    flex: 1 1 100%;
+    width: 100%;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .address-header {
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .address-header h1 {
+    font-size: 1.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .checkout-progress {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .step-circle {
+    width: 35px;
+    height: 35px;
+    font-size: 0.8rem;
+  }
+
+  .progress-line {
+    width: 40px;
+  }
+
+  .progress-step span {
+    font-size: 0.75rem;
+  }
+
+  .address-main {
+    gap: 20px;
+    padding: 0 12px;
+  }
+
+  .address-content,
+  .address-details {
+    padding: 20px;
+  }
+
+  .address-items h2,
+  .address-details h2 {
+    font-size: 1.3rem;
+  }
+
+  .checkout-item {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .checkout-item .item-image {
+    width: 70px;
+    height: 70px;
+  }
+
+  .item-info h4 {
+    font-size: 1rem;
+  }
+
+  .item-meta {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .btn-confirm-address {
+    width: 100%;
+    height: 60px;
+    font-size: 1rem;
+  }
+
+  .trust-badges {
+    gap: 15px;
+  }
+
+  .trust-badges img {
+    height: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .address-header {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .checkout-progress {
+    gap: 0.25rem;
+  }
+
+  .step-circle {
+    width: 30px;
+    height: 30px;
+    font-size: 0.7rem;
+  }
+
+  .progress-line {
+    width: 20px;
+  }
+
+  .progress-step span {
+    font-size: 0.7rem;
+  }
+
+  .address-content,
+  .address-details {
+    padding: 16px;
+  }
+
+  .checkout-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .checkout-item .item-image {
+    width: 80px;
+    height: 80px;
+    align-self: center;
+  }
+
+  .item-meta {
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: row;
+  }
+
+  .empty-checkout {
+    padding: 2rem 1rem;
+  }
+
+  .empty-checkout i {
+    font-size: 3rem;
+  }
+
+  .empty-checkout h3 {
+    font-size: 1.2rem;
+  }
+
+  .btn-add-address {
+    width: 60px;
+    height: 60px;
+  }
+
+  .btn-add-address i {
+    font-size: 24px;
+  }
+
+  .address-form input,
+  .address-form select {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+
+  .btn-save-address {
+    height: 50px;
+    font-size: 1rem;
+  }
 }
