@@ -62,7 +62,7 @@ $version = time();
 
   <!-- WhatsApp apenas para usuários -->
   <?php if (isset($_SESSION["role"]) && $_SESSION["role"] == "user"): ?>
-    <a id="robbu-whatsapp-button" target="_blank" href="https://api.whatsapp.com/send?phone=5511000000000">
+    <a id="robbu-whatsapp-button" target="_blank" href="https://api.whatsapp.com/send?phone=5511978936260">
       <div class="rwb-tooltip">Clique aqui e fale conosco no WhatsApp.</div>
       <img src="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-icon.svg">
     </a>
