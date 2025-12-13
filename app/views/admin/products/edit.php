@@ -2,9 +2,11 @@
 require 'config/database.php';
 
 // verifica se permissão do usuário é diferente de admin
-if ($_SESSION['role'] !== "admin") {
-  echo "<script>window.location.href = '/';</script>";
-  exit();
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== "admin") {
+    error_log("Tentativa de acesso não autorizado ao admin - IP: " . $_SERVER['REMOTE_ADDR']);
+    
+    // Redirecionamento seguro pelo servidor
+    header('Location: /auth/login');
 }
 
 $message = '';

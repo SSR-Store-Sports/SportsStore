@@ -30,8 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
         
-        // Desativar usuário (você pode adicionar uma coluna 'active' na tabela)
-        // Por enquanto, vamos apenas deletar o usuário
         $stmt = $db->prepare("DELETE FROM tatifit_users WHERE id = :id");
         $stmt->bindParam(':id', $userId);
         

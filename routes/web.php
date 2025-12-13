@@ -1,13 +1,13 @@
 <?php
 
 require __DIR__ . '/Router.php'; // importação do script de gerenciamento de rotas
-use Bramus\Router\Router; // habilitar script para uso no arquivo
+use Bramus\Router\Router; // habilitar class para uso no arquivo
 $router = new Router(); // instaciando class Router para utilizar seus métodos (Mount, Get, Post, etc...)
 
 // importação global (todas as páginas)
 include 'app/views/_components/header/index.php'; // importando o header
 include 'app/views/_components/sidebar/index.php'; // importando a sidebar
-require 'app/middleware/AdminMiddleware.php';
+// require 'app/middleware/AdminMiddleware.php';
 
 /*
   ROTAS DE LOGIN E REGISTRO

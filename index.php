@@ -5,10 +5,8 @@ header("Cache-Control: no-cache, no-store, must-revalidate");
 header("Pragma: no-cache");
 header("Expires: 0");
 
-// session_start(); // - usando para habilitar as vÃ¡riaveis globais na hospedagem
-
-// versão automática baseada no timestamp do deploy
-$version = time();
+// session_start(); // habilitar globais na hospedagem
+$version = time(); // versão automática baseada no timestamp do deploy
 
 ?>
 
@@ -21,6 +19,7 @@ $version = time();
   <meta name="description" content="TatiFit Sports - Loja online de roupas esportivas femininas" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <title>TatiFit Wear</title>
   <link rel="icon" href="/public/images/favicon.png?v=<?php echo $version; ?>" />
@@ -29,7 +28,6 @@ $version = time();
   <link rel="stylesheet" href="/globals.css?v=<?php echo $version; ?>" />
 
   <!-- importação da fonte (inter) -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
 
   <!-- biblioteca de ícones -->
@@ -38,6 +36,7 @@ $version = time();
   <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
 
+  <!-- biblioteca de rolagem -->
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.min.js"></script>
 
 </head>
@@ -45,10 +44,10 @@ $version = time();
 <body>
 
   <?php
-    require_once 'routes/web.php';
+    require_once 'routes/web.php'; // inicializa todas as rotas da aplicação
   ?>
 
-  <!-- VLibras -->
+  <!-- biblioteca de libras - VLibras -->
   <div vw class="enabled">
     <div vw-access-button class="active"></div>
     <div vw-plugin-wrapper>
@@ -68,10 +67,11 @@ $version = time();
     </a>
   <?php endif; ?>
 
+  <!-- habilitar o scroll suave -->
   <script src="./public/js/scroll.js?v=<?php echo $version; ?>"></script>
 
   <!-- ReCaptcha -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
 
 </body>
 
